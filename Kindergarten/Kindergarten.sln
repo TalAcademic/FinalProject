@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kindergarten.Domain", "Kindergarten.Domain\Kindergarten.Domain.csproj", "{EB551C19-CB87-471F-8AE1-D3C9C8C14873}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kindergarten.BL", "Kindergarten.BL\Kindergarten.BL.csproj", "{329DDD08-D110-4F59-8D52-3366ADD3AE39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KindergartenApp", "KindergartenApp\KindergartenApp.csproj", "{F0D2ACF6-2007-43F7-8E29-5916A1457F38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB551C19-CB87-471F-8AE1-D3C9C8C14873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB551C19-CB87-471F-8AE1-D3C9C8C14873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB551C19-CB87-471F-8AE1-D3C9C8C14873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB551C19-CB87-471F-8AE1-D3C9C8C14873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{329DDD08-D110-4F59-8D52-3366ADD3AE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329DDD08-D110-4F59-8D52-3366ADD3AE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329DDD08-D110-4F59-8D52-3366ADD3AE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329DDD08-D110-4F59-8D52-3366ADD3AE39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0D2ACF6-2007-43F7-8E29-5916A1457F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D2ACF6-2007-43F7-8E29-5916A1457F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0D2ACF6-2007-43F7-8E29-5916A1457F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D2ACF6-2007-43F7-8E29-5916A1457F38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

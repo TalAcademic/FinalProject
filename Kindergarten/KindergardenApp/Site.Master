@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="KindergardenApp.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="Styles/Styles.css" rel="stylesheet" />
+    <title>ברוכים הבאים!"</title>
+  
+</head>
+<body>
+    <form id="form1" runat="server" dir="rtl">
+         <asp:Menu ID="Menu1" runat="server" CssClass="Menu">
+            <Items>
+                <asp:MenuItem Text="הוסף גן" NavigateUrl="AddKindergarden.aspx" />
+            </Items>
+        </asp:Menu>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+       
+    </asp:ContentPlaceHolder>
+    <div>
+        <asp:ContentPlaceHolder ID="Body" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
