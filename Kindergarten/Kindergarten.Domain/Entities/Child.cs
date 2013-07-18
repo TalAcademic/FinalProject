@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kindergarten.Domain.Entities
 {
+    [Serializable]
     public class Child : Person
     {
         public virtual IList<Sensitivity> Sensitivitieses { get; set; }

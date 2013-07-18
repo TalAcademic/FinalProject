@@ -22,7 +22,7 @@
                     <asp:Label runat="server" Text="עיר:" />
                 </td>
                 <td>
-                    <asp:DropDownList runat="server" ID="Cities" />
+                    <asp:DropDownList runat="server" ID="Cities" DataTextField="Value" />
                 </td>
             </tr>
             <tr>
@@ -47,15 +47,15 @@
                 <td>
                     <asp:Label runat="server" Text="גננת:" /></td>
                 <td>
-                    <asp:DropDownList runat="server" ID="Teachers" /></td>
+                    <asp:DropDownList runat="server" ID="Teachers"  DataTextField="FullName"/></td>
 
             </tr>
-            
+
             <tr>
                 <td>
                     <asp:Label runat="server" Text="ילדים בגן:" /></td>
             </tr>
-          
+
             <tr>
                 <td colspan="2">
                     <asp:DataGrid ID="ChildrenGrid" runat="server" AutoGenerateColumns="False" ShowHeader="True">
@@ -64,20 +64,22 @@
                             <asp:BoundColumn HeaderText="שם פרטי" DataField="FirstName" />
                             <asp:BoundColumn HeaderText="שם משפחה" DataField="LastName" />
                             <asp:EditCommandColumn HeaderText="ערוך" CancelText="בטל" EditText="ערוך" UpdateText="שמור" />
-                            <asp:ButtonColumn HeaderText="מחק" CommandName="Delete"/>
+                            <asp:ButtonColumn HeaderText="מחק" CommandName="Delete" />
                         </Columns>
                     </asp:DataGrid>
                 </td>
             </tr>
-              <tr>
-                <td><asp:Button ID="Button1" runat="server" Text="הוסף ילד לגן" Font-Size="10px"/></td>
-            </tr>
-            <br/>
             <tr>
                 <td>
-                    <asp:Button runat="server" Text="הוסף גן" OnClick="SaveClick" Font-Size="15px"/>
+                    <asp:Button ID="Button1" runat="server" Text="הוסף גן" OnClick="SaveClick" Font-Size="15px" />
                 </td>
             </tr>
         </table>
+        <div>
+            <asp:DropDownList runat="server" ID="ChildrenList" />
+            <asp:Button ID="AddChild" runat="server" Text="הוסף ילד לגן" Font-Size="10px" OnClick="AddChildClick" />
+        </div>
+
+
     </div>
 </asp:Content>

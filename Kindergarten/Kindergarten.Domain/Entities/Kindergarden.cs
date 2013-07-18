@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kindergarten.Domain.Entities
 {
+    [Serializable]
     public class Kindergarden
     {
         public virtual int Id { get; set; }
