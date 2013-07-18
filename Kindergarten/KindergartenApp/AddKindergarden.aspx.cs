@@ -40,11 +40,11 @@ namespace KindergartenApp
 
             var current = new Kindergarden
                               {
-                                Name = Name.Text,
-                                City = city,
-                                ChildQty = int.Parse(ChildrenNum.Text),
+                                  Name = Name.Text,
+                                  City = city,
+                                  ChildQty = int.Parse(ChildrenNum.Text),
 
-                              }
+                              };
         }
     }
 }
