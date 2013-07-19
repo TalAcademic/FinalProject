@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KindergartenApp {
+namespace KindergartenApp.Kindergarden {
     
     
     public partial class AddUser {

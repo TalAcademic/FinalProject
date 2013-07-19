@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddKindergarden.aspx.cs"
-    Inherits="KindergartenApp.AddKindergarden" MasterPageFile="Site.Master" Title="AddGarden" %>
+    Inherits="KindergartenApp.AddKindergarden" MasterPageFile="../Site.Master" Title="AddGarden" %>
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
@@ -80,6 +80,6 @@
             <asp:Button ID="AddChild" runat="server" Text="הוסף ילד לגן" Font-Size="10px" OnClick="AddChildClick" />
         </div>
 
-
+         <asp:Image ID="ShowImage" runat="server" ></asp:Image>/>
     </div>
 </asp:Content>

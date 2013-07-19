@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Kindergarten.Domain.Entities
 {
-      [Serializable]
-    public class Person
+    [Serializable]
+    public abstract class Person
     {
         public virtual int Id { get; set; }
         public virtual string FirstName { get; set; }

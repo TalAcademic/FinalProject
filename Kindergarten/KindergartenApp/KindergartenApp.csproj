@@ -148,8 +148,11 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
-    <Content Include="AddKindergarden.aspx" />
-    <Content Include="AddUser.aspx" />
+    <Content Include="Kindergarden\AddKindergarden.aspx" />
+    <Content Include="Kindergarden\OpenDay.aspx" />
+    <Content Include="Kindergarden\WeekPlan.aspx" />
+    <Content Include="Reports\Search.aspx" />
+    <Content Include="User\AddUser.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -258,18 +261,39 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddKindergarden.aspx.cs">
+    <Compile Include="Kindergarden\AddKindergarden.aspx.cs">
       <DependentUpon>AddKindergarden.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddKindergarden.aspx.designer.cs">
+    <Compile Include="Kindergarden\AddKindergarden.aspx.designer.cs">
       <DependentUpon>AddKindergarden.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AddUser.aspx.cs">
+    <Compile Include="Kindergarden\OpenDay.aspx.cs">
+      <DependentUpon>OpenDay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kindergarden\OpenDay.aspx.designer.cs">
+      <DependentUpon>OpenDay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Kindergarden\WeekPlan.aspx.cs">
+      <DependentUpon>WeekPlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kindergarden\WeekPlan.aspx.designer.cs">
+      <DependentUpon>WeekPlan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\AddUser.aspx.cs">
       <DependentUpon>AddUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddUser.aspx.designer.cs">
+    <Compile Include="User\AddUser.aspx.designer.cs">
       <DependentUpon>AddUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -350,9 +374,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />

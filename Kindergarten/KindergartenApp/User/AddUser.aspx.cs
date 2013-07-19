@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace KindergartenApp
+namespace KindergartenApp.User
 {
     public partial class AddUser : System.Web.UI.Page
     {
