@@ -16,6 +16,7 @@ namespace Kindergarten.Domain.Mapping
             Map(x => x.Body);
             Map(x => x.SendTime);
             References(x => x.Sender);
+            References(x => x.Sender);
             HasManyToMany(x => x.Recipients).Cascade.All();
         }
     }
