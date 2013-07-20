@@ -10,7 +10,7 @@ namespace Kindergarten.Domain.Entities
     public enum Cities
     {
         [Description("ראשון לציון")]
-        Rishon,
+        Rishon = 1,
         [Description("רחובות")]
         Rehovot,
         [Description("חולון")]

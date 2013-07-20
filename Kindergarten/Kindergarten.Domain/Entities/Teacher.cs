@@ -12,5 +12,9 @@ namespace Kindergarten.Domain.Entities
         public virtual int Seniority { get; set; }
         public virtual Teacher Substitute { get; set; }
 
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 }

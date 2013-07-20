@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KindergartenApp.Kindergarden {
+namespace KindergartenApp.Reports {
     
     
     public partial class Search {

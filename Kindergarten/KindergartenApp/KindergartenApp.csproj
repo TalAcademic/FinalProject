@@ -148,6 +148,7 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Kindergarden\AddActivity.aspx" />
     <Content Include="Kindergarden\AddKindergarden.aspx" />
     <Content Include="Kindergarden\OpenDay.aspx" />
     <Content Include="Kindergarden\WeekPlan.aspx" />
@@ -261,6 +262,13 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Kindergarden\AddActivity.aspx.cs">
+      <DependentUpon>AddActivity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kindergarden\AddActivity.aspx.designer.cs">
+      <DependentUpon>AddActivity.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Kindergarden\AddKindergarden.aspx.cs">
       <DependentUpon>AddKindergarden.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

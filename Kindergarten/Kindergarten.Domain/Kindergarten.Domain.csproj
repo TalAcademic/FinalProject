@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Activity.cs" />
+    <Compile Include="Entities\ActivityTypes.cs" />
     <Compile Include="Entities\Child.cs" />
     <Compile Include="Entities\Cities.cs" />
     <Compile Include="Entities\Kindergarden.cs" />
