@@ -17,7 +17,7 @@ namespace Kindergarten.Domain.Mapping
             Map(x => x.LastName);
             Map(x => x.BirthDay);
             Map(x => x.PhoneNum);
-
+            HasManyToMany(x => x.Messages).Cascade.All();
             DiscriminateSubClassesOnColumn("Type").Not.Nullable();
         }
     }
