@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddUser.aspx.cs" Inherits="KindergartenApp.Kindergarden.AddUser" MasterPageFile="../Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddUser.aspx.cs" Inherits="KindergartenApp.User.AddUser" MasterPageFile="../Site.Master" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -62,27 +62,49 @@
                         ValidationExpression="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"></asp:RegularExpressionValidator>
                 </td>
             </tr>
-            <%-- <tr>
+            <tr>
                 <td>
-                    <asp:Label runat="server" Text="רגישויות"/>
+                    <asp:Label ID="Label3" runat="server" Text="סוג משתמש:" />
+
                 </td>
                 <td>
-                    <asp:CheckBoxList runat="server" ID="Sensetivities" RepeatDirection="Horizontal">
+                    <asp:DropDownList runat="server" ID="PersonTypes" OnSelectedIndexChanged="PersonTypesChanged">
                         <Items>
-                            <asp:ListItem Text="גלוטן" />
-                            <asp:ListItem Text="לקטוז" />
-                            <asp:ListItem Text="אגוזים" />
-                            <asp:ListItem Text="ביצים" />
-                            <asp:ListItem Text="אחר" />
+                            <asp:ListItem Text="גננת" Value="2" />
+                            <asp:ListItem Text="ילד" Value="1" />
+                            <asp:ListItem Text="מפקחת" Value="3" />
                         </Items>
-                    </asp:CheckBoxList>
+                    </asp:DropDownList>
                 </td>
-                <td>
-                    <asp:TextBox runat="server" ID="Other" Width="80px" />
-                     <cc1:TextBoxWatermarkExtender ID="OtherWatermarkExtender" runat="server"
-                        TargetControlID="Other" WatermarkCssClass="watermark" WatermarkText="הזן ערך אחר" />
-                </td>
-            </tr>--%>
+            </tr>
+        </table>
+        <div id="ChildData" runat="server" Visible="False">
+            <table>
+                <tr>
+                    <td>
+                        <asp:Label runat="server" Text="רגישויות" />
+                    </td>
+                    <td>
+                        <asp:CheckBoxList runat="server" ID="Sensetivities" RepeatDirection="Horizontal">
+                            <Items>
+                                <asp:ListItem Text="גלוטן" />
+                                <asp:ListItem Text="לקטוז" />
+                                <asp:ListItem Text="אגוזים" />
+                                <asp:ListItem Text="ביצים" />
+                                <asp:ListItem Text="אחר" />
+                            </Items>
+                        </asp:CheckBoxList>
+                    </td>
+                    <td>
+                        <asp:TextBox runat="server" ID="Other" Width="80px" />
+                        <cc1:TextBoxWatermarkExtender ID="OtherWatermarkExtender" runat="server"
+                            TargetControlID="Other" WatermarkCssClass="watermark" WatermarkText="הזן ערך אחר" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="TeacherData"  runat="server" Visible="False">
+        <table >
             <tr>
                 <td>
                     <asp:Label runat="server" Text="ותק:" />
@@ -98,11 +120,13 @@
                 <td>
                     <asp:DropDownList runat="server" ID="Teachers" /></td>
             </tr>
-            <tr>
-                <td>
-                    <asp:Button ID="Button1" runat="server" Text="הוסף" Font-Size="15px" />
-                </td>
-            </tr>
         </table>
+            </div>
+        <div>
+
+            <asp:Button ID="Button1" runat="server" Text="הוסף" Font-Size="15px" />
+
+        </div>
+
     </div>
 </asp:Content>

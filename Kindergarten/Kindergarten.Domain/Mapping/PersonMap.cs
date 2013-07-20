@@ -12,11 +12,13 @@ namespace Kindergarten.Domain.Mapping
     {
         public PersonMap()
         {
-            Id(x => x.Id).GeneratedBy.Assigned();
+            Id(x => x.Id);
+            Map(x => x.IdNum);
             Map(x => x.FirstName);
             Map(x => x.LastName);
             Map(x => x.BirthDay);
             Map(x => x.PhoneNum);
+            Map(x => x.Password);
 
             DiscriminateSubClassesOnColumn("Type").Not.Nullable();
         }
