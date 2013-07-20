@@ -16,6 +16,8 @@ namespace Kindergarten.Domain.Entities
 
         public virtual DateTime BirthDay { get; set; }
 
+        public virtual string Password { get; set; }
+
         public virtual string FullName
         {
             get { return FirstName + " " + LastName; }
