@@ -8,6 +8,7 @@ namespace Kindergarten.Domain.Entities
 {
     public class Activity
     {
+        public string Name { get; set; }
         public Kindergarden Kindergarden { get; set; }
         public ActivityTypes Type { get; set; }
         public DateTime Date { get; set; }
