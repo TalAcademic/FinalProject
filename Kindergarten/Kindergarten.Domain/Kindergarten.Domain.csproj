@@ -62,6 +62,7 @@
     <Compile Include="Entities\Teacher.cs" />
     <Compile Include="Mapping\ChildMap.cs" />
     <Compile Include="Mapping\KindergardenMap.cs" />
+    <Compile Include="Mapping\MessageMap.cs" />
     <Compile Include="Mapping\PersonMap.cs" />
     <Compile Include="Mapping\SensitivityMap.cs" />
     <Compile Include="Mapping\TeacherMap.cs" />

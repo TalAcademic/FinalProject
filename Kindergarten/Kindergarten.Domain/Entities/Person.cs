@@ -19,6 +19,8 @@ namespace Kindergarten.Domain.Entities
 
         public virtual string Password { get; set; }
 
+        public List<Message> Messages { get; set; }
+
         public virtual string FullName
         {
             get { return FirstName + " " + LastName; }

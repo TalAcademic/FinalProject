@@ -12,5 +12,7 @@ namespace Kindergarten.Domain.Entities
         public string Title { get; set; }
         public string Body { get; set; }
         public DateTime SendTime { get; set; }
+        public List<Person> Recipients { get; set; }
+
     }
 }
