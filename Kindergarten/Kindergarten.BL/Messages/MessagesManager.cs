@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Kindergarten.Domain.Entities;
+using NHibernate.Linq;
 
 namespace Kindergarten.BL.Messages
 {
@@ -30,6 +31,11 @@ namespace Kindergarten.BL.Messages
         {
             Message msg = new Message(){Body = body,Sender = sender,Recipients = recipients,Title = title, SendTime = DateTime.Now};
             SessionFactoryHelper.CurrentSession.Save(msg);
+        }
+
+        public List<Message> GetPersonMessages (Person recipient)
+        {
+            return SessionFactoryHelper.CurrentSession.Query<Message>().Where(c=>c.Recipients.Contains(recipient)).ToList();
         }
     }
 }
