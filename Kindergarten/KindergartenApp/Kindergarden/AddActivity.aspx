@@ -11,7 +11,7 @@
           <tr>
               <td>
                   <asp:Label runat="server" Text="שם הפעילות"/>
-                 
+        
               </td>
               <td>
                    <asp:TextBox ID="TextBox1" runat="server"/>
