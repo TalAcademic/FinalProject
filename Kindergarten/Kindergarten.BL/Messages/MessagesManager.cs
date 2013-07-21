@@ -8,24 +8,23 @@ using NHibernate.Linq;
 
 namespace Kindergarten.BL.Messages
 {
-    public class MessagesManager
+    public class DBMessagesManager: IMessanger
     {
-        private static MessagesManager _instance;
+        //private static MessagesManager _instance;
 
-        public static MessagesManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new MessagesManager();
-                }
-                return Instance;
-            }
+        //public static MessagesManager Instance
+        //{
+        //    get
+        //    {
+        //        if (_instance == null)
+        //        {
+        //            _instance = new MessagesManager();
+        //        }
+        //        return Instance;
+        //    }
 
-        }
+        //}
 
-        private MessagesManager(){}
 
         public void SendMessage(Person sender, string title, string body, List<Person> recipients)
         {
@@ -37,5 +36,11 @@ namespace Kindergarten.BL.Messages
         {
             return SessionFactoryHelper.CurrentSession.Query<Message>().Where(c=>c.Recipients.Contains(recipient)).ToList();
         }
+    }
+
+    public interface IMessanger
+    {
+        void SendMessage(Person sender, string title, string body, List<Person> recipients);
+        List<Message> GetPersonMessages(Person recipient);  
     }
 }

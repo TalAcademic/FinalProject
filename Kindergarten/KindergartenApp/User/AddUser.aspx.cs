@@ -1,12 +1,14 @@
 ﻿using System;
+using Kindergarten.BL.Messages;
 
 namespace KindergartenApp.User
 {
     public partial class AddUser : System.Web.UI.Page
     {
+        public IMessanger msg { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            var x = 8;
         }
 
         protected void PersonTypesChanged(object sender, EventArgs e)

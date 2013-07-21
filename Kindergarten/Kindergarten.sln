@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2B9DAB
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kindergarten.Bootstrap", "Kindergarten.Bootstrap\Kindergarten.Bootstrap.csproj", "{32BC0A74-30D4-4499-8B8C-352EBD32F030}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{F0D2ACF6-2007-43F7-8E29-5916A1457F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0D2ACF6-2007-43F7-8E29-5916A1457F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0D2ACF6-2007-43F7-8E29-5916A1457F38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32BC0A74-30D4-4499-8B8C-352EBD32F030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32BC0A74-30D4-4499-8B8C-352EBD32F030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32BC0A74-30D4-4499-8B8C-352EBD32F030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32BC0A74-30D4-4499-8B8C-352EBD32F030}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

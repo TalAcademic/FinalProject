@@ -8,11 +8,12 @@ namespace Kindergarten.Domain.Entities
 {
     public class Message
     {
-        public Person Sender { get; set; }
-        public string Title { get; set; }
-        public string Body { get; set; }
-        public DateTime SendTime { get; set; }
-        public List<Person> Recipients { get; set; }
+        public virtual int Id{ get; set; }
+        public virtual Person Sender { get; set; }
+        public virtual string Title { get; set; }
+        public virtual string Body { get; set; }
+        public virtual DateTime SendTime { get; set; }
+        public virtual List<Person> Recipients { get; set; }
 
     }
 }
