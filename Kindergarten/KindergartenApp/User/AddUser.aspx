@@ -124,7 +124,7 @@
             </div>
         <div>
 
-            <asp:Button ID="Button1" runat="server" Text="הוסף" Font-Size="15px" />
+            <asp:Button ID="Save" runat="server" Text="שמור" Font-Size="15px" OnClick="SaveClick"  />
 
         </div>
 

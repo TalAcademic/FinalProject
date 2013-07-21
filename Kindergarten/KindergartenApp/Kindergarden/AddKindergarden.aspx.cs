@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Kindergarten.BL;
+using Kindergarten.BL.Query;
 using Kindergarten.BL.Utils;
 using Entities = Kindergarten.Domain.Entities;
 using NHibernate.Linq;
@@ -29,10 +30,10 @@ namespace KindergartenApp
             Cities.DataSource = EnumUtils.GetDescriptions(typeof(Entities.Cities));
             Cities.DataBind();
 
-            Teachers.DataSource = SessionFactoryHelper.CurrentSession.Query<Entities.Teacher>();
+            Teachers.DataSource = new TeachersQuery().Get();
             Teachers.DataBind();
 
-            ChildrenList.DataSource = SessionFactoryHelper.CurrentSession.Query<Entities.Child>();
+            ChildrenList.DataSource = new ChildQuery().Get();
             ChildrenList.DataBind();
         }
 
