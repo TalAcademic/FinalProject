@@ -10,21 +10,6 @@ namespace Kindergarten.BL.Messages
 {
     public class DBMessagesManager: IMessanger
     {
-        //private static MessagesManager _instance;
-
-        //public static MessagesManager Instance
-        //{
-        //    get
-        //    {
-        //        if (_instance == null)
-        //        {
-        //            _instance = new MessagesManager();
-        //        }
-        //        return Instance;
-        //    }
-
-        //}
-
 
         public void SendMessage(Person sender, string title, string body, List<Person> recipients)
         {

@@ -13,7 +13,7 @@ namespace Kindergarten.Domain.Entities
         public virtual string Title { get; set; }
         public virtual string Body { get; set; }
         public virtual DateTime SendTime { get; set; }
-        public virtual List<Person> Recipients { get; set; }
+        public virtual ICollection<Person> Recipients { get; set; }
 
     }
 }

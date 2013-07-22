@@ -159,6 +159,9 @@
     <Content Include="Kindergarden\AddKindergarden.aspx" />
     <Content Include="Kindergarden\OpenDay.aspx" />
     <Content Include="Kindergarden\WeekPlan.aspx" />
+    <Content Include="Messaging\ViewMessage.aspx" />
+    <Content Include="Messaging\MyMessages.aspx" />
+    <Content Include="Messaging\SendMessage.aspx" />
     <Content Include="Reports\Search.aspx" />
     <Content Include="User\AddUser.aspx" />
     <Content Include="Contact.aspx" />
@@ -296,6 +299,27 @@
     </Compile>
     <Compile Include="Kindergarden\WeekPlan.aspx.designer.cs">
       <DependentUpon>WeekPlan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Messaging\ViewMessage.aspx.cs">
+      <DependentUpon>ViewMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Messaging\ViewMessage.aspx.designer.cs">
+      <DependentUpon>ViewMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Messaging\MyMessages.aspx.cs">
+      <DependentUpon>MyMessages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Messaging\MyMessages.aspx.designer.cs">
+      <DependentUpon>MyMessages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Messaging\SendMessage.aspx.cs">
+      <DependentUpon>SendMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Messaging\SendMessage.aspx.designer.cs">
+      <DependentUpon>SendMessage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
