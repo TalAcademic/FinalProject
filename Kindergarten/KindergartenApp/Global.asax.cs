@@ -8,10 +8,14 @@ using System.Web.Security;
 using Kindergarten.BL;
 using KindergartenApp;
 using NHibernate;
+using Autofac;
+using Kindergarten.Bootstrap;
+using Autofac.Integration.Web;
+
 
 namespace KindergartenApp
 {
-    public class Global : HttpApplication
+    public class Global : HttpApplication,IContainerProviderAccessor
     {
 
         void Application_Start(object sender, EventArgs e)
@@ -22,6 +26,9 @@ namespace KindergartenApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             
             SessionFactoryHelper.CreateSessionFactoryWithDB();
+            
+            _containerProvider = new ContainerProvider(ContainerCreationExtentions.CreateNew().LoadDefaultPackage("KindergartenApp"));
+            
         }
 
 
@@ -48,6 +55,11 @@ namespace KindergartenApp
 
             var session = NHibernate.Context.CurrentSessionContext.Unbind(SessionFactoryHelper.SessionFactory);
             session.Dispose();
+        }
+        static IContainerProvider _containerProvider;
+        public IContainerProvider ContainerProvider
+        {
+            get { return _containerProvider; }
         }
     }
 }

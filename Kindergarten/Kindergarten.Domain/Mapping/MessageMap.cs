@@ -8,10 +8,11 @@ using Kindergarten.Domain.Entities;
 
 namespace Kindergarten.Domain.Mapping
 {
-    public class MessageMap : SubclassMap<Message>
+    public class MessageMap : ClassMap<Message>
     {
         public MessageMap()
         {
+            Id(x => x.Id);
             Map(x=>x.Title);
             Map(x => x.Body);
             Map(x => x.SendTime);
