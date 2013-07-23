@@ -15,11 +15,12 @@ namespace KindergartenApp.User
         public IMessanger msg { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            Teacher t = new Teacher() { Id = 123, FirstName = "Dana", LastName = "ss",BirthDay = DateTime.Now};
+            Teacher t = new Teacher() { Id = 123, FirstName = "Dana", LastName = "ss", BirthDay = DateTime.Now };
             SessionFactoryHelper.CurrentSession.Save(t);
             Child c = new Child() { Id = 322, FirstName = "ssdsd", LastName = "sdds", BirthDay = DateTime.Now };
             SessionFactoryHelper.CurrentSession.Save(c);
-            msg.SendMessage(t, "Hello", "You are gay", new List<Person>(){c});
+            msg.SendMessage(t, "Hello", "You are gay", new List<Person>() { c });
+        }
 
         private void BindList()
         {
