@@ -44,18 +44,9 @@
                         <asp:LoginView runat="server" ViewStateMode="Disabled">
                             <AnonymousTemplate>
                                 <ul>
-                                    <li><a id="loginLink" runat="server" href="Account/Login">התחבר למערכת</a></li>
+                                    <li><a id="loginLink" runat="server" href="User/Login">התחבר למערכת</a></li>
                                 </ul>
                             </AnonymousTemplate>
-                            <LoggedInTemplate>
-                                <p>
-                                    Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
-                                        <asp:LoginName runat="server" CssClass="username" />
-                                    </a>!
-                               
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
-                                </p>
-                            </LoggedInTemplate>
                         </asp:LoginView>
                     </section>
                     <nav>
