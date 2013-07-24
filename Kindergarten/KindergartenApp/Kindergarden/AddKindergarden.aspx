@@ -56,7 +56,7 @@
                     <asp:Label runat="server" Text="ילדים בגן:" /></td>
             </tr>
 
-            <tr>
+            <tr>    
                 <td colspan="2">
                     <asp:DataGrid ID="ChildrenGrid" runat="server" AutoGenerateColumns="False" ShowHeader="True">
                         <Columns>
@@ -80,6 +80,6 @@
             <asp:Button ID="AddChild" runat="server" Text="הוסף ילד לגן" Font-Size="10px" OnClick="AddChildClick" />
         </div>
 
-         <asp:Image ID="ShowImage" runat="server" ></asp:Image>/>
+       <%--  <asp:Image ID="ShowImage" runat="server" ></asp:Image>--%>
     </div>
 </asp:Content>

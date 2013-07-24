@@ -7,18 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KindergartenApp.Account {
+namespace KindergartenApp.User {
     
     
     public partial class Login {
-        
-        /// <summary>
-        /// OpenAuthLogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::KindergartenApp.Account.OpenAuthProviders OpenAuthLogin;
     }
 }

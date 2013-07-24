@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Kindergarden\Activities.aspx" />
     <Content Include="User\ChangePassword.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="Images\logo.jpg" />
@@ -261,6 +262,13 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Kindergarden\Activities.aspx.cs">
+      <DependentUpon>Activities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kindergarden\Activities.aspx.designer.cs">
+      <DependentUpon>Activities.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Kindergarden\AddActivity.aspx.cs">
       <DependentUpon>AddActivity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

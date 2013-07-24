@@ -1,16 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChangePassword.aspx.cs" Inherits="KindergartenApp.User.ChangePassword" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChangePassword.aspx.cs" Inherits="KindergartenApp.User.ChangePassword" MasterPageFile="../Site.Master" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
+    <hgroup class="title">
+        <h2>החלפת סיסמא</h2>
+    </hgroup>
     <div>
-    
+        <asp:Label runat="server" Text="הזן את הסיסמא החדשה"/>
+        <asp:TextBox runat="server"/>
     </div>
-    </form>
-</body>
-</html>
+    <div>
+        <asp:Button runat="server" Text="שמור"/>
+    </div>
+    </asp:Content>
