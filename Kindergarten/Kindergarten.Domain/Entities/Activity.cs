@@ -8,10 +8,11 @@ namespace Kindergarten.Domain.Entities
 {
     public class Activity
     {
-        public string Name { get; set; }
-        public Kindergarden Kindergarden { get; set; }
-        public ActivityTypes Type { get; set; }
-        public DateTime Date { get; set; }
-        public string Info { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual Kindergarden Kindergarden { get; set; }
+        public virtual ActivityTypes Type { get; set; }
+        public virtual DateTime Date { get; set; }
+        public virtual string Info { get; set; }
     }
 }

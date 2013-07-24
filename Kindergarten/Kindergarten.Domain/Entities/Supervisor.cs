@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Kindergarten.Domain.Entities
 {
-    public class MessageRecipient
+    public class Supervisor :Person
     {
-        public Person Recipient { get; set; }
-        public Message Message { get; set; }
+        public virtual Cities City { get; set; }
     }
 }

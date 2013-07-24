@@ -56,15 +56,17 @@
     <Compile Include="Entities\Cities.cs" />
     <Compile Include="Entities\Kindergarden.cs" />
     <Compile Include="Entities\Message.cs" />
-    <Compile Include="Entities\MessageReceiver.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Sensitivity.cs" />
+    <Compile Include="Entities\Supervisor.cs" />
     <Compile Include="Entities\Teacher.cs" />
+    <Compile Include="Mapping\ActivityMap.cs" />
     <Compile Include="Mapping\ChildMap.cs" />
     <Compile Include="Mapping\KindergardenMap.cs" />
     <Compile Include="Mapping\MessageMap.cs" />
     <Compile Include="Mapping\PersonMap.cs" />
     <Compile Include="Mapping\SensitivityMap.cs" />
+    <Compile Include="Mapping\SupervisorMap.cs" />
     <Compile Include="Mapping\TeacherMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
