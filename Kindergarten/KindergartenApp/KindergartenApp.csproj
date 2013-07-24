@@ -160,6 +160,7 @@
     <Content Include="Kindergarden\AddKindergarden.aspx" />
     <Content Include="Kindergarden\OpenDay.aspx" />
     <Content Include="Kindergarden\WeekPlan.aspx" />
+    <Content Include="Main.aspx" />
     <Content Include="Messaging\ViewMessage.aspx" />
     <Content Include="Messaging\MyMessages.aspx" />
     <Content Include="Messaging\SendMessage.aspx" />
@@ -290,6 +291,13 @@
     </Compile>
     <Compile Include="Kindergarden\WeekPlan.aspx.designer.cs">
       <DependentUpon>WeekPlan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
     <Compile Include="Messaging\ViewMessage.aspx.cs">
       <DependentUpon>ViewMessage.aspx</DependentUpon>

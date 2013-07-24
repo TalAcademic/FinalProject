@@ -60,7 +60,7 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li><a runat="server" href="~/" style="color: blue">דף הבית</a></li>
+                            <li><a runat="server" href="~/Main" style="color: blue">דף הבית</a></li>
                             <ul>
                                 <li><a id="A1" runat="server" href="~/Kindergarden/AddKindergarden">הוסף גן</a></li>
                                 <li><a id="A2" runat="server" href="~/Kindergarden/OpenDay">פתיחת יום</a></li>
