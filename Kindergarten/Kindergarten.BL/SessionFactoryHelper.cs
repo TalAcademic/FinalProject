@@ -19,7 +19,7 @@ namespace Kindergarten.BL
 
             SessionFactory =  Fluently.Configure().Database(MsSqlConfiguration.MsSql2008.
                                                    ConnectionString(
-                                                    @"Data Source=(localdb)\Projects;Initial Catalog=Kinder;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False"))
+                                                    @"Data Source=(localdb)\Projects;Initial Catalog=Kinder;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False").ShowSql())
                                                   .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PersonMap>())
                                                   .ExposeConfiguration(cfg => cfg.SetProperty("current_session_context_class", "web"))
                                                   .BuildSessionFactory();

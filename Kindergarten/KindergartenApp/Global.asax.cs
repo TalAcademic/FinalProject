@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using Kindergarten.BL;
+using Kindergarten.Domain.Entities;
 using KindergartenApp;
 using NHibernate;
 using Autofac;
@@ -28,7 +29,20 @@ namespace KindergartenApp
             SessionFactoryHelper.CreateSessionFactoryWithDB();
             
             _containerProvider = new ContainerProvider(ContainerCreationExtentions.CreateNew().LoadDefaultPackage("KindergartenApp"));
-            
+
+            using (var session = SessionFactoryHelper.SessionFactory.OpenSession())
+            {
+                var s1 = new Sensitivity { Description = "לקטוז" };
+                var s2 = new Sensitivity { Description = "גלוטן" };
+                var s3 = new Sensitivity { Description = "בוטנים" };
+                var s4 = new Sensitivity { Description = "אגוזים" };
+                var s5 = new Sensitivity { Description = "ביצים" };
+                session.Save(s1);
+                session.Save(s2);
+                session.Save(s3);
+                session.Save(s4);
+                session.Save(s5);
+            }
         }
 
 
@@ -48,6 +62,7 @@ namespace KindergartenApp
         {
             var session = SessionFactoryHelper.SessionFactory.OpenSession();
             NHibernate.Context.CurrentSessionContext.Bind(session);
+
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)

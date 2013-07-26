@@ -50,13 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Edit\ChildEdit.cs" />
     <Compile Include="Edit\IEdit.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\ChildQuery.cs" />
+    <Compile Include="Query\SensetivitiesQuery.cs" />
     <Compile Include="Query\TeachersQuery.cs" />
     <Compile Include="Messages\MessagesManager.cs" />
     <Compile Include="SessionFactoryHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingletoneClass.cs" />
     <Compile Include="Utils\EnumUtils.cs" />
   </ItemGroup>
   <ItemGroup>

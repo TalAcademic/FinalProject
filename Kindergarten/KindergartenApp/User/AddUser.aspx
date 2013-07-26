@@ -68,7 +68,7 @@
 
                 </td>
                 <td>
-                    <asp:DropDownList runat="server" ID="PersonTypes" OnSelectedIndexChanged="PersonTypesChanged">
+                    <asp:DropDownList runat="server" ID="PersonTypes" OnSelectedIndexChanged="PersonTypesChanged" AutoPostBack="True">
                         <Items>
                             <asp:ListItem Text="גננת" Value="2" />
                             <asp:ListItem Text="ילד" Value="1" />
@@ -85,15 +85,9 @@
                         <asp:Label runat="server" Text="רגישויות" />
                     </td>
                     <td>
-                        <asp:CheckBoxList runat="server" ID="Sensetivities" RepeatDirection="Horizontal">
-                            <Items>
-                                <asp:ListItem Text="גלוטן" />
-                                <asp:ListItem Text="לקטוז" />
-                                <asp:ListItem Text="אגוזים" />
-                                <asp:ListItem Text="ביצים" />
-                                <asp:ListItem Text="אחר" />
-                            </Items>
-                        </asp:CheckBoxList>
+                        <asp:CheckBoxList runat="server" ID="Sensetivities" RepeatDirection="Horizontal" 
+                             DataTextField="Description" DataValueField="Code"/>
+                        
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="Other" Width="80px" />
