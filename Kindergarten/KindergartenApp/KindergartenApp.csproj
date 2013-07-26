@@ -421,6 +421,10 @@
       <Project>{eb551c19-cb87-471f-8ae1-d3c9c8c14873}</Project>
       <Name>Kindergarten.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kindergaten.EventSearchers\Kindergaten.EventSearchers.csproj">
+      <Project>{2f3fc171-856a-4ef1-8772-68c08f42520e}</Project>
+      <Name>Kindergaten.EventSearchers</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
