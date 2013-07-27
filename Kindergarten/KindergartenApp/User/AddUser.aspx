@@ -86,7 +86,7 @@
                     </td>
                     <td>
                         <asp:CheckBoxList runat="server" ID="Sensetivities" RepeatDirection="Horizontal" 
-                             DataTextField="Description" DataValueField="Code"/>
+                             DataTextField="Description" DataValueField="Id"/>
                         
                     </td>
                     <td>

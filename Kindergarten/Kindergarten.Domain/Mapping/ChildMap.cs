@@ -13,7 +13,7 @@ namespace Kindergarten.Domain.Mapping
         public ChildMap()
         {
             DiscriminatorValue("1");
-            HasManyToMany(x => x.Sensitivitieses).Inverse().Cascade.None();
+            HasManyToMany(x => x.Sensitivitieses).AsSet().Cascade.None();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Kindergarten.Domain.Entities
 {
     public class Sensitivity 
     {
-        public virtual int Code { get; set; }
+        public virtual int Id { get; set; }
         public virtual string Description { get; set; }
     }
 }

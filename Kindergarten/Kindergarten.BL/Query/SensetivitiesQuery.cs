@@ -19,7 +19,7 @@ namespace Kindergarten.BL.Query
 
         public IQueryable<Sensitivity> Get(List<int> codes)
         {
-            return SessionFactoryHelper.CurrentSession.Query<Sensitivity>().Where(x=>codes.Contains(x.Code));
+            return SessionFactoryHelper.CurrentSession.Query<Sensitivity>().Where(x=>codes.Contains(x.Id));
         }
     }
 }

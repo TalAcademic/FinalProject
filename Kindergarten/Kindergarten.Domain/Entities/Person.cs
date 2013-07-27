@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Iesi.Collections.Generic;
 
 namespace Kindergarten.Domain.Entities
 {
@@ -26,5 +27,9 @@ namespace Kindergarten.Domain.Entities
             get { return FirstName + " " + LastName; }
         }
 
+        protected Person()
+        {
+            Messages = new HashedSet<Message>();
+        }
     }
 }

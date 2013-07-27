@@ -69,8 +69,9 @@ namespace KindergartenApp.User
                                              BirthDay = DateTime.Parse(BirthDate.Text),
                                              PhoneNum = Phone.Text,
                                              Password = "abc123",
-                                             Sensitivitieses = GetSensetivities()
+                                             Sensitivitieses = GetSensitivitieses()
                                          };
+
                         ChildEdit.Instance.Add(entity);
                         break;
                     }
@@ -92,14 +93,13 @@ namespace KindergartenApp.User
             }
         }
 
-        private IList<Sensitivity> GetSensetivities()
+        private List<Sensitivity> GetSensitivitieses()
         {
             var selectedItems = (from ListItem item in Sensetivities.Items
                                  where item.Selected
                                  select int.Parse(item.Value)).ToList();
 
-            return SensetivitiesQuery.Instance.Get(selectedItems).ToList();
-
+           return SensetivitiesQuery.Instance.Get(selectedItems).ToList();
         }
     }
 }

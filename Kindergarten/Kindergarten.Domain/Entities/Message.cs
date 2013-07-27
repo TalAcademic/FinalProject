@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Iesi.Collections.Generic;
 
 namespace Kindergarten.Domain.Entities
 {
@@ -15,5 +16,9 @@ namespace Kindergarten.Domain.Entities
         public virtual DateTime SendTime { get; set; }
         public virtual ICollection<Person> Recipients { get; set; }
 
+        public Message()
+        {
+            Recipients = new HashedSet<Person>();
+        }
     }
 }

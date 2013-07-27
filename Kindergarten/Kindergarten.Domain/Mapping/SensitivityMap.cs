@@ -12,7 +12,7 @@ namespace Kindergarten.Domain.Mapping
     {
         public SensitivityMap()
         {
-            Id(x => x.Code);
+            Id(x => x.Id);
             Map(x => x.Description);
         }
     }
