@@ -1,15 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using Kindergarten.BL.Edit;
+using Kindergarten.BL.Messages;
 using Kindergarten.BL.Query;
 using Kindergarten.BL.Utils;
 using Kindergarten.Domain.Entities;
-using System.Collections.Generic;
-using Kindergarten.BL;
-using Kindergarten.BL.Messages;
-using Kindergarten.Domain.Entities;
-
 
 namespace KindergartenApp.User
 {
@@ -22,7 +21,7 @@ namespace KindergartenApp.User
             {
                 BindList();
             }
-           
+
         }
 
         private void BindList()
@@ -32,6 +31,9 @@ namespace KindergartenApp.User
 
             Cities.DataSource = EnumUtils.GetDescriptions(typeof(Cities));
             Cities.DataBind();
+
+            Teachers.DataSource = new TeachersQuery().Get();
+            Teachers.DataBind();
         }
 
         protected void PersonTypesChanged(object sender, EventArgs e)
@@ -63,7 +65,7 @@ namespace KindergartenApp.User
                     }
                 default:
                     {
-                         ChildData.Visible = false;
+                        ChildData.Visible = false;
                         TeacherData.Visible = false;
                         SupervisorData.Visible = false;
                         break;
@@ -74,9 +76,9 @@ namespace KindergartenApp.User
 
         protected void SaveClick(object sender, EventArgs e)
         {
+
             if (Page.IsValid)
             {
-
 
                 var selected = PersonTypes.SelectedValue;
 
@@ -120,7 +122,7 @@ namespace KindergartenApp.User
 
                     case "3":
                         {
-                            var city = Enum.Parse(typeof (Cities), Cities.SelectedIndex.ToString(), true);
+                            var city = Enum.Parse(typeof(Cities), Cities.SelectedIndex.ToString(), true);
 
                             var entity = new Supervisor()
                                              {
@@ -130,13 +132,35 @@ namespace KindergartenApp.User
                                                  BirthDay = DateTime.Parse(BirthDate.Text),
                                                  PhoneNum = Phone.Text,
                                                  Password = "abc123",
-                                                 City = (Cities) city
+                                                 City = (Cities)city
                                              };
                             SupervisorEdit.Instance.Add(entity);
                             break;
                         }
                 }
             }
+            ClearAll();
+            BindList();
+
+            ClientScript.RegisterStartupScript(GetType(), "msg", "<script language='javascript'>showMessage()</script>");
+        }
+
+        private void ClearAll()
+        {
+            Id.Text = "";
+            FirstName.Text = "";
+            LastName.Text = "";
+            BirthDate.Text = "";
+            Phone.Text = "";
+            Sensetivities.ClearSelection();
+            PersonTypes.SelectedValue = "0";
+            Sen = null;
+            Teachers.ClearSelection();
+            Cities.SelectedIndex = 0;
+
+            ChildData.Visible = false;
+            TeacherData.Visible = false;
+            SupervisorData.Visible = false;
         }
 
         private List<Sensitivity> GetSensitivitieses()
@@ -145,7 +169,8 @@ namespace KindergartenApp.User
                                  where item.Selected
                                  select int.Parse(item.Value)).ToList();
 
-           return SensetivitiesQuery.Instance.Get(selectedItems).ToList();
+            return SensetivitiesQuery.Instance.Get(selectedItems).ToList();
         }
     }
 }
+

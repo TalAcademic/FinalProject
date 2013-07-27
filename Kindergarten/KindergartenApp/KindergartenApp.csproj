@@ -151,6 +151,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Kindergarden\Activities.aspx" />
+    <Content Include="User\AddUser.aspx" />
     <Content Include="User\ChangePassword.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="Images\logo.jpg" />
@@ -163,7 +164,6 @@
     <Content Include="Messaging\MyMessages.aspx" />
     <Content Include="Messaging\SendMessage.aspx" />
     <Content Include="Reports\Search.aspx" />
-    <Content Include="User\AddUser.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -332,13 +332,6 @@
     <Compile Include="Reports\Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User\AddUser.aspx.cs">
-      <DependentUpon>AddUser.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\AddUser.aspx.designer.cs">
-      <DependentUpon>AddUser.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -347,6 +340,13 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\AddUser.aspx.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\AddUser.aspx.designer.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
