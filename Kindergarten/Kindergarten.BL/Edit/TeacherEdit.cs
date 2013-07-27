@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Kindergarten.BL.Query;
+using Kindergarten.Data;
 using Kindergarten.Domain.Entities;
 
 namespace Kindergarten.BL.Edit

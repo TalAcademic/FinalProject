@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kindergarten.Bootstrap", "K
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kindergaten.EventSearchers", "Kindergaten.EventSearchers\Kindergaten.EventSearchers.csproj", "{2F3FC171-856A-4EF1-8772-68C08F42520E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kindergarten.Data", "Kindergarten.Data\Kindergarten.Data.csproj", "{A70D8ED8-38E4-4CC7-94DF-49F21A7F684A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{2F3FC171-856A-4EF1-8772-68C08F42520E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F3FC171-856A-4EF1-8772-68C08F42520E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F3FC171-856A-4EF1-8772-68C08F42520E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A70D8ED8-38E4-4CC7-94DF-49F21A7F684A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A70D8ED8-38E4-4CC7-94DF-49F21A7F684A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A70D8ED8-38E4-4CC7-94DF-49F21A7F684A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A70D8ED8-38E4-4CC7-94DF-49F21A7F684A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

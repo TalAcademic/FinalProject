@@ -1,14 +1,13 @@
 ﻿
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using HibernatingRhinos.Profiler.Appender.NHibernate;
 using Kindergarten.Domain.Mapping;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
 
-namespace Kindergarten.BL
+namespace Kindergarten.Data
 {
     public static class SessionFactoryHelper
     {
@@ -31,7 +30,6 @@ namespace Kindergarten.BL
 
         public static void CreateSessionFactoryWithDB()
         {
-            NHibernateProfiler.Initialize();
 
 
             Configuration configuration = Fluently.Configure()

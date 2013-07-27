@@ -43,6 +43,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Kindergarten.Data\Kindergarten.Data.csproj">
+      <Project>{A70D8ED8-38E4-4CC7-94DF-49F21A7F684A}</Project>
+      <Name>Kindergarten.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kindergarten.Domain\Kindergarten.Domain.csproj">
       <Project>{EB551C19-CB87-471F-8AE1-D3C9C8C14873}</Project>
       <Name>Kindergarten.Domain</Name>

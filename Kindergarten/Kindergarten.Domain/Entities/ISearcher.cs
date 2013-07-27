@@ -8,5 +8,7 @@ namespace Kindergarten.Domain.Entities
 {
     public interface ISearcher
     {
+        List<Event> GetEventsBetweenDates(int kindergartenId, DateTime start, DateTime end);
+        string EventGeneralName { get;  }
     }
 }

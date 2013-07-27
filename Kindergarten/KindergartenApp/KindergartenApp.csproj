@@ -417,6 +417,10 @@
       <Project>{32bc0a74-30d4-4499-8b8c-352ebd32f030}</Project>
       <Name>Kindergarten.Bootstrap</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kindergarten.Data\Kindergarten.Data.csproj">
+      <Project>{a70d8ed8-38e4-4cc7-94df-49f21a7f684a}</Project>
+      <Name>Kindergarten.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kindergarten.Domain\Kindergarten.Domain.csproj">
       <Project>{eb551c19-cb87-471f-8ae1-d3c9c8c14873}</Project>
       <Name>Kindergarten.Domain</Name>

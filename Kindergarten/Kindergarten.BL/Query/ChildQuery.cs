@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Kindergarten.Data;
 using Kindergarten.Domain.Entities;
 using NHibernate.Linq;
 

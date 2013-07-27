@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Kindergarten.BL;
 using Kindergarten.BL.Query;
 using Kindergarten.BL.Utils;
+using Kindergarten.Data;
 using Entities = Kindergarten.Domain.Entities;
 using NHibernate.Linq;
 

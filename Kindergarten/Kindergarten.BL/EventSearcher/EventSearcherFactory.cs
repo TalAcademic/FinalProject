@@ -12,6 +12,13 @@ namespace Kindergarten.BL.EventSearcher
     public class EventSearcherFactory :ISearcherFactory
     {
         private static List<ISearcher> _availableSearchers;
+        private static List<string> _availableEventTypes;
+
+        public static List<string> AvailableEventTypes
+        {
+            get { return _availableEventTypes; }
+        }
+
 
         public EventSearcherFactory()
         {
@@ -23,13 +30,14 @@ namespace Kindergarten.BL.EventSearcher
         private void FillAvialableSearchers()
         {
             _availableSearchers=new List<ISearcher>();
+            _availableEventTypes= new List<string>();
             string fullLocation =Assembly.GetAssembly(this.GetType()).CodeBase;
             int toRemove =fullLocation.LastIndexOf('/');
             string location = fullLocation.Remove(toRemove);
             Uri u = new Uri(location);
             string[] files = Directory.GetFiles(u.AbsolutePath);
             List<string> searchers = (from file in files
-                                      where file.ToLower().Contains("searcher")
+                                      where (file.ToLower().Contains("searcher") &&  file.ToLower().Contains(".dll"))
                                       select file).ToList();
             foreach (var searcher in searchers)
             {
@@ -41,8 +49,9 @@ namespace Kindergarten.BL.EventSearcher
                     {
                         if (type.GetInterfaces().Contains(typeof(ISearcher)))
                         {
-                            Object o = Activator.CreateInstance(type);
-                            _availableSearchers.Add((ISearcher)o);
+                            ISearcher o = (ISearcher)Activator.CreateInstance(type);
+                            _availableSearchers.Add(o);
+                            _availableEventTypes.Add(o.EventGeneralName);
                         }
                     }
                 }

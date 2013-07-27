@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using Kindergarten.BL;
+using Kindergarten.Data;
 using Kindergarten.Domain.Entities;
 using KindergartenApp;
 using NHibernate;
