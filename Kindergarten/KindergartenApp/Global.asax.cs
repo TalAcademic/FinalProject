@@ -42,7 +42,6 @@ namespace KindergartenApp
                 session.Save(s3);
                 session.Save(s4);
                 session.Save(s5);
-                session.Flush();
             }
         }
 

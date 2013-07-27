@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Kindergarten.BL.EventSearcher;
 
 namespace KindergartenApp
 {
@@ -11,7 +12,7 @@ namespace KindergartenApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            EventSearcherFactory es = new EventSearcherFactory();
         }
     }
 }
