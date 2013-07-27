@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Kindergarten.Data;
 using Kindergarten.Domain.Entities;
+using NHibernate.Linq;
+
 
 namespace Kindergaten.EventSearchers
 {
@@ -16,7 +18,17 @@ namespace Kindergaten.EventSearchers
         }
         public List<Event> GetEventsBetweenDates(int kindergartenId, DateTime start, DateTime end)
         {
-            return new List<Event>();
+            Kindergarden garden =
+                SessionFactoryHelper.CurrentSession.Query<Kindergarden>().Single(k => k.Id == kindergartenId);
+            List<Child> celebrationChildren = (from child in garden.Children 
+                                               where child.BirthDay>=start && child.BirthDay<=end 
+                                               select child).ToList();
+            List<Event> bdays = new List<Event>();
+            foreach (Child celebrationChild in celebrationChildren)
+            {
+                bdays.Add(new Event() { SpecificType = "יום הולדת ל" + celebrationChild.FullName, Title = "יום הולדת ל" + celebrationChild.FullName + " בתאריך " + celebrationChild .BirthDay});
+            }
+            return bdays;
         }
     }
 }
