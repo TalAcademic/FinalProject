@@ -62,12 +62,17 @@ namespace Kindergarten.BL.EventSearcher
 
         public ISearcher GetSearcher(string name)
         {
-            throw new NotImplementedException();
+            List<ISearcher> found = (from searcher in _availableSearchers
+                                     where searcher.EventGeneralName == name
+                                     select searcher).ToList();
+            if (found.Count==0)
+                return null;
+            return found[0];
         }
 
         public List<ISearcher> GetAllSearchers()
         {
-            throw new NotImplementedException();
+            return _availableSearchers;
         }
     }
 
