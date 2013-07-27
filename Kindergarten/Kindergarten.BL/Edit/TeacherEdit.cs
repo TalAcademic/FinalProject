@@ -8,22 +8,21 @@ using Kindergarten.Domain.Entities;
 
 namespace Kindergarten.BL.Edit
 {
-    public class ChildEdit : SingletoneClass<ChildEdit>,IEdit<Child>
+    public class TeacherEdit : SingletoneClass<TeacherEdit>, IEdit<Teacher>
     {
-      
-        public void Add(Child item)
+        public void Add(Teacher item)
         {
             SessionFactoryHelper.CurrentSession.Save(item);
         }
 
-        public void Update(Child item)
+        public void Update(Teacher item)
         {
             SessionFactoryHelper.CurrentSession.Update(item);
         }
 
         public void Delete(int id)
         {
-            var entity = new ChildQuery().Get(id);
+            var entity = new TeachersQuery().Get(id);
             SessionFactoryHelper.CurrentSession.Delete(entity);
         }
     }

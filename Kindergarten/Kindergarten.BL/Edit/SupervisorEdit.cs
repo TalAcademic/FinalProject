@@ -3,28 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Kindergarten.BL.Query;
 using Kindergarten.Domain.Entities;
 
 namespace Kindergarten.BL.Edit
 {
-    public class ChildEdit : SingletoneClass<ChildEdit>,IEdit<Child>
+    public class SupervisorEdit : SingletoneClass<SupervisorEdit>, IEdit<Supervisor>
     {
-      
-        public void Add(Child item)
+        public void Add(Supervisor item)
         {
             SessionFactoryHelper.CurrentSession.Save(item);
         }
 
-        public void Update(Child item)
+        public void Update(Supervisor item)
         {
             SessionFactoryHelper.CurrentSession.Update(item);
         }
 
         public void Delete(int id)
         {
-            var entity = new ChildQuery().Get(id);
-            SessionFactoryHelper.CurrentSession.Delete(entity);
+            throw new NotImplementedException();
         }
     }
 }

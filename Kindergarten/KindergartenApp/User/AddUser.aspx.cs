@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using Kindergarten.BL.Edit;
 using Kindergarten.BL.Query;
+using Kindergarten.BL.Utils;
 using Kindergarten.Domain.Entities;
 using System.Collections.Generic;
 using Kindergarten.BL;
@@ -28,6 +29,9 @@ namespace KindergartenApp.User
         {
             Sensetivities.DataSource = SensetivitiesQuery.Instance.Get();
             Sensetivities.DataBind();
+
+            Cities.DataSource = EnumUtils.GetDescriptions(typeof(Cities));
+            Cities.DataBind();
         }
 
         protected void PersonTypesChanged(object sender, EventArgs e)
@@ -40,13 +44,28 @@ namespace KindergartenApp.User
                     {
                         ChildData.Visible = true;
                         TeacherData.Visible = false;
-
+                        SupervisorData.Visible = false;
                         break;
                     }
                 case "2":
                     {
                         ChildData.Visible = false;
                         TeacherData.Visible = true;
+                        SupervisorData.Visible = false;
+                        break;
+                    }
+                case "3":
+                    {
+                        ChildData.Visible = false;
+                        TeacherData.Visible = false;
+                        SupervisorData.Visible = true;
+                        break;
+                    }
+                default:
+                    {
+                         ChildData.Visible = false;
+                        TeacherData.Visible = false;
+                        SupervisorData.Visible = false;
                         break;
                     }
             }
@@ -55,41 +74,68 @@ namespace KindergartenApp.User
 
         protected void SaveClick(object sender, EventArgs e)
         {
-            var selected = PersonTypes.SelectedValue;
-
-            switch (selected)
+            if (Page.IsValid)
             {
-                case "1":
-                    {
-                        var entity = new Child
-                                         {
-                                             IdNum = Id.Text,
-                                             FirstName = FirstName.Text,
-                                             LastName = LastName.Text,
-                                             BirthDay = DateTime.Parse(BirthDate.Text),
-                                             PhoneNum = Phone.Text,
-                                             Password = "abc123",
-                                             Sensitivitieses = GetSensitivitieses()
-                                         };
 
-                        ChildEdit.Instance.Add(entity);
-                        break;
-                    }
-                case "2":
-                    {
-                        var entity = new Teacher
-                                         {
-                                             IdNum = Id.Text,
-                                             FirstName = FirstName.Text,
-                                             LastName = LastName.Text,
-                                             BirthDay = DateTime.Parse(BirthDate.Text),
-                                             Substitute = new TeachersQuery().Get(int.Parse(Teachers.SelectedValue)),
-                                             PhoneNum = Phone.Text,
-                                             Seniority = int.Parse(Sen.Text),
-                                             Password = "abc123"
-                                         };
-                        break;
-                    }
+
+                var selected = PersonTypes.SelectedValue;
+
+                switch (selected)
+                {
+                    case "1":
+                        {
+                            var entity = new Child
+                                             {
+                                                 IdNum = Id.Text,
+                                                 FirstName = FirstName.Text,
+                                                 LastName = LastName.Text,
+                                                 BirthDay = DateTime.Parse(BirthDate.Text),
+                                                 PhoneNum = Phone.Text,
+                                                 Password = "abc123",
+                                                 Sensitivitieses = GetSensitivitieses()
+                                             };
+
+                            ChildEdit.Instance.Add(entity);
+                            break;
+                        }
+                    case "2":
+                        {
+                            var entity = new Teacher
+                                             {
+                                                 IdNum = Id.Text,
+                                                 FirstName = FirstName.Text,
+                                                 LastName = LastName.Text,
+                                                 BirthDay = DateTime.Parse(BirthDate.Text),
+                                                 Substitute =
+                                                     Teachers.SelectedValue != ""
+                                                         ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue))
+                                                         : null,
+                                                 PhoneNum = Phone.Text,
+                                                 Seniority = int.Parse(Sen.Text),
+                                                 Password = "abc123"
+                                             };
+                            TeacherEdit.Instance.Add(entity);
+                            break;
+                        }
+
+                    case "3":
+                        {
+                            var city = Enum.Parse(typeof (Cities), Cities.SelectedIndex.ToString(), true);
+
+                            var entity = new Supervisor()
+                                             {
+                                                 IdNum = Id.Text,
+                                                 FirstName = FirstName.Text,
+                                                 LastName = LastName.Text,
+                                                 BirthDay = DateTime.Parse(BirthDate.Text),
+                                                 PhoneNum = Phone.Text,
+                                                 Password = "abc123",
+                                                 City = (Cities) city
+                                             };
+                            SupervisorEdit.Instance.Add(entity);
+                            break;
+                        }
+                }
             }
         }
 

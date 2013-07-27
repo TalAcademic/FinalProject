@@ -16,6 +16,7 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="Id" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Id" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error"/>
                 </td>
             </tr>
             <tr>
@@ -68,8 +69,10 @@
 
                 </td>
                 <td>
-                    <asp:DropDownList runat="server" ID="PersonTypes" OnSelectedIndexChanged="PersonTypesChanged" AutoPostBack="True">
+                    <asp:DropDownList runat="server" ID="PersonTypes" 
+                        OnSelectedIndexChanged="PersonTypesChanged" AutoPostBack="True">
                         <Items>
+                             <asp:ListItem Text="אנא בחר ערך..." Value="0" Selected="True" />
                             <asp:ListItem Text="גננת" Value="2" />
                             <asp:ListItem Text="ילד" Value="1" />
                             <asp:ListItem Text="מפקחת" Value="3" />
@@ -117,7 +120,21 @@
         </table>
             </div>
         <div>
-
+            
+             <div id="SupervisorData"  runat="server" Visible="False">
+        <table >
+            <tr>
+                <td>
+                    <asp:Label runat="server" Text="עיר:" />
+                </td>
+                <td>
+                   <asp:DropDownList runat="server" ID="Cities"  DataTextField="Value" />
+                </td>
+            </tr>
+        </table>
+            </div>
+        <div>
+            
             <asp:Button ID="Save" runat="server" Text="שמור" Font-Size="15px" OnClick="SaveClick"  />
 
         </div>
