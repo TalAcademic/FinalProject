@@ -220,6 +220,24 @@ namespace KindergartenApp.User {
         protected global::System.Web.UI.WebControls.DropDownList Teachers;
         
         /// <summary>
+        /// SupervisorData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SupervisorData;
+        
+        /// <summary>
+        /// Cities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Cities;
+        
+        /// <summary>
         /// Save control.
         /// </summary>
         /// <remarks>
