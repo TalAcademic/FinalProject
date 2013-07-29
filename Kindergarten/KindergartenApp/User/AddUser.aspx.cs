@@ -118,7 +118,7 @@ namespace KindergartenApp.User
                                                          ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue))
                                                          : null,
                                                  PhoneNum = Phone.Text,
-                                                 Seniority = int.Parse(Sen.Text),
+                                                 Seniority = Sen.Text != "" ? int.Parse(Sen.Text) : 0,
                                                  Password = "abc123"
                                              };
                             TeacherEdit.Instance.Add(entity);

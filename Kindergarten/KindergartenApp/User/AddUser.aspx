@@ -108,7 +108,6 @@
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="Sen" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="Sen" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
                     </td>
                 </tr>
                 <tr>
