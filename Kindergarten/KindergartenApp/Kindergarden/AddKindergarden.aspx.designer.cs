@@ -31,24 +31,6 @@ namespace KindergartenApp {
         protected global::System.Web.UI.WebControls.DropDownList Cities;
         
         /// <summary>
-        /// ImageLoader control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload ImageLoader;
-        
-        /// <summary>
-        /// Image control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage Image;
-        
-        /// <summary>
         /// ChildrenNum control.
         /// </summary>
         /// <remarks>
@@ -67,15 +49,6 @@ namespace KindergartenApp {
         protected global::System.Web.UI.WebControls.DropDownList Teachers;
         
         /// <summary>
-        /// ChildrenGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid ChildrenGrid;
-        
-        /// <summary>
         /// Button1 control.
         /// </summary>
         /// <remarks>
@@ -83,6 +56,15 @@ namespace KindergartenApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// ChildrenList control.
@@ -101,5 +83,14 @@ namespace KindergartenApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AddChild;
+        
+        /// <summary>
+        /// ChildrenGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataGrid ChildrenGrid;
     }
 }

@@ -5,12 +5,6 @@
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
     <script src="../Scripts/jquery-1.8.2.min.js"></script>
-    <script>
-        function showMessage() {
-
-            alert("המשתמש התווסף בהצלחה");
-        }
-    </script>
     <hgroup class="title">
         <h2>הוספת משתמש חדש למערכת</h2>
     </hgroup>

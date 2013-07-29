@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Kindergarten.BL;
+using Kindergarten.BL.Edit;
 using Kindergarten.BL.Query;
 using Kindergarten.BL.Utils;
 using Kindergarten.Data;
@@ -23,7 +24,10 @@ namespace KindergartenApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindLists();
+            if(!Page.IsPostBack)
+            {
+                BindLists();
+            }
         }
 
         private void BindLists()
@@ -40,38 +44,39 @@ namespace KindergartenApp
 
         protected void SaveClick(object sender, EventArgs e)
         {
-         //   var  contant = ImageLoader.FileContent;
-          //  var len = (int)contant.Length;
-          //  var bytes = new byte[len];
-          //  contant.Read(bytes, 0, len);
 
-            var city = Enum.Parse(typeof(Entities.Cities),Cities.SelectedIndex.ToString(), true);
+            var city = Enum.Parse(typeof(Entities.Cities), Cities.SelectedIndex.ToString(), true);
 
             var current = new Entities.Kindergarden
                               {
                                   Name = Name.Text,
                                   City = (Entities.Cities)city,
                                   ChildQty = int.Parse(ChildrenNum.Text),
-                                  Teacher = Teachers.SelectedValue  != "" ? SessionFactoryHelper.CurrentSession.Load<Entities.Teacher>((int.Parse(Teachers.SelectedValue))) : null,
-                                  Children = ChildrenGrid.Items.Cast<Entities.Child>().ToList(),
-                                //  Image = bytes
+                                  Teacher = Teachers.SelectedValue != "" ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue)) : null
                               };
 
-            SessionFactoryHelper.CurrentSession.Save(current);
+            KindergardenEdit.Instance.Add(current);
             CurrentKindergarden = current;
 
-       //     var path = ResolveUrl(Server.MapPath("ImagesMerge/") + "1");
-         //   var bmp = new Bitmap(contant);
-         //   bmp.Save(path);
-        //    ShowImage.ImageUrl = path;
+            ClearData();
+            ClientScript.RegisterStartupScript(GetType(), "msg", "<script language='javascript'>showMessage()</script>");
+
+        }
+
+        private void ClearData()
+        {
+            Name.Text = "";
+            Cities.SelectedIndex = 0;
+            ChildrenNum.Text = "";
+            //Teachers.SelectedIndex = 0;
         }
 
         protected void AddChildClick(object sender, EventArgs e)
         {
-            var child = SessionFactoryHelper.CurrentSession.Load<Entities.Child>(ChildrenList.SelectedValue);
+            var child = new ChildQuery().Get(int.Parse(ChildrenList.SelectedValue));
             CurrentKindergarden.Children.Add(child);
 
-             SessionFactoryHelper.CurrentSession.Update(CurrentKindergarden);
+           KindergardenEdit.Instance.Update(CurrentKindergarden);
 
             ChildrenGrid.DataSource = CurrentKindergarden.Children;
             ChildrenGrid.DataBind();

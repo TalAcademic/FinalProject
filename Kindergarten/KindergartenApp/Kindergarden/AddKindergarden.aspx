@@ -27,17 +27,6 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label runat="server" Text="תמונה:" /></td>
-                <td>
-                    <asp:FileUpload ID="ImageLoader" runat="server" />
-
-                </td>
-                <td>
-                    <img id="Image" runat="server" /></td>
-
-            </tr>
-            <tr>
-                <td>
                     <asp:Label runat="server" Text="כמות ילדים:" /></td>
                 <td>
                     <asp:TextBox runat="server" ID="ChildrenNum" /></td>
@@ -47,18 +36,35 @@
                 <td>
                     <asp:Label runat="server" Text="גננת:" /></td>
                 <td>
-                    <asp:DropDownList runat="server" ID="Teachers"  DataTextField="FullName"/></td>
+                    <asp:DropDownList runat="server" ID="Teachers" DataTextField="FullName" DataValueField="Id" /></td>
 
+            </tr>
+            <tr>
+                <td>
+                    <asp:Button ID="Button1" runat="server" Text="הוסף גן" OnClick="SaveClick" Font-Size="15px" />
+                </td>
             </tr>
 
             <tr>
                 <td>
-                    <asp:Label runat="server" Text="ילדים בגן:" /></td>
-            </tr>
+                    <asp:Label runat="server" Text="ילדים בגן:" />
 
-            <tr>    
+                </td>
+            </tr>
+             <tr>
+                 <td>
+                     <asp:Label ID="Label1" runat="server" Text="בחר ילד" />
+                 </td>
+                <td>
+                    <asp:DropDownList runat="server" ID="ChildrenList" DataTextField="FullName" DataValueField="Id" />
+                </td>
+                <td>
+                    <asp:Button ID="AddChild" runat="server" Text="הוסף לגן" Font-Size="10px" OnClick="AddChildClick" />
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2">
-                    <asp:DataGrid ID="ChildrenGrid" runat="server" AutoGenerateColumns="False" ShowHeader="True">
+                    <asp:DataGrid ID="ChildrenGrid" runat="server" AutoGenerateColumns="False" ShowHeader="True" >
                         <Columns>
                             <asp:BoundColumn HeaderText="ת.ז" DataField="Id" />
                             <asp:BoundColumn HeaderText="שם פרטי" DataField="FirstName" />
@@ -69,17 +75,9 @@
                     </asp:DataGrid>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <asp:Button ID="Button1" runat="server" Text="הוסף גן" OnClick="SaveClick" Font-Size="15px" />
-                </td>
-            </tr>
-        </table>
-        <div>
-            <asp:DropDownList runat="server" ID="ChildrenList" />
-            <asp:Button ID="AddChild" runat="server" Text="הוסף ילד לגן" Font-Size="10px" OnClick="AddChildClick" />
-        </div>
 
-       <%--  <asp:Image ID="ShowImage" runat="server" ></asp:Image>--%>
+           
+        </table>
+
     </div>
 </asp:Content>

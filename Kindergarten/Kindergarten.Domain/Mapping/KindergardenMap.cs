@@ -16,7 +16,6 @@ namespace Kindergarten.Domain.Mapping
             Map(x => x.Name);
             Map(x => x.ChildQty);
             Map(x => x.City).CustomType<Cities>();
-            Map(x => x.Image).CustomType("BinaryBlob");
             References(x => x.Teacher);
             HasMany(x => x.Children);
         }

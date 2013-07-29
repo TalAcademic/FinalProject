@@ -11,6 +11,12 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <script>
+       function showMessage() {
+
+           alert("השמירה בוצעה בהצלחה");
+       }
+    </script>
 </head>
 <body>
     <form runat="server">
