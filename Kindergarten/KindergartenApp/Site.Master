@@ -11,6 +11,12 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <script>
+       function showMessage() {
+
+           alert("השמירה בוצעה בהצלחה");
+       }
+    </script>
 </head>
 <body>
     <form runat="server">
@@ -60,7 +66,7 @@
                             </ul>
                             <ul>
                                 <li><a runat="server" href="~/User/AddUser">הוסף משתמש</a></li>
-                                <li><a runat="server" href="~/AddUser">החלף סיסמא</a></li>
+                                <li><a runat="server" href="~/User/ChangePassword">החלף סיסמא</a></li>
                             </ul>
                             <ul>
                                 <li><a id="A5" runat="server" href="~/Messaging/MyMessages">צפיה בהודעות</a></li>

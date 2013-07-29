@@ -15,6 +15,5 @@ namespace Kindergarten.Domain.Entities
         public virtual int ChildQty { get; set; }
         public virtual Teacher Teacher { get; set; }
         public virtual IList<Child> Children { get; set; }
-        public virtual byte[] Image { get; set; }
     }
 }

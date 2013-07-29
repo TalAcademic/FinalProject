@@ -12,7 +12,7 @@ using Kindergarten.Domain.Entities;
 
 namespace KindergartenApp.User
 {
-    public partial class AddUser : System.Web.UI.Page
+    public partial class AddUser : Page
     {
         public IMessanger msg { get; set; }
         protected void Page_Load(object sender, EventArgs e)
@@ -79,6 +79,11 @@ namespace KindergartenApp.User
 
             if (Page.IsValid)
             {
+                var isUserExist = PersonQuery.Instance.GetByIdNum(Id.Text).Any();
+                if (isUserExist)
+                {
+                    IdValidator.IsValid = false; return;
+                }
 
                 var selected = PersonTypes.SelectedValue;
 
@@ -113,7 +118,7 @@ namespace KindergartenApp.User
                                                          ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue))
                                                          : null,
                                                  PhoneNum = Phone.Text,
-                                                 Seniority = int.Parse(Sen.Text),
+                                                 Seniority = Sen.Text != "" ? int.Parse(Sen.Text) : 0,
                                                  Password = "abc123"
                                              };
                             TeacherEdit.Instance.Add(entity);
@@ -124,7 +129,7 @@ namespace KindergartenApp.User
                         {
                             var city = Enum.Parse(typeof(Cities), Cities.SelectedIndex.ToString(), true);
 
-                            var entity = new Supervisor()
+                            var entity = new Supervisor
                                              {
                                                  IdNum = Id.Text,
                                                  FirstName = FirstName.Text,

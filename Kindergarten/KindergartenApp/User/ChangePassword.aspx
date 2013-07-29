@@ -8,9 +8,10 @@
     </hgroup>
     <div>
         <asp:Label runat="server" Text="הזן את הסיסמא החדשה"/>
-        <asp:TextBox runat="server"/>
+        <asp:TextBox runat="server" id="NewPassword"/>
+        <asp:RequiredFieldValidator  runat="server" ControlToValidate="NewPassword" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
     </div>
     <div>
-        <asp:Button runat="server" Text="שמור"/>
+        <asp:Button runat="server" Text="שמור" OnClick="SaveClick"/>
     </div>
     </asp:Content>
