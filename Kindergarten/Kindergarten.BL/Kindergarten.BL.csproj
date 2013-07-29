@@ -52,11 +52,13 @@
   <ItemGroup>
     <Compile Include="Edit\ChildEdit.cs" />
     <Compile Include="Edit\IEdit.cs" />
+    <Compile Include="Edit\PersonEdit.cs" />
     <Compile Include="Edit\SupervisorEdit.cs" />
     <Compile Include="Edit\TeacherEdit.cs" />
     <Compile Include="EventSearcher\EventSearcherFactory.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\ChildQuery.cs" />
+    <Compile Include="Query\PersonQuery.cs" />
     <Compile Include="Query\SensetivitiesQuery.cs" />
     <Compile Include="Query\TeachersQuery.cs" />
     <Compile Include="Messages\MessagesManager.cs" />

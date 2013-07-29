@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.UI;
+using Kindergarten.BL.Query;
 using Kindergarten.Data;
 using Kindergarten.Domain.Entities;
 using NHibernate.Linq;
@@ -16,7 +17,7 @@ namespace KindergartenApp.User
 
         protected void DoLoginClick(object sender, EventArgs e)
         {
-            var user = SessionFactoryHelper.CurrentSession.Query<Person>().Where(x => x.IdNum == UserName.Text);
+            var user = PersonQuery.Instance.GetByIdNum(UserName.Text);
 
             if (!user.Any())
             {
