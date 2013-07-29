@@ -11,7 +11,7 @@
                     <asp:Label ID="Label5" runat="server" Text="סוג הודעה:" />
                 </td>
                 <td>
-                    <asp:RadioButtonList runat="server" ID="Who" RepeatDirection="Horizontal" />
+                    <asp:RadioButtonList runat="server" ID="Who" RepeatDirection="Horizontal" OnSelectedIndexChanged="SelectedWho"/>
                 </td>
             </tr>
             <tr>
@@ -32,12 +32,19 @@
             </tr>
             <tr>
                 <td>
+                    
                     <asp:Label ID="Label2" runat="server" Text="הודעה:" />
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="Message" Height="162px" TextMode="MultiLine" Width="500px" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <asp:Button ID="Send" runat="server" Text="שלח" OnClick="SendClick"/>
+                </td>
+            </tr>
         </table>
     </div>
+&nbsp;&nbsp;&nbsp; 
 </asp:Content>

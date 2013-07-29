@@ -5,18 +5,18 @@ using System.Web;
 
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Kindergarten.BL.Messages;
 using Kindergarten.Domain.Entities;
 
 namespace KindergartenApp.Messaging
 {
     public partial class MyMessages : System.Web.UI.Page
     {
+        public IMessanger IMessanger { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Message> msgs = new List<Message>();
-            msgs.Add(new Message(){Title = "הודעה לסיום השנה", SendTime = DateTime.Now.AddDays(-2), Sender = new Teacher(){FirstName = "דנה", LastName = "כהן"}});
-            msgs.Add(new Message() { Title = "אבחון הילד אבי אברמוב", SendTime = DateTime.Now.AddDays(-1).AddHours(3), Sender = new Teacher() { FirstName = "דנה", LastName = "כהן" } });
-            msgs.Add(new Message() { Title = "לגבי בני אלי", SendTime = DateTime.Now.AddDays(1).AddHours(5).AddMinutes(12), Sender = new Teacher() { FirstName = "חנה", LastName = "אליהו" } });
+            List<Message> msgs =IMessanger.GetPersonMessages((Person)Session["CurrentUser"]);
 
             GridView1.DataSource = msgs;
             DataBind();
