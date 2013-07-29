@@ -12,7 +12,11 @@ namespace KindergartenApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            EventSearcherFactory es = new EventSearcherFactory();
+            var isUserLogIn = Session["CurrentUser"] != null;
+
+            GeneralTitle.Visible = !isUserLogIn;
+            LogedInTitle.Visible = isUserLogIn;
+
         }
     }
 }
