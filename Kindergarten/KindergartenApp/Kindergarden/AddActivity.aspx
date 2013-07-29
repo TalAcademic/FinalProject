@@ -14,7 +14,7 @@
         
               </td>
               <td>
-                   <asp:TextBox ID="TextBox1" runat="server"/>
+                   <asp:TextBox ID="Name" runat="server"/>
               </td>
           </tr>
           <tr>
@@ -23,7 +23,7 @@
                  
               </td>
               <td>
-                   <asp:DropDownList runat="server" ID="Gardens"/>
+                   <asp:DropDownList runat="server" ID="Gardens" DataTextField="Name" DataValueField="Id"/>
               </td>
           </tr>
           <tr>
@@ -31,7 +31,7 @@
                   <asp:Label  runat="server" Text="סוג"/>
              </td> 
               <td>
-                    <asp:DropDownList ID="Types" runat="server" DataTextField="Value"/>
+                    <asp:DropDownList ID="Types" runat="server" DataTextField="Value" />
               </td>
           </tr>
           <tr>
@@ -39,7 +39,7 @@
                   <asp:Label runat="server" Text="תאריך"/>
               </td>
               <td>
-                  <asp:Calendar runat="server"/>
+                  <asp:Calendar runat="server" ID="Date"/>
               </td>
           </tr>
           <tr>
@@ -47,10 +47,10 @@
                   <asp:Label  runat="server" Text="מידע נוסף"/>
               </td>
               <td>
-                  <asp:TextBox runat="server" TextMode="MultiLine"/>
+                  <asp:TextBox runat="server" TextMode="MultiLine" ID="Info"/>
               </td>
           </tr>
       </table> 
-           <asp:Button ID="Button1" runat="server" Text="שמור"/>
+           <asp:Button ID="Save" runat="server" Text="שמור" OnClick="SaveClick"/>
     </div>
     </asp:Content>

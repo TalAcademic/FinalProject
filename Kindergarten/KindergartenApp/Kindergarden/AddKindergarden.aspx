@@ -15,6 +15,7 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="Name" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Name" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
                 </td>
             </tr>
             <tr>
@@ -27,9 +28,11 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label runat="server" Text="כמות ילדים:" /></td>
+                    <asp:Label runat="server" Text="כמות ילדים מקסימלית:" /></td>
                 <td>
-                    <asp:TextBox runat="server" ID="ChildrenNum" /></td>
+                    <asp:TextBox runat="server" ID="ChildrenNum" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ChildrenNum" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
+                </td>
 
             </tr>
             <tr>
@@ -44,7 +47,8 @@
                     <asp:Button ID="Button1" runat="server" Text="הוסף גן" OnClick="SaveClick" Font-Size="15px" />
                 </td>
             </tr>
-
+            </table>
+        <table runat="server" id="ChildrenData">
             <tr>
                 <td>
                     <asp:Label runat="server" Text="ילדים בגן:" />

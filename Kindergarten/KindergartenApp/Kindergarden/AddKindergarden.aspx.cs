@@ -52,8 +52,7 @@ namespace KindergartenApp
                                   Name = Name.Text,
                                   City = (Entities.Cities)city,
                                   ChildQty = int.Parse(ChildrenNum.Text),
-                                  Teacher = Teachers.SelectedValue != "" ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue)) : null
-                              };
+                                  Teacher = Teachers.SelectedValue != "" ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue)) : null                              };
 
             KindergardenEdit.Instance.Add(current);
             CurrentKindergarden = current;

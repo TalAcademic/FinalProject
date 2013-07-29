@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Edit\ActivityEdit.cs" />
     <Compile Include="Edit\ChildEdit.cs" />
     <Compile Include="Edit\IEdit.cs" />
     <Compile Include="Edit\KindergardenEdit.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="EventSearcher\EventSearcherFactory.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\ChildQuery.cs" />
+    <Compile Include="Query\KindergardenQuery.cs" />
     <Compile Include="Query\PersonQuery.cs" />
     <Compile Include="Query\SensetivitiesQuery.cs" />
     <Compile Include="Query\TeachersQuery.cs" />
