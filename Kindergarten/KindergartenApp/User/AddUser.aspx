@@ -23,6 +23,7 @@
                 <td>
                     <asp:TextBox runat="server" ID="Id" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Id" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
+                    <asp:CustomValidator  ID="IdValidator" runat="server" ControlToValidate="Id"  CssClass="message-error" ToolTip="משתמש קיים" ErrorMessage="*"  />
                 </td>
             </tr>
             <tr>
