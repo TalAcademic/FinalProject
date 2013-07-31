@@ -7,7 +7,7 @@
         <h2 id="GeneralTitle" runat="server">ברך הבא, נא התחבר למערכת</h2>
         <h2 id="LogedInTitle" runat="server"><%= ((Person) Session["CurrentUser"]).FullName %>, ברוך/ה הבאה למערכת</h2>
     </hgroup>
-    <div>
+    <div id="MessagesDiv" runat="server">
     <marquee direction="down" scrollamount="2" >
         <ul>
             <li><a>יום הולדת לאורן. 10/10/2013</a></li>

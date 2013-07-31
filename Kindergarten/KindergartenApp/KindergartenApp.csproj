@@ -163,7 +163,7 @@
     <Content Include="Messaging\ViewMessage.aspx" />
     <Content Include="Messaging\MyMessages.aspx" />
     <Content Include="Messaging\SendMessage.aspx" />
-    <Content Include="Reports\Search.aspx" />
+    <Content Include="Reports\SearchKindergarden.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -325,12 +325,12 @@
     <Compile Include="Messaging\SendMessage.aspx.designer.cs">
       <DependentUpon>SendMessage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Search.aspx.cs">
-      <DependentUpon>Search.aspx</DependentUpon>
+    <Compile Include="Reports\SearchKindergarden.aspx.cs">
+      <DependentUpon>SearchKindergarden.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reports\Search.aspx.designer.cs">
-      <DependentUpon>Search.aspx</DependentUpon>
+    <Compile Include="Reports\SearchKindergarden.aspx.designer.cs">
+      <DependentUpon>SearchKindergarden.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />

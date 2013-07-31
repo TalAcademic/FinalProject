@@ -16,6 +16,7 @@ namespace KindergartenApp
 
             GeneralTitle.Visible = !isUserLogIn;
             LogedInTitle.Visible = isUserLogIn;
+            MessagesDiv.Visible = isUserLogIn;
 
         }
     }

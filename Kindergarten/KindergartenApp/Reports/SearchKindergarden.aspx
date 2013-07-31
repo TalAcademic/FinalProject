@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="KindergartenApp.Reports.Search" MasterPageFile="../Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SearchKindergarden.aspx.cs" Inherits="KindergartenApp.Reports.SearchKindergarden" MasterPageFile="../Site.Master" %>
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
@@ -6,10 +6,10 @@
         <h2>חיפוש</h2>
     </hgroup>
     <div>
-        <asp:Label runat="server" Text="בחר ישות לחיפוש:"></asp:Label>
-        <asp:DropDownList runat="server" ID="Entities" />
+       <%-- <asp:Label runat="server" Text="בחר ישות לחיפוש:"></asp:Label>
+        <asp:DropDownList runat="server" ID="Entities" />--%>
     </div>
-    <table id="KinderGardenFilter" style="visibility: collapse">
+    <table id="KinderGardenFilter" >
         <tr>
             <td>
                 <asp:Label runat="server" Text="שם הגן" />
@@ -17,17 +17,18 @@
             </td>
             <td>
                 <asp:Label ID="Label2" runat="server" Text="עיר" />
-                <asp:DropDownList runat="server" ID="CitiesFilter" DataTextField="Value" />
+                <asp:DropDownList runat="server" ID="CitiesFilter" DataTextField="Value" DataValueField="Key"  />
+
             </td>
             <td>
                 <asp:Label ID="Label3" runat="server" Text="גננת" />
-                <asp:DropDownList runat="server" ID="TeachersFilter" />
+                <asp:DropDownList runat="server" ID="TeachersFilter"  DataTextField="FullName" DataValueField="Id"/>
             </td>
         </tr>
     </table>
     <div>
 
-        <table id="PersonFilter" >
+        <%--<table id="PersonFilter" >
             <tr>
                 <td>
                     <asp:Label runat="server" Text="תעודת זהות" />
@@ -42,13 +43,13 @@
                     <asp:TextBox runat="server" ID="LastNameFilter" />
                 </td>
             </tr>
-        </table>
+        </table>--%>
 
-        <asp:Button runat="server" Text="חפש" />
+        <asp:Button runat="server" ID="Search" Text="חפש" OnClick="SearchClick"/>
     </div>
     <div>
         <asp:Label runat="server" Text="תוצאות חיפוש:" />
-        <%--<asp:DataGrid ID="EntitiesGrid" runat="server" AutoGenerateColumns="False">
+        <asp:DataGrid ID="EntitiesGrid" runat="server" AutoGenerateColumns="False" OnItemCommand="GridCommand" DataKeyField="Id">
             <Columns>
                 <asp:BoundColumn HeaderText="מזהה" DataField="Id" />
                 <asp:BoundColumn HeaderText="שם הגן" DataField="Name" />
@@ -56,11 +57,11 @@
                 <asp:BoundColumn HeaderText="עיר" DataField="City" />
                  <asp:BoundColumn HeaderText="מספר ילדים" DataField="ChildQty" />
                 <asp:EditCommandColumn HeaderText="ערוך" CancelText="בטל" EditText="ערוך" UpdateText="שמור" />
-                <asp:ButtonColumn HeaderText="מחק" CommandName="Delete" />
+                <asp:ButtonColumn HeaderText="מחק" CommandName="Delete" Text="מחק"/>
             </Columns>
 
-        </asp:DataGrid>--%>
-        <asp:DataGrid ID="EntitiesGrid" runat="server" AutoGenerateColumns="False" ShowHeader="True">
+        </asp:DataGrid>
+<%--        <asp:DataGrid ID="EntitiesGrid" runat="server" AutoGenerateColumns="False" ShowHeader="True">
             <Columns>
                 <asp:BoundColumn HeaderText="ת.ז" DataField="Id" />
                 <asp:BoundColumn HeaderText="שם פרטי" DataField="FirstName" />
@@ -68,6 +69,6 @@
                 <asp:EditCommandColumn HeaderText="ערוך" CancelText="בטל" EditText="ערוך" UpdateText="שמור" />
                 <asp:ButtonColumn HeaderText="מחק" CommandName="Delete" />
             </Columns>
-        </asp:DataGrid>
+        </asp:DataGrid>--%>
     </div>
 </asp:Content>

@@ -56,7 +56,7 @@
                         </asp:LoginView>
                     </section>
                     <nav>
-                        <ul id="menu">
+                        <ul id="menu" runat="server">
                             <li><a runat="server" href="~/Main" style="color: blue">דף הבית</a></li>
                             <ul>
                                 <li><a id="A1" runat="server" href="~/Kindergarden/AddKindergarden">הוסף גן</a></li>

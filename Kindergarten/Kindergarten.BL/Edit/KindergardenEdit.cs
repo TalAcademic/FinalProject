@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Kindergarten.BL.Query;
 using Kindergarten.Data;
 using Kindergarten.Domain.Entities;
 
@@ -22,7 +23,8 @@ namespace Kindergarten.BL.Edit
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = new KindergardenQuery().Get(id);
+            SessionFactoryHelper.CurrentSession.Delete(entity);
         }
     }
 }

@@ -10,16 +10,7 @@
 namespace KindergartenApp.Reports {
     
     
-    public partial class Search {
-        
-        /// <summary>
-        /// Entities control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Entities;
+    public partial class SearchKindergarden {
         
         /// <summary>
         /// GardenNameFilter control.
@@ -67,40 +58,13 @@ namespace KindergartenApp.Reports {
         protected global::System.Web.UI.WebControls.DropDownList TeachersFilter;
         
         /// <summary>
-        /// IdFilter control.
+        /// Search control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox IdFilter;
-        
-        /// <summary>
-        /// FirstNameFilter control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FirstNameFilter;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// LastNameFilter control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LastNameFilter;
+        protected global::System.Web.UI.WebControls.Button Search;
         
         /// <summary>
         /// EntitiesGrid control.

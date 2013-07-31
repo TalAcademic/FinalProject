@@ -17,7 +17,7 @@ namespace KindergartenApp.Kindergarden
         {
             if (!Page.IsPostBack)
             {
-                Gardens.DataSource = KindergardenQuery.Instance.Get();
+                Gardens.DataSource = new KindergardenQuery().Get();
                 Gardens.DataBind();
 
                 Types.DataSource = EnumUtils.GetDescriptions(typeof(ActivityTypes));
@@ -33,7 +33,7 @@ namespace KindergartenApp.Kindergarden
                                  Name = Name.Text,
                                  Info = Info.Text,
                                  Date = Date.SelectedDate,
-                                 Kindergarden = KindergardenQuery.Instance.Get(int.Parse(Gardens.SelectedValue)),
+                                 Kindergarden = new KindergardenQuery().Get(int.Parse(Gardens.SelectedValue)),
                                  Type = (ActivityTypes)type
                              };
             ActivityEdit.Instance.Add(entity);
