@@ -25,6 +25,7 @@ namespace Kindergarten.BL.Edit
         {
             var entity = new KindergardenQuery().Get(id);
             SessionFactoryHelper.CurrentSession.Delete(entity);
+            SessionFactoryHelper.CurrentSession.Flush();
         }
     }
 }

@@ -11,7 +11,7 @@ using Kindergarten.BL.Utils;
 using Entities = Kindergarten.Domain.Entities;
 using NHibernate.Linq;
 
-namespace KindergartenApp.Reports
+namespace KindergartenApp.Search
 {
     public partial class SearchKindergarden : System.Web.UI.Page
     {
@@ -59,7 +59,7 @@ namespace KindergartenApp.Reports
                 query.City = (Entities.Cities?) city;
             }
 
-            EntitiesGrid.DataSource = query.GetByFilter();
+            EntitiesGrid.DataSource = query.GetByFilter().ToList();
             EntitiesGrid.DataBind();
         }
 
@@ -68,9 +68,16 @@ namespace KindergartenApp.Reports
             if(e.CommandName == "Delete")
             {
                 KindergardenEdit.Instance.Delete((int.Parse(e.Item.Cells[0].Text)));
+                GetByFilter();
             }
 
-            GetByFilter();
+            if(e.CommandName == "Edit")
+            {
+                var id = int.Parse(e.Item.Cells[0].Text);
+                var url = ResolveUrl("../Kindergarden/AddKindergarden.aspx?code=" + id);
+
+                Response.Redirect(url);
+            }
         }
     }
 }

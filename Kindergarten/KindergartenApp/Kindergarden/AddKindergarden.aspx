@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Button ID="Button1" runat="server" Text="הוסף גן" OnClick="SaveClick" Font-Size="15px" />
+                    <asp:Button ID="Button1" runat="server" Text="שמור" OnClick="SaveClick" Font-Size="15px" />
                 </td>
             </tr>
             </table>
@@ -68,9 +68,10 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:DataGrid ID="ChildrenGrid" runat="server" AutoGenerateColumns="False" ShowHeader="True" >
+                    <asp:DataGrid ID="ChildrenGrid" runat="server" AutoGenerateColumns="False" DataKeyField="Id"
+                        ShowHeader="True" OnDeleteCommand="DeleteChild"  >
                         <Columns>
-                            <asp:BoundColumn HeaderText="ת.ז" DataField="Id" />
+                            <asp:BoundColumn HeaderText="ת.ז" DataField="IdNUm" />
                             <asp:BoundColumn HeaderText="שם פרטי" DataField="FirstName" />
                             <asp:BoundColumn HeaderText="שם משפחה" DataField="LastName" />
                             <asp:EditCommandColumn HeaderText="ערוך" CancelText="בטל" EditText="ערוך" UpdateText="שמור" />

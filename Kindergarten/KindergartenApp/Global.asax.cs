@@ -13,11 +13,12 @@ using NHibernate;
 using Autofac;
 using Kindergarten.Bootstrap;
 using Autofac.Integration.Web;
+using NHibernate.Linq;
 
 
 namespace KindergartenApp
 {
-    public class Global : HttpApplication,IContainerProviderAccessor
+    public class Global : HttpApplication, IContainerProviderAccessor
     {
 
         void Application_Start(object sender, EventArgs e)
@@ -26,23 +27,29 @@ namespace KindergartenApp
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            
+
             SessionFactoryHelper.CreateSessionFactory();
-            
+
             _containerProvider = new ContainerProvider(ContainerCreationExtentions.CreateNew().LoadDefaultPackage("KindergartenApp"));
 
             using (var session = SessionFactoryHelper.SessionFactory.OpenSession())
             {
-                var s1 = new Sensitivity { Description = "לקטוז" };
-                var s2 = new Sensitivity { Description = "גלוטן" };
-                var s3 = new Sensitivity { Description = "בוטנים" };
-                var s4 = new Sensitivity { Description = "אגוזים" };
-                var s5 = new Sensitivity { Description = "ביצים" };
-                session.Save(s1);
-                session.Save(s2);
-                session.Save(s3);
-                session.Save(s4);
-                session.Save(s5);
+
+                var exist = session.Query<Sensitivity>().Any();
+
+                if (!exist)
+                {
+                    var s1 = new Sensitivity { Description = "לקטוז" };
+                    var s2 = new Sensitivity { Description = "גלוטן" };
+                    var s3 = new Sensitivity { Description = "בוטנים" };
+                    var s4 = new Sensitivity { Description = "אגוזים" };
+                    var s5 = new Sensitivity { Description = "ביצים" };
+                    session.Save(s1);
+                    session.Save(s2);
+                    session.Save(s3);
+                    session.Save(s4);
+                    session.Save(s5);
+                }
             }
         }
 

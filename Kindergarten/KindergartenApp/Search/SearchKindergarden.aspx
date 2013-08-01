@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SearchKindergarden.aspx.cs" Inherits="KindergartenApp.Reports.SearchKindergarden" MasterPageFile="../Site.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SearchKindergarden.aspx.cs" Inherits="KindergartenApp.Search.SearchKindergarden" MasterPageFile="../Site.Master" %>
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">

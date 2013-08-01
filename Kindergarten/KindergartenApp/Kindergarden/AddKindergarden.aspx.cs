@@ -26,8 +26,29 @@ namespace KindergartenApp
         {
             if(!Page.IsPostBack)
             {
-                BindLists();
+                BindLists();  
+                var kindergardenCode = Request.QueryString["code"];
+                if (kindergardenCode != null)
+                {
+                    var current = new KindergardenQuery().Get(int.Parse(kindergardenCode));
+                    CurrentKindergarden = current;
+                    FillFields(current);
+                }
+                
             }
+        }
+
+        private void FillFields(Entities.Kindergarden current)
+        {
+            Name.Text = current.Name;
+
+            Cities.SelectedValue =
+                EnumUtils.GetDescriptionOfEnumValue(typeof(Entities.Cities), Enum.GetName(typeof(Entities.Cities), current.City));
+            ChildrenNum.Text = current.ChildQty.ToString();
+            Teachers.SelectedValue = current.Teacher.Id.ToString();
+
+            ChildrenGrid.DataSource = current.Children;
+            ChildrenGrid.DataBind();
         }
 
         private void BindLists()
@@ -44,22 +65,57 @@ namespace KindergartenApp
 
         protected void SaveClick(object sender, EventArgs e)
         {
+            if (Page.IsValid)
+            {
+                if (CurrentKindergarden == null)
+                {
+                    Save();
+                }
+                else
+                {
+                    Update();
+                }
+                ClientScript.RegisterStartupScript(GetType(), "msg",
+                                                   "<script language='javascript'>showMessage()</script>");
+            }
+        }
 
+        private void Update()
+        {
             var city = Enum.Parse(typeof(Entities.Cities), Cities.SelectedIndex.ToString(), true);
+
+            var entity = CurrentKindergarden;
+            entity.Name = Name.Text;
+            entity.City = (Entities.Cities) city;
+            entity.ChildQty = int.Parse(ChildrenNum.Text);
+            entity.Teacher =
+                Teachers.SelectedValue != ""
+                    ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue))
+                    : null;
+
+            KindergardenEdit.Instance.Update(entity);
+
+        }
+
+        private void Save()
+        {
+            var city = Enum.Parse(typeof (Entities.Cities), Cities.SelectedIndex.ToString(), true);
 
             var current = new Entities.Kindergarden
                               {
                                   Name = Name.Text,
-                                  City = (Entities.Cities)city,
+                                  City = (Entities.Cities) city,
                                   ChildQty = int.Parse(ChildrenNum.Text),
-                                  Teacher = Teachers.SelectedValue != "" ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue)) : null                              };
+                                  Teacher =
+                                      Teachers.SelectedValue != ""
+                                          ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue))
+                                          : null
+                              };
 
             KindergardenEdit.Instance.Add(current);
             CurrentKindergarden = current;
 
             ClearData();
-            ClientScript.RegisterStartupScript(GetType(), "msg", "<script language='javascript'>showMessage()</script>");
-
         }
 
         private void ClearData()
@@ -80,6 +136,12 @@ namespace KindergartenApp
             ChildrenGrid.DataSource = CurrentKindergarden.Children;
             ChildrenGrid.DataBind();
 
+        }
+
+        protected void DeleteChild(object source, DataGridCommandEventArgs e)
+        {
+            var id = ChildrenGrid.DataKeys[e.Item.ItemIndex];
+            KindergardenEdit.Instance.Delete((int)id);
         }
     }
 }

@@ -21,5 +21,12 @@ namespace Kindergarten.BL.Utils
             }
             return descs;
         }
+
+        public static string GetDescriptionOfEnumValue(Type type,string value)
+        {
+            var field = type.GetField(value);
+            var fds = field.GetCustomAttributes(typeof(DescriptionAttribute), true);
+            return ((from DescriptionAttribute fd in fds select fd.Description).First());
+        }
     }
 }
