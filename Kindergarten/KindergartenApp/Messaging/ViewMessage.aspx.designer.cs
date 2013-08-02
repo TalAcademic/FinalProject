@@ -22,13 +22,13 @@ namespace KindergartenApp.Messaging {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// TextBox2 control.
+        /// Date control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TextBox2;
+        protected global::System.Web.UI.WebControls.Label Date;
         
         /// <summary>
         /// Label1 control.
@@ -40,13 +40,13 @@ namespace KindergartenApp.Messaging {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// TextBox1 control.
+        /// From control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TextBox1;
+        protected global::System.Web.UI.WebControls.Label From;
         
         /// <summary>
         /// Label3 control.

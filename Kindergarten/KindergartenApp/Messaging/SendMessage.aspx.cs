@@ -16,6 +16,7 @@ namespace KindergartenApp.Messaging
     {
         private Person _messageSender;
         public IMessanger MessageManager { get; set; }
+        private Teacher _teacher;
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,34 +24,47 @@ namespace KindergartenApp.Messaging
             if (!IsPostBack)
             {
                 List<string> toList = new List<string>();
-                if (_messageSender is Child)
-                {
-
-                }
+                
                 if (_messageSender is Teacher)
                 {
                     toList.Add("ילד ספציפי");
                     toList.Add("כל ילדי הגן");
+                    toList.Add("מפקחת");
                 }
                 if (_messageSender is Supervisor)
                 {
                     toList.Add("גננת");
-                    toList.Add("מחוז");
+                    toList.Add("ילדי המחוז");
+                    toList.Add("גננות המחוז");
                 }
                 Who.DataSource = toList;
                 Who.AutoPostBack = true;
                 Who.DataBind();
+                if (_messageSender is Child)
+                {
+                    Who.Visible = false;
+                    WhoLable.Visible = true;
+                }
+
             }
         }
 
         protected void SendClick(object sender, EventArgs e)
         {
             List<Person> recipients = new List<Person>();
+            if (_messageSender is Child)
+            {
+                Child c = (Child) _messageSender;
+                recipients.Add(c.Kindergarden.Teacher);
+            }
             if (_messageSender is Teacher)
             {
-
+                Kindergarten.Domain.Entities.Kindergarden garden =
+                    SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
+                        First(g => g.Teacher.Id == _messageSender.Id);
                 switch (Who.SelectedValue)
                 {
+
                     case "ילד ספציפי":
                         Person child =
                             SessionFactoryHelper.CurrentSession.Query<Person>().First(v => v.Id == Convert.ToInt32(Where.SelectedValue));
@@ -60,18 +74,22 @@ namespace KindergartenApp.Messaging
                         }
                         break;
                     case "כל ילדי הגן":
-                        Kindergarten.Domain.Entities.Kindergarden garden =
-                            SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
-                                First(g => g.Teacher.Id == _messageSender.Id);
                         if (garden != null)
                         {
-                            recipients = garden.Children.Select(c=>(Person)c).ToList();
+                            recipients.AddRange( garden.Children);
                         }
+                        break;
+                    case "מפקחת":
+                        Supervisor s= SessionFactoryHelper.CurrentSession.Query<Supervisor>().First(v => v.City == garden.City);
+                        recipients.Add(s);
                         break;
                 }
             }
             if (_messageSender is Supervisor)
             {
+                List<Kindergarten.Domain.Entities.Kindergarden> countyGardens =
+                    SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
+                        Where(g => g.City == ((Supervisor)_messageSender).City).ToList();
                 switch (Who.SelectedValue)
                 {
                     case "גננת":
@@ -82,11 +100,15 @@ namespace KindergartenApp.Messaging
                             recipients.Add(teacher);
                         }
                         break;
-                    case "מחוז":
-                        List<Kindergarten.Domain.Entities.Kindergarden> countyGardens =
-                            SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
-                                Where(g => g.City == ((Supervisor)_messageSender).City).ToList();
-                        recipients = countyGardens.Select(c => (Person)c.Teacher).ToList();
+                    case "גננות המחוז":
+                       
+                        recipients.AddRange(countyGardens.Select(c => c.Teacher).ToList());
+                        break;
+                    case "ילדי המחוז":
+                        foreach (var kindergarden in countyGardens)
+                        {
+                            recipients.AddRange(kindergarden.Children);
+                        }
                         break;
                 }
             }
@@ -127,10 +149,11 @@ namespace KindergartenApp.Messaging
                             Where.DataBind();
                         }
                         break;
-                    case "כל ילדי הגן" :
+                    default:
                         Where.Visible = false;
                         WhereLabel.Visible = false;
                         break;
+
                 }
             }
             if (_messageSender is Supervisor)
@@ -150,11 +173,16 @@ namespace KindergartenApp.Messaging
                         Where.DataBind();
 
                         break;
-                    case "מחוז" :
+                    default :
                         Where.Visible = false;
                         WhereLabel.Visible = false;
                         break;
                 }
+            }
+            if (_messageSender is Child)
+            {
+                Where.Visible = false;
+                WhereLabel.Visible = false;
             }
         }
     }

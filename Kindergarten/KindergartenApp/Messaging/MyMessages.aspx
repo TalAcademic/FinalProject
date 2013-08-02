@@ -2,22 +2,29 @@
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="MainContent">
     
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
-        <Columns>
-            <asp:BoundField DataField="Sender.FullName" HeaderText="שולח">
-            <HeaderStyle HorizontalAlign="Center" Width="100px" />
-            </asp:BoundField>
-            <asp:BoundField DataField="SendTime" HeaderText="תאריך שליחה">
-            <HeaderStyle HorizontalAlign="Right" Width="150px" />
-            </asp:BoundField>
-            <asp:BoundField DataField="Title" HeaderText="כותרת">
-            <HeaderStyle HorizontalAlign="Right" Width="100px" />
-            </asp:BoundField>
-            <asp:HyperLinkField HeaderText="ההודעה המלאה" Text="צפה">
-            <HeaderStyle HorizontalAlign="Right" Width="100px" />
-            </asp:HyperLinkField>
-        </Columns>
-        <RowStyle HorizontalAlign="Right" />
-    </asp:GridView>
-    
+    <asp:Label ID="NoMessages" runat="server" Text="אין הודעות להציג" Font-Size="XX-Large" ForeColor="Red" ></asp:Label>
+    <table>
+        <tr>
+            <td dir="rtl">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" HorizontalAlign="Right">
+                <Columns>
+                    <asp:BoundField DataField="id" HeaderText="id" Visible="False" />
+                    <asp:BoundField DataField="Sender.FullName" HeaderText="שולח">
+                    <HeaderStyle HorizontalAlign="Center" Width="100px" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="SendTime" HeaderText="תאריך שליחה">
+                    <HeaderStyle HorizontalAlign="Right" Width="200px" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Title" HeaderText="כותרת"  >
+                    <HeaderStyle HorizontalAlign="Right" Width="100px" />
+                    </asp:BoundField >
+                    <asp:HyperLinkField HeaderText="צפה בהודעה" Text="צפה" DataNavigateUrlFields="id" DataNavigateUrlFormatString="~/Messaging/ViewMessage.aspx?messageId={0}"  >
+                    <HeaderStyle HorizontalAlign="Right" Width="100px" />
+                    </asp:HyperLinkField>
+                </Columns>
+
+                </asp:GridView>
+            </td>
+         </tr>
+    </table>
 </asp:Content>

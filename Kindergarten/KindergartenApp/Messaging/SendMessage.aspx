@@ -12,6 +12,7 @@
                 </td>
                 <td>
                     <asp:RadioButtonList runat="server" ID="Who" RepeatDirection="Horizontal" OnSelectedIndexChanged="SelectedWho"/>
+                    <asp:Label ID="WhoLable" runat="server" Text="גננת" Visible="False"/>
                 </td>
             </tr>
             <tr>

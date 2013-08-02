@@ -13,6 +13,15 @@ namespace KindergartenApp.Messaging {
     public partial class MyMessages {
         
         /// <summary>
+        /// NoMessages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NoMessages;
+        
+        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>

@@ -17,9 +17,18 @@ namespace KindergartenApp.Messaging
         protected void Page_Load(object sender, EventArgs e)
         {
             List<Message> msgs =IMessanger.GetPersonMessages((Person)Session["CurrentUser"]);
-
-            GridView1.DataSource = msgs;
-            DataBind();
+            if (msgs.Count== 0)
+            {
+                NoMessages.Visible = true;
+            }
+            else
+            {
+                NoMessages.Visible = false;
+                GridView1.DataSource = msgs;
+                DataBind();    
+            }
+            
         }
+
     }
 }

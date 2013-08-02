@@ -11,7 +11,7 @@
                     <asp:Label ID="Label5" runat="server" Text="תאריך:" />
                 </td>
                 <td>
-                    <asp:Label runat="server" ID="TextBox2"  Text="19.08.2013 22:10"/>
+                    <asp:Label ID="Date" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -19,7 +19,7 @@
                     <asp:Label ID="Label1" runat="server" Text="שולח:" />
                 </td>
                 <td>
-                    <asp:Label runat="server" ID="TextBox1"  Text="דנה כהן"/>
+                    <asp:Label runat="server" ID="From"  />
                 </td>
             </tr>
             <tr>
@@ -27,7 +27,7 @@
                     <asp:Label ID="Label3" runat="server" Text="כותרת:" />
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="Title" />
+                    <asp:TextBox runat="server" ID="Title" Enabled="False" ReadOnly="True"/>
                 </td>
             </tr>
             <tr>
@@ -35,7 +35,7 @@
                     <asp:Label ID="Label2" runat="server" Text="הודעה:" />
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="Message" Height="162px" TextMode="MultiLine" Width="500px" />
+                    <asp:TextBox runat="server" ID="Message" Height="162px" TextMode="MultiLine" Width="500px" Enabled="False" ReadOnly="True"/>
                 </td>
             </tr>
         </table>
