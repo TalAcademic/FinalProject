@@ -15,15 +15,12 @@ namespace KindergartenApp.User
     public partial class AddUser : Page
     {
 
-
-
         public Person CurrentUser
         {
             get { return (Person)ViewState["CurrentUser"]; }
             set { ViewState["CurrentUser"] = value; }
         }
 
-        public IMessanger msg { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -36,6 +33,7 @@ namespace KindergartenApp.User
                     var current = new PersonQuery().Get(int.Parse(userCode));
                     CurrentUser = current;
                     FillFields(current);
+                    PersonTypes.Enabled = false;
                 }
             }
 
@@ -46,7 +44,7 @@ namespace KindergartenApp.User
             Id.Text = current.IdNum;
             FirstName.Text = current.FirstName;
             LastName.Text = current.LastName;
-            BirthDate.Text = current.BirthDay.ToString();
+            BirthDate.Text = current.BirthDay.ToShortDateString();
             Phone.Text = current.PhoneNum;
 
             if (current is Child)
