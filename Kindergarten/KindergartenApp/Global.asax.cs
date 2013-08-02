@@ -28,7 +28,7 @@ namespace KindergartenApp
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            SessionFactoryHelper.CreateSessionFactory();
+            SessionFactoryHelper.CreateSessionFactoryWithDB();
 
             _containerProvider = new ContainerProvider(ContainerCreationExtentions.CreateNew().LoadDefaultPackage("KindergartenApp"));
 

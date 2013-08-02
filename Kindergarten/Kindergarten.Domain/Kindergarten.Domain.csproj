@@ -58,11 +58,13 @@
     <Compile Include="Entities\ISearcher.cs" />
     <Compile Include="Entities\Kindergarden.cs" />
     <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\Attendance.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Sensitivity.cs" />
     <Compile Include="Entities\Supervisor.cs" />
     <Compile Include="Entities\Teacher.cs" />
     <Compile Include="Mapping\ActivityMap.cs" />
+    <Compile Include="Mapping\AttendanceMap.cs" />
     <Compile Include="Mapping\ChildMap.cs" />
     <Compile Include="Mapping\KindergardenMap.cs" />
     <Compile Include="Mapping\MessageMap.cs" />
