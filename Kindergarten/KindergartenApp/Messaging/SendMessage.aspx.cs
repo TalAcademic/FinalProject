@@ -53,7 +53,7 @@ namespace KindergartenApp.Messaging
                 {
                     case "ילד ספציפי":
                         Person child =
-                            SessionFactoryHelper.CurrentSession.Query<Person>().Single(v => v.Id == Convert.ToInt32(Where.SelectedValue));
+                            SessionFactoryHelper.CurrentSession.Query<Person>().First(v => v.Id == Convert.ToInt32(Where.SelectedValue));
                         if (child != null)
                         {
                             recipients.Add(child);
@@ -62,7 +62,7 @@ namespace KindergartenApp.Messaging
                     case "כל ילדי הגן":
                         Kindergarten.Domain.Entities.Kindergarden garden =
                             SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
-                                SingleOrDefault(g => g.Teacher.Id == _messageSender.Id);
+                                First(g => g.Teacher.Id == _messageSender.Id);
                         if (garden != null)
                         {
                             recipients = garden.Children.Select(c=>(Person)c).ToList();
@@ -76,7 +76,7 @@ namespace KindergartenApp.Messaging
                 {
                     case "גננת":
                         Person teacher =
-                            SessionFactoryHelper.CurrentSession.Query<Person>().Single(v => v.Id == Convert.ToInt32(Where.SelectedValue));
+                            SessionFactoryHelper.CurrentSession.Query<Person>().First(v => v.Id == Convert.ToInt32(Where.SelectedValue));
                         if (teacher != null)
                         {
                             recipients.Add(teacher);
@@ -91,7 +91,19 @@ namespace KindergartenApp.Messaging
                 }
             }
             MessageManager.SendMessage(_messageSender, Title.Text, Message.Text, recipients);
+            ClearControls();
+            ClientScript.RegisterStartupScript(GetType(), "msg",
+                                                   "<script language='javascript'>showMessage()</script>");
 
+        }
+
+        private void ClearControls()
+        {
+            Where.Visible = false;
+            WhereLabel.Visible = false;
+            Title.Text = "";
+            Message.Text = "";
+            Who.SelectedIndex = -1;
         }
 
         protected void SelectedWho(object sender, EventArgs e)
@@ -104,7 +116,7 @@ namespace KindergartenApp.Messaging
                     case "ילד ספציפי":
                         Kindergarten.Domain.Entities.Kindergarden garden =
                             SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
-                                SingleOrDefault(g => g.Teacher.Id == _messageSender.Id);
+                                First(g => g.Teacher.Id == _messageSender.Id);
                         if (garden != null)
                         {
                             WhereLabel.Visible = true;

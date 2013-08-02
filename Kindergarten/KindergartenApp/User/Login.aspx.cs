@@ -17,7 +17,7 @@ namespace KindergartenApp.User
 
         protected void DoLoginClick(object sender, EventArgs e)
         {
-            var user = new PersonQuery { IdNum = UserName.Text }.GetByFilter();
+            var user = new PersonQuery { IdNum = UserName.Text }.GetByIdNum();
 
             if (!user.Any())
             {

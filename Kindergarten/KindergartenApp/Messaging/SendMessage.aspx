@@ -28,6 +28,7 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="Title" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="יש למלא את כותרת ההודעה" ControlToValidate="Title"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -37,6 +38,7 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="Message" Height="162px" TextMode="MultiLine" Width="500px" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Message" ErrorMessage="יש להזין את תוכן ההודעה"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
