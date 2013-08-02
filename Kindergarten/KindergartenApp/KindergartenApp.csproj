@@ -151,6 +151,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Kindergarden\Activities.aspx" />
+    <Content Include="Search\SearchUser.aspx" />
     <Content Include="User\AddUser.aspx" />
     <Content Include="User\ChangePassword.aspx" />
     <Content Include="User\Login.aspx" />
@@ -340,6 +341,13 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search\SearchUser.aspx.cs">
+      <DependentUpon>SearchUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search\SearchUser.aspx.designer.cs">
+      <DependentUpon>SearchUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\AddUser.aspx.cs">
       <DependentUpon>AddUser.aspx</DependentUpon>

@@ -24,7 +24,7 @@ namespace KindergartenApp.User
 
 
                 var userId = ((Person)Session["CurrentUser"]).Id;
-                var user = PersonQuery.Instance.Get(userId);
+                var user = new PersonQuery().Get(userId);
 
                 user.Password = NewPassword.Text;
                 PersonEdit.Instance.Update(user);

@@ -72,6 +72,10 @@
                                 <li><a id="A5" runat="server" href="~/Messaging/MyMessages">צפיה בהודעות</a></li>
                                 <li><a id="A6" runat="server" href="~/Messaging/SendMessage">שלח הודעה</a></li>
                             </ul>
+                             <ul>
+                                <li><a id="A7" runat="server" href="~/Search/SearchKindergarden">חפש גן</a></li>
+                                <li><a id="A8" runat="server" href="~/Search/SearchUser">חפש משתמש</a></li>
+                            </ul>
                         </ul>
                     </nav>
                 </div>

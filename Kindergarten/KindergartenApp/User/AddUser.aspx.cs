@@ -217,7 +217,7 @@ namespace KindergartenApp.User
 
         private bool AddNewUser()
         {
-            var isUserExist = PersonQuery.Instance.GetByIdNum(Id.Text).Any();
+            var isUserExist = new PersonQuery() { IdNum = Id.Text }.GetByFilter().Any();
             if (isUserExist)
             {
                 IdValidator.IsValid = false;

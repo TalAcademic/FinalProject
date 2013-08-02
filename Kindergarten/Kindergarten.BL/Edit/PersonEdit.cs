@@ -9,7 +9,7 @@ using Kindergarten.Domain.Entities;
 
 namespace Kindergarten.BL.Edit
 {
-    public class PersonEdit : SingletoneClass<PersonEdit>,IEdit<Person>
+    public class PersonEdit : SingletoneClass<PersonEdit>, IEdit<Person>
     {
         public void Add(Person item)
         {
@@ -25,6 +25,7 @@ namespace Kindergarten.BL.Edit
         {
             var entity = new PersonQuery().Get(id);
             SessionFactoryHelper.CurrentSession.Delete(entity);
+            SessionFactoryHelper.CurrentSession.Flush();
         }
     }
 }
