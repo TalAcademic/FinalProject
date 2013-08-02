@@ -14,6 +14,7 @@ namespace Kindergarten.Domain.Mapping
         {
             DiscriminatorValue("1");
             HasManyToMany(x => x.Sensitivitieses).AsSet().Cascade.None();
+            References(x => x.Kindergarden);
         }
     }
 }

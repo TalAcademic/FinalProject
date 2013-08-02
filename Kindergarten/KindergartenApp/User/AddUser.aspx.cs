@@ -14,12 +14,75 @@ namespace KindergartenApp.User
 {
     public partial class AddUser : Page
     {
+   
+
+
+        public Person CurrentUser
+        {
+            get { return (Person)ViewState["CurrentUser"]; }
+            set { ViewState["CurrentUser"] = value; }
+        }
+
         public IMessanger msg { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 BindList();
+
+                var userCode = Request.QueryString["code"];
+                if (userCode != null)
+                {
+                    var current = new PersonQuery().Get(int.Parse(userCode));
+                    CurrentUser = current;
+                    FillFields(current);
+                }
+            }
+
+        }
+
+        private void FillFields(Person current)
+        {
+            Id.Text = current.IdNum;
+            FirstName.Text = current.FirstName;
+            LastName.Text = current.LastName;
+            BirthDate.Text = current.BirthDay.ToString();
+            Phone.Text = current.PhoneNum;
+
+            if (current is Child)
+            {
+                var child = current as Child;
+                PersonTypes.SelectedValue = "1";
+                foreach (var sensitivity in child.Sensitivitieses)
+                {
+                    var sen = Sensetivities.Items.FindByValue(sensitivity.Id.ToString());
+                    sen.Selected = true;
+                }
+
+                ChildData.Visible = true;
+                TeacherData.Visible = false;
+                SupervisorData.Visible = false;
+            }
+            else if (current is Teacher)
+            {
+                var teacher = current as Teacher;
+                PersonTypes.SelectedValue = "2";
+                Teachers.SelectedValue = teacher.Substitute.Id.ToString();
+                Sen.Text = teacher.Seniority.ToString();
+
+                ChildData.Visible = false;
+                TeacherData.Visible = true;
+                SupervisorData.Visible = false;
+            }
+            else
+            {
+                var supervisor = current as Supervisor;
+                PersonTypes.SelectedValue = "3";
+                Cities.SelectedValue = ((int) supervisor.City).ToString();
+
+                ChildData.Visible = false;
+                TeacherData.Visible = false;
+                SupervisorData.Visible = true;
             }
 
         }

@@ -31,5 +31,23 @@ namespace Kindergarten.Domain.Entities
         {
             Messages = new HashedSet<Message>();
         }
+
+        protected bool Equals(Person other)
+        {
+            return Id == other.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Person) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
     }
 }

@@ -27,5 +27,12 @@ namespace Kindergarten.BL.Edit
             SessionFactoryHelper.CurrentSession.Delete(entity);
             SessionFactoryHelper.CurrentSession.Flush();
         }
+
+        public void RemoveChild(Kindergarden kindergarden,int childId)
+        {
+            var child = new ChildQuery().Get(childId);
+            kindergarden.Children.Remove(child);
+            SessionFactoryHelper.CurrentSession.Update(kindergarden);
+        }
     }
 }

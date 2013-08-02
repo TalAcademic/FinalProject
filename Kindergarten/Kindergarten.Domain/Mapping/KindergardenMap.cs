@@ -17,7 +17,7 @@ namespace Kindergarten.Domain.Mapping
             Map(x => x.ChildQty);
             Map(x => x.City).CustomType<Cities>();
             References(x => x.Teacher);
-            HasMany(x => x.Children);
+            HasMany(x => x.Children).Cascade.None();
         }
     }
 }

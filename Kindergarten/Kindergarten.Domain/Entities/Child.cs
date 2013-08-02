@@ -11,10 +11,13 @@ namespace Kindergarten.Domain.Entities
     public class Child : Person
     {
         public virtual ICollection<Sensitivity> Sensitivitieses { get; set; }
+        public virtual Kindergarden Kindergarden { get; set; }
 
         public  Child()
         {
             Sensitivitieses = new HashedSet<Sensitivity>();
         }
+
+   
     }
 }

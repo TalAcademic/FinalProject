@@ -18,15 +18,15 @@ namespace KindergartenApp
     {
         public Entities.Kindergarden CurrentKindergarden
         {
-            get { return (Entities.Kindergarden)ViewState["CurrentKindergarden"]; }
+            get { return (Entities.Kindergarden) ViewState["CurrentKindergarden"]; }
             set { ViewState["CurrentKindergarden"] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
+            if (!Page.IsPostBack)
             {
-                BindLists();  
+                BindLists();
                 var kindergardenCode = Request.QueryString["code"];
                 if (kindergardenCode != null)
                 {
@@ -34,7 +34,7 @@ namespace KindergartenApp
                     CurrentKindergarden = current;
                     FillFields(current);
                 }
-                
+
             }
         }
 
@@ -43,7 +43,8 @@ namespace KindergartenApp
             Name.Text = current.Name;
 
             Cities.SelectedValue =
-                EnumUtils.GetDescriptionOfEnumValue(typeof(Entities.Cities), Enum.GetName(typeof(Entities.Cities), current.City));
+                EnumUtils.GetDescriptionOfEnumValue(typeof (Entities.Cities),
+                                                    Enum.GetName(typeof (Entities.Cities), current.City));
             ChildrenNum.Text = current.ChildQty.ToString();
             Teachers.SelectedValue = current.Teacher.Id.ToString();
 
@@ -53,7 +54,7 @@ namespace KindergartenApp
 
         private void BindLists()
         {
-            Cities.DataSource = EnumUtils.GetDescriptions(typeof(Entities.Cities));
+            Cities.DataSource = EnumUtils.GetDescriptions(typeof (Entities.Cities));
             Cities.DataBind();
 
             Teachers.DataSource = new TeachersQuery().Get();
@@ -82,7 +83,7 @@ namespace KindergartenApp
 
         private void Update()
         {
-            var city = Enum.Parse(typeof(Entities.Cities), Cities.SelectedIndex.ToString(), true);
+            var city = Enum.Parse(typeof (Entities.Cities), Cities.SelectedIndex.ToString(), true);
 
             var entity = CurrentKindergarden;
             entity.Name = Name.Text;
@@ -131,7 +132,7 @@ namespace KindergartenApp
             var child = new ChildQuery().Get(int.Parse(ChildrenList.SelectedValue));
             CurrentKindergarden.Children.Add(child);
 
-           KindergardenEdit.Instance.Update(CurrentKindergarden);
+            KindergardenEdit.Instance.Update(CurrentKindergarden);
 
             ChildrenGrid.DataSource = CurrentKindergarden.Children;
             ChildrenGrid.DataBind();
@@ -141,7 +142,18 @@ namespace KindergartenApp
         protected void DeleteChild(object source, DataGridCommandEventArgs e)
         {
             var id = ChildrenGrid.DataKeys[e.Item.ItemIndex];
-            KindergardenEdit.Instance.Delete((int)id);
+            KindergardenEdit.Instance.RemoveChild(CurrentKindergarden, (int) id);
+
+            ChildrenGrid.DataSource = CurrentKindergarden.Children;
+            ChildrenGrid.DataBind();
+        }
+
+        protected void EditChild(object source, DataGridCommandEventArgs e)
+        {
+            var id = ChildrenGrid.DataKeys[e.Item.ItemIndex];
+            var url = ResolveUrl("../User/AddUser.aspx?code=" + id);
+
+            Response.Redirect(url);
         }
     }
 }

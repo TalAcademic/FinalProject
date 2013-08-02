@@ -69,13 +69,13 @@
             <tr>
                 <td colspan="2">
                     <asp:DataGrid ID="ChildrenGrid" runat="server" AutoGenerateColumns="False" DataKeyField="Id"
-                        ShowHeader="True" OnDeleteCommand="DeleteChild"  >
+                        ShowHeader="True" OnDeleteCommand="DeleteChild"  OnEditCommand="EditChild">
                         <Columns>
                             <asp:BoundColumn HeaderText="ת.ז" DataField="IdNUm" />
                             <asp:BoundColumn HeaderText="שם פרטי" DataField="FirstName" />
                             <asp:BoundColumn HeaderText="שם משפחה" DataField="LastName" />
                             <asp:EditCommandColumn HeaderText="ערוך" CancelText="בטל" EditText="ערוך" UpdateText="שמור" />
-                            <asp:ButtonColumn HeaderText="מחק" CommandName="Delete" />
+                            <asp:ButtonColumn HeaderText="מחק" CommandName="Delete" Text="מחק" />
                         </Columns>
                     </asp:DataGrid>
                 </td>
