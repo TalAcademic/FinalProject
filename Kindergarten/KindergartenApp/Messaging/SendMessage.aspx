@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="Label1" runat="server" Text="שלח אל:" />
+                    <asp:Label ID="Label1" runat="server" Text="שלח אל:" Visible="False" />
                 </td>
                 <td>
                     <asp:DropDownList runat="server" ID="Where" />
