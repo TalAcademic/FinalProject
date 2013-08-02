@@ -14,7 +14,7 @@ namespace KindergartenApp.User
 {
     public partial class AddUser : Page
     {
-   
+
 
 
         public Person CurrentUser
@@ -78,7 +78,7 @@ namespace KindergartenApp.User
             {
                 var supervisor = current as Supervisor;
                 PersonTypes.SelectedValue = "3";
-                Cities.SelectedValue = ((int) supervisor.City).ToString();
+                Cities.SelectedValue = ((int)supervisor.City).ToString();
 
                 ChildData.Visible = false;
                 TeacherData.Visible = false;
@@ -142,75 +142,149 @@ namespace KindergartenApp.User
 
             if (Page.IsValid)
             {
-                var isUserExist = PersonQuery.Instance.GetByIdNum(Id.Text).Any();
-                if (isUserExist)
+                if (CurrentUser != null)
                 {
-                    IdValidator.IsValid = false; return;
+                    Update();
+                }
+                else
+                {
+                    if (!AddNewUser())
+                        return;
+                    ClearAll();
+                    BindList();
                 }
 
-                var selected = PersonTypes.SelectedValue;
-
-                switch (selected)
-                {
-                    case "1":
-                        {
-                            var entity = new Child
-                                             {
-                                                 IdNum = Id.Text,
-                                                 FirstName = FirstName.Text,
-                                                 LastName = LastName.Text,
-                                                 BirthDay = DateTime.Parse(BirthDate.Text),
-                                                 PhoneNum = Phone.Text,
-                                                 Password = "abc123",
-                                                 Sensitivitieses = GetSensitivitieses()
-                                             };
-
-                            ChildEdit.Instance.Add(entity);
-                            break;
-                        }
-                    case "2":
-                        {
-                            var entity = new Teacher
-                                             {
-                                                 IdNum = Id.Text,
-                                                 FirstName = FirstName.Text,
-                                                 LastName = LastName.Text,
-                                                 BirthDay = DateTime.Parse(BirthDate.Text),
-                                                 Substitute =
-                                                     Teachers.SelectedValue != ""
-                                                         ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue))
-                                                         : null,
-                                                 PhoneNum = Phone.Text,
-                                                 Seniority = Sen.Text != "" ? int.Parse(Sen.Text) : 0,
-                                                 Password = "abc123"
-                                             };
-                            TeacherEdit.Instance.Add(entity);
-                            break;
-                        }
-
-                    case "3":
-                        {
-                            var city = Enum.Parse(typeof(Cities), Cities.SelectedIndex.ToString(), true);
-
-                            var entity = new Supervisor
-                                             {
-                                                 IdNum = Id.Text,
-                                                 FirstName = FirstName.Text,
-                                                 LastName = LastName.Text,
-                                                 BirthDay = DateTime.Parse(BirthDate.Text),
-                                                 PhoneNum = Phone.Text,
-                                                 Password = "abc123",
-                                                 City = (Cities)city
-                                             };
-                            SupervisorEdit.Instance.Add(entity);
-                            break;
-                        }
-                }
             }
-            ClearAll();
-            BindList();
+
 
             ClientScript.RegisterStartupScript(GetType(), "msg", "<script language='javascript'>showMessage()</script>");
+        }
+
+        private void Update()
+        {
+            var selected = PersonTypes.SelectedValue;
+            switch (selected)
+            {
+                case "1":
+                    {
+                        var entity = CurrentUser as Child;
+                        entity.IdNum = Id.Text;
+                        entity.FirstName = FirstName.Text;
+                        entity.LastName = LastName.Text;
+                        entity.BirthDay = DateTime.Parse(BirthDate.Text);
+                        entity.PhoneNum = Phone.Text;
+                        entity.Sensitivitieses = GetSensitivitieses();
+
+
+                        ChildEdit.Instance.Update(entity);
+                        break;
+                    }
+                case "2":
+                    {
+                        var entity = CurrentUser as Teacher;
+                         entity.IdNum = Id.Text;
+                        entity.FirstName = FirstName.Text;
+                        entity.LastName = LastName.Text;
+                        entity.BirthDay = DateTime.Parse(BirthDate.Text);
+                        entity.PhoneNum = Phone.Text;
+                        entity.Substitute =
+                            Teachers.SelectedValue != ""
+                                ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue))
+                                : null;
+                        entity.Seniority = Sen.Text != "" ? int.Parse(Sen.Text) : 0;
+                      
+                        TeacherEdit.Instance.Update(entity);
+                        break;
+                    }
+
+                case "3":
+                    {
+                        var city = Enum.Parse(typeof(Cities), Cities.SelectedIndex.ToString(), true);
+
+                        var entity = CurrentUser as Supervisor;
+                     
+                             entity.IdNum = Id.Text;
+                        entity.FirstName = FirstName.Text;
+                        entity.LastName = LastName.Text;
+                        entity.BirthDay = DateTime.Parse(BirthDate.Text);
+                        entity.PhoneNum = Phone.Text;
+
+                        entity.City = (Cities) city;
+                        
+                        SupervisorEdit.Instance.Update(entity);
+                        break;
+                    }
+            }
+        }
+
+        private bool AddNewUser()
+        {
+            var isUserExist = PersonQuery.Instance.GetByIdNum(Id.Text).Any();
+            if (isUserExist)
+            {
+                IdValidator.IsValid = false;
+                return false;
+            }
+
+            var selected = PersonTypes.SelectedValue;
+
+            switch (selected)
+            {
+                case "1":
+                    {
+                        var entity = new Child
+                                         {
+                                             IdNum = Id.Text,
+                                             FirstName = FirstName.Text,
+                                             LastName = LastName.Text,
+                                             BirthDay = DateTime.Parse(BirthDate.Text),
+                                             PhoneNum = Phone.Text,
+                                             Password = "abc123",
+                                             Sensitivitieses = GetSensitivitieses()
+                                         };
+
+                        ChildEdit.Instance.Add(entity);
+                        break;
+                    }
+                case "2":
+                    {
+                        var entity = new Teacher
+                                         {
+                                             IdNum = Id.Text,
+                                             FirstName = FirstName.Text,
+                                             LastName = LastName.Text,
+                                             BirthDay = DateTime.Parse(BirthDate.Text),
+                                             Substitute =
+                                                 Teachers.SelectedValue != ""
+                                                     ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue))
+                                                     : null,
+                                             PhoneNum = Phone.Text,
+                                             Seniority = Sen.Text != "" ? int.Parse(Sen.Text) : 0,
+                                             Password = "abc123"
+                                         };
+                        TeacherEdit.Instance.Add(entity);
+                        break;
+                    }
+
+                case "3":
+                    {
+                        var city = Enum.Parse(typeof(Cities), Cities.SelectedIndex.ToString(), true);
+
+                        var entity = new Supervisor
+                                         {
+                                             IdNum = Id.Text,
+                                             FirstName = FirstName.Text,
+                                             LastName = LastName.Text,
+                                             BirthDay = DateTime.Parse(BirthDate.Text),
+                                             PhoneNum = Phone.Text,
+                                             Password = "abc123",
+                                             City = (Cities)city
+                                         };
+                        SupervisorEdit.Instance.Add(entity);
+                        break;
+                    }
+            }
+            return true;
         }
 
         private void ClearAll()
