@@ -48,19 +48,51 @@ namespace KindergartenApp.Messaging
 
         protected void SelectedWho(object sender, EventArgs e)
         {
-            switch (Who.SelectedValue)
+            if (_messageSender is Teacher)
             {
-                case "ילד ספציפי":
-                    Kindergarten.Domain.Entities.Kindergarden garden = SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().SingleOrDefault(g => g.Teacher.Id == _messageSender.Id); 
-                    if (garden!= null)
-                    {
+                
+                switch (Who.SelectedValue)
+                {
+                    case "ילד ספציפי":
+                        Kindergarten.Domain.Entities.Kindergarden garden =
+                            SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
+                                SingleOrDefault(g => g.Teacher.Id == _messageSender.Id);
+                        if (garden != null)
+                        {
+                            Where.Visible = true;
+                            Where.DataSource = garden.Children;
+                            Where.DataTextField = "name";
+                            Where.DataBind();
+                        }
+                        break;
+                    case "כל ילדי הגן" :
+                        Where.Visible = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (_messageSender is Supervisor)
+            {
+                switch (Who.SelectedValue)
+                {
+                    case "גננת":
+                        Kindergarten.Domain.Entities.Kindergarden garden =
+                            SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
+                                SingleOrDefault(g => g.City == ((Supervisor)_messageSender).City);
+
+                        Where.Visible = true;
                         Where.DataSource = garden.Children;
                         Where.DataTextField = "name";
                         Where.DataBind();
-                    }
-                    break;
-                default:
-                    break;
+
+                        break;
+                    case "כל ילדי הגן" :
+                        Where.Visible = false;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
