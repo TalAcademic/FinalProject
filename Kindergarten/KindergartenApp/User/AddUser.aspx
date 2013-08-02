@@ -56,7 +56,7 @@
                     <cc1:TextBoxWatermarkExtender ID="txtBirthDate_TextBoxWatermarkExtender" runat="server" ValidateRequestMode="Enabled"
                         TargetControlID="BirthDate" WatermarkCssClass="watermark" WatermarkText="DD/MM/YYYY" />
                     <cc1:CalendarExtender ID="txtBirthDate_CalendarExtender" runat="server" TargetControlID="BirthDate"
-                        FirstDayOfWeek="Monday" Format="dd/MM/yyyy" />
+                        FirstDayOfWeek="Sunday" Format="dd/MM/yyyy"   />
                     <asp:RequiredFieldValidator ID="txtBirthDate_RequiredFieldValidator" runat="server" ErrorMessage="*"
                         ToolTip="חובה להזין תאריך" ControlToValidate="BirthDate" CssClass="message-error" />
                     <asp:RegularExpressionValidator ID="txtBirthDate_RegularExpressionValidator" runat="server"
