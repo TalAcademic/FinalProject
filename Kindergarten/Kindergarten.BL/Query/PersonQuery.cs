@@ -28,9 +28,9 @@ namespace Kindergarten.BL.Query
             return SessionFactoryHelper.CurrentSession.Query<Person>();
         }
 
-        public IQueryable<Person> GetByIdNum(string idNum)
+        public IQueryable<Person> GetByIdNum()
         {
-            return SessionFactoryHelper.CurrentSession.Query<Person>().Where(x => x.IdNum == idNum);
+            return SessionFactoryHelper.CurrentSession.Query<Person>().Where(x => x.IdNum == IdNum);
         }
 
         public IQueryable<Person> GetByFilter()
