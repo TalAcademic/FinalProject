@@ -17,7 +17,7 @@
                 <td>
                     <asp:TextBox runat="server" ID="Id" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Id" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="field-validation-error" />
-                    <asp:CustomValidator  ID="IdValidator" runat="server" ControlToValidate="Id"  CssClass="field-validation-error" ToolTip="משתמש קיים" ErrorMessage="*"  />
+                    <asp:CustomValidator ID="IdValidator" runat="server" ControlToValidate="Id" CssClass="field-validation-error" ToolTip="משתמש קיים" ErrorMessage="*" />
                 </td>
             </tr>
             <tr>
@@ -51,18 +51,20 @@
                     <asp:Label ID="Label2" runat="server" Text="תאריך לידה:" />
                 </td>
                 <td>
+                    <div>
 
-                    <asp:TextBox runat="server" ID="BirthDate" />
-                    <cc1:TextBoxWatermarkExtender ID="txtBirthDate_TextBoxWatermarkExtender" runat="server" ValidateRequestMode="Enabled"
-                        TargetControlID="BirthDate" WatermarkCssClass="watermark" WatermarkText="DD/MM/YYYY" />
-                    <cc1:CalendarExtender ID="txtBirthDate_CalendarExtender" runat="server" TargetControlID="BirthDate"
-                        FirstDayOfWeek="Sunday" Format="dd/MM/yyyy"   />
-                    <asp:RequiredFieldValidator ID="txtBirthDate_RequiredFieldValidator" runat="server" ErrorMessage="*"
-                        ToolTip="חובה להזין תאריך" ControlToValidate="BirthDate" CssClass="field-validation-error" />
-                    <asp:RegularExpressionValidator ID="txtBirthDate_RegularExpressionValidator" runat="server"
-                        ToolTip="יש להזין תאריך בפורמט DD/MM/YYYY" ControlToValidate="BirthDate" ErrorMessage="*"
-                        CssClass="field-validation-error"
-                        ValidationExpression="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" />
+                        <asp:TextBox runat="server" ID="BirthDate"/>
+                        <cc1:TextBoxWatermarkExtender ID="txtBirthDate_TextBoxWatermarkExtender" runat="server" ValidateRequestMode="Enabled"
+                            TargetControlID="BirthDate" WatermarkText="DD/MM/YYYY" />
+                        <cc1:CalendarExtender ID="txtBirthDate_CalendarExtender" runat="server" TargetControlID="BirthDate"
+                            FirstDayOfWeek="Sunday" Format="dd/MM/yyyy" />
+                        <asp:RequiredFieldValidator ID="txtBirthDate_RequiredFieldValidator" runat="server" ErrorMessage="*"
+                            ToolTip="חובה להזין תאריך" ControlToValidate="BirthDate" CssClass="field-validation-error" />
+                        <asp:RegularExpressionValidator ID="txtBirthDate_RegularExpressionValidator" runat="server"
+                            ToolTip="יש להזין תאריך בפורמט DD/MM/YYYY" ControlToValidate="BirthDate" ErrorMessage="*"
+                            CssClass="field-validation-error"
+                            ValidationExpression="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" />
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -127,7 +129,7 @@
                         <asp:Label ID="Label10" runat="server" Text="עיר:" />
                     </td>
                     <td>
-                        <asp:DropDownList runat="server" ID="Cities" DataTextField="Value"  />
+                        <asp:DropDownList runat="server" ID="Cities" DataTextField="Value" />
                     </td>
                 </tr>
             </table>
