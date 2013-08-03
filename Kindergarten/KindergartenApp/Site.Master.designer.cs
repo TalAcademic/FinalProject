@@ -31,6 +31,24 @@ namespace KindergartenApp {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu;
         
         /// <summary>
+        /// KindergardenMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl KindergardenMenu;
+        
+        /// <summary>
+        /// AddKindergarden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddKindergarden;
+        
+        /// <summary>
         /// A1 control.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,15 @@ namespace KindergartenApp {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A4;
         
         /// <summary>
+        /// AddActivity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddActivity;
+        
+        /// <summary>
         /// A3 control.
         /// </summary>
         /// <remarks>
@@ -74,6 +101,24 @@ namespace KindergartenApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A9;
+        
+        /// <summary>
+        /// UserMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserMenu;
+        
+        /// <summary>
+        /// AddUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddUser;
         
         /// <summary>
         /// A5 control.

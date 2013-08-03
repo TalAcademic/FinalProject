@@ -64,6 +64,7 @@
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\ChildQuery.cs" />
     <Compile Include="Query\KindergardenQuery.cs" />
+    <Compile Include="Query\MessageQuery.cs" />
     <Compile Include="Query\PersonQuery.cs" />
     <Compile Include="Query\SensetivitiesQuery.cs" />
     <Compile Include="Query\TeachersQuery.cs" />

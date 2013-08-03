@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="KindergartenApp.Main" MasterPageFile="/Site.Master" %>
+
 <%@ Import Namespace="Kindergarten.Domain.Entities" %>
 
 
@@ -8,11 +9,12 @@
         <h2 id="LogedInTitle" runat="server"><%= ((Person) Session["CurrentUser"]).FullName %>, ברוך/ה הבאה למערכת</h2>
     </hgroup>
     <div id="MessagesDiv" runat="server">
-    <marquee direction="down" scrollamount="2" >
-        <ul>
-            <li><a>יום הולדת לאורן. 10/10/2013</a></li>
-            <li><a>הודעה על אסיפת הורים 1/10/2013</a></li>
-        </ul>
+        <marquee direction="down" scrollamount="2">
+        <asp:ListView runat="server" ID="Messages" >
+            <ItemTemplate>
+                <asp:Label runat="server" Text='<%#Eval("ToString()") %>'/>
+            </ItemTemplate>
+            </asp:ListView>
     </marquee>
     </div>
-    </asp:Content>
+</asp:Content>

@@ -20,5 +20,10 @@ namespace Kindergarten.Domain.Entities
         {
             Recipients = new HashedSet<Person>();
         }
+
+        public override string ToString()
+        {
+            return SendTime + " " + Title;
+        }
     }
 }

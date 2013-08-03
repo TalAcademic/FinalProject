@@ -20,22 +20,8 @@
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
-               <%-- <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="jquery.ui.combined" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />--%>
-            </Scripts>
-        </asp:ScriptManager>
+        <asp:ScriptManager runat="server"/>
+        
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
@@ -58,15 +44,15 @@
                     <nav>
                         <ul id="menu" runat="server">
                             <li><a runat="server" href="~/Main" style="color: blue">דף הבית</a></li>
-                            <ul>
-                                <li><a id="A1" runat="server" href="~/Kindergarden/AddKindergarden">הוסף גן</a></li>
+                            <ul id="KindergardenMenu" runat="server">
+                                <li id="AddKindergarden" runat="server"><a id="A1" runat="server" href="~/Kindergarden/AddKindergarden">הוסף גן</a></li>
                                 <li><a id="A2" runat="server" href="~/Kindergarden/OpenDay">פתיחת יום</a></li>
                                 <li><a id="A4" runat="server" href="~/Kindergarden/WeekPlan">תכנון שבועי</a></li>
-                                <li><a id="A3" runat="server" href="~/Kindergarden/AddActivity">הוספת פעילות</a></li>                                
+                                <li id="AddActivity" runat="server"><a id="A3" runat="server" href="~/Kindergarden/AddActivity">הוספת פעילות</a></li>                                
                                 <li><a id="A9" runat="server" href="~/Kindergarden/Activities">צפה בפעילויות</a></li>
                             </ul>
-                            <ul>
-                                <li><a runat="server" href="~/User/AddUser">הוסף משתמש</a></li>
+                            <ul id="UserMenu" runat="server">
+                                <li id="AddUser" runat="server"><a runat="server" href="~/User/AddUser">הוסף משתמש</a></li>
                                 <li><a runat="server" href="~/User/ChangePassword">החלף סיסמא</a></li>
                             </ul>
                             <ul>
