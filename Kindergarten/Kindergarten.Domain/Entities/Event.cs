@@ -9,5 +9,16 @@ namespace Kindergarten.Domain.Entities
     {
         public string SpecificType { get; set; }
         public string Title { get; set; }
+        private Dictionary<string, double> _shoppingListForChild;
+        public Dictionary<string, double> ShoppingListForChild
+        {
+            get
+            {
+                if (_shoppingListForChild == null)
+                    _shoppingListForChild = new Dictionary<string, double>();
+                return _shoppingListForChild;
+            }
+            set { _shoppingListForChild = value; }
+        }
     }
 }

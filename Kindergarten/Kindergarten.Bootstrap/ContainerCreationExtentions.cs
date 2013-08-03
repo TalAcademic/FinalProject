@@ -41,10 +41,13 @@ namespace Kindergarten.Bootstrap
         public static IContainer LoadDefaultPackage(this IContainer container, string name)
         {
             container
-                .WithMessanger();
+                .WithMessanger()
+                .WithSearcherFactory();
                 
             return container;
         }
+
+        
 
 
     }
