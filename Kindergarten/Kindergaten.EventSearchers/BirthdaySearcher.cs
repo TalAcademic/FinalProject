@@ -20,8 +20,8 @@ namespace Kindergaten.EventSearchers
         {
             Kindergarden garden =
                 SessionFactoryHelper.CurrentSession.Query<Kindergarden>().Single(k => k.Id == kindergartenId);
-            List<Child> celebrationChildren = (from child in garden.Children 
-                                               where child.BirthDay>=start && child.BirthDay<=end 
+            List<Child> celebrationChildren = (from child in garden.Children
+                                               where (child.BirthDay.Day >= start.Day && child.BirthDay.Day <= end.Day) && (child.BirthDay.Month >= start.Month && child.BirthDay.Month <= end.Month)
                                                select child).ToList();
             List<Event> bdays = new List<Event>();
             foreach (Child celebrationChild in celebrationChildren)
