@@ -15,7 +15,7 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="Name" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Name" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Name" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="field-validation-error" />
                 </td>
             </tr>
             <tr>
@@ -31,7 +31,7 @@
                     <asp:Label runat="server" Text="כמות ילדים מקסימלית:" /></td>
                 <td>
                     <asp:TextBox runat="server" ID="ChildrenNum" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ChildrenNum" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ChildrenNum" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="field-validation-error" />
                 </td>
 
             </tr>

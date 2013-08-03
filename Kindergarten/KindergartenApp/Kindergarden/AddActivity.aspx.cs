@@ -24,21 +24,41 @@ namespace KindergartenApp.Kindergarden
                 Types.DataBind();
             }
         }
-
+        
         protected void SaveClick(object sender, EventArgs e)
         {
-            var type = Enum.Parse(typeof(ActivityTypes), Types.SelectedIndex.ToString(), true);
-            var entity = new Activity
-                             {
-                                 Name = Name.Text,
-                                 Info = Info.Text,
-                                 Date = Date.SelectedDate,
-                                 Kindergarden = new KindergardenQuery().Get(int.Parse(Gardens.SelectedValue)),
-                                 Type = (ActivityTypes)type
-                             };
-            ActivityEdit.Instance.Add(entity);
+            if (Page.IsValid)
+            {
+                if (Date.SelectedDate == DateTime.MinValue)
+                {
+                    CalendarValidator.IsValid = false;
+                    return;
+                }
 
-            ClientScript.RegisterStartupScript(GetType(), "msg", "<script language='javascript'>showMessage()</script>");
+                var type = Enum.Parse(typeof(ActivityTypes), Types.SelectedIndex.ToString(), true);
+                var entity = new Activity
+                                 {
+                                     Name = Name.Text,
+                                     Info = Info.Text,
+                                     Date = Date.SelectedDate,
+                                     Kindergarden = new KindergardenQuery().Get(int.Parse(Gardens.SelectedValue)),
+                                     Type = (ActivityTypes)type
+                                 };
+                ActivityEdit.Instance.Add(entity);
+
+                ClearAll();
+                ClientScript.RegisterStartupScript(GetType(), "msg", "<script language='javascript'>showMessage()</script>");
+
+            }
+        }
+
+        private void ClearAll()
+        {
+            Name.Text = "";
+            Gardens.SelectedIndex = 0;
+            Types.SelectedIndex = 0;
+            Date.SelectedDate = DateTime.MinValue;
+            Info.Text = "";
         }
     }
 }

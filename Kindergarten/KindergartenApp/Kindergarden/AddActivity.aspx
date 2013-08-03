@@ -15,6 +15,7 @@
               </td>
               <td>
                    <asp:TextBox ID="Name" runat="server"/>
+                  <asp:RequiredFieldValidator  runat="server" ControlToValidate="Name" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="field-validation-error" />
               </td>
           </tr>
           <tr>
@@ -40,6 +41,9 @@
               </td>
               <td>
                   <asp:Calendar runat="server" ID="Date"/>
+              </td>
+              <td>
+                  <asp:CustomValidator runat="server" ID="CalendarValidator" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="field-validation-error" />
               </td>
           </tr>
           <tr>

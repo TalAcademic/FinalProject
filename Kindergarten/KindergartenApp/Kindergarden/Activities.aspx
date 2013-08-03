@@ -1,4 +1,7 @@
-﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Activities.aspx.cs" Inherits="KindergartenApp.Kindergarden.Activities" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Activities.aspx.cs" Inherits="KindergartenApp.Kindergarden.Activities" %>
+
+<%@ Import Namespace="Kindergarten.BL.Utils" %>
+<%@ Import Namespace="Kindergarten.Domain.Entities" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <hgroup class="title">
@@ -6,25 +9,32 @@
     </hgroup>
     <div>
         <asp:Label runat="server" Text="בחר גן" />
-        <asp:DropDownList runat="server" >
-            <Items>
-                <asp:ListItem Text="גן המגדלור" />
-            </Items>
-        </asp:DropDownList>
-        <div>
-            <asp:Button ID="Button1" runat="server" Text="הצג" />
+        <asp:DropDownList runat="server" ID="Gardens" DataTextField="Name" DataValueField="Id" />
 
+        <div>
+            <asp:Button ID="Show" runat="server" Text="הצג" OnClick="ShowClick" />
         </div>
 
-        <asp:GridView ID="ActivitiesGrid" runat="server" AutoGenerateColumns="False">
+        <asp:DataGrid ID="ActivitiesGrid" runat="server" AutoGenerateColumns="False">
             <Columns>
-                <asp:BoundField DataField="Name" HeaderText="שם הפעילות" />
-                <asp:BoundField DataField="Kindergarden.Name" HeaderText="גן" />
-                <asp:BoundField DataField="Type" HeaderText="סוג הפעילות" />
-                <asp:BoundField DataField="Date" HeaderText="תאריך הפעילות" />
-                <asp:BoundField DataField="Info" HeaderText="מידע נוסף" />
+                <asp:BoundColumn DataField="Name" HeaderText="שם הפעילות" />
+                <asp:TemplateColumn HeaderText="סוג">
+                    <ItemTemplate>
+                        <asp:Label runat="server" ID="Type" Text='<%# EnumUtils.GetDescriptionOfEnumValue(typeof (ActivityTypes),Enum.GetName(typeof (ActivityTypes),Eval( "Type"))) %>' />
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:TemplateColumn HeaderText="גן">
+                    <ItemTemplate>
+                        <asp:Label runat="server" ID="KindergardenName" Text='<%#Bind("Kindergarden.Name")%>' />
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                    <asp:TemplateColumn HeaderText="תאריך">
+                    <ItemTemplate>
+                        <asp:Label runat="server" ID="KindergardenName" Text='<%# ((DateTime)Eval("Date")).ToShortDateString()%>' />
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:BoundColumn DataField="Info" HeaderText="מידע נוסף" />
             </Columns>
-            <RowStyle HorizontalAlign="Right" />
-        </asp:GridView>
+        </asp:DataGrid>
     </div>
 </asp:Content>

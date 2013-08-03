@@ -9,7 +9,7 @@
     <div>
         <asp:Label runat="server" Text="הזן את הסיסמא החדשה"/>
         <asp:TextBox runat="server" id="NewPassword"/>
-        <asp:RequiredFieldValidator  runat="server" ControlToValidate="NewPassword" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
+        <asp:RequiredFieldValidator  runat="server" ControlToValidate="NewPassword" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="field-validation-error" />
     </div>
     <div>
         <asp:Button runat="server" Text="שמור" OnClick="SaveClick"/>

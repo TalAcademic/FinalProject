@@ -8,14 +8,14 @@
         <div>
             <asp:Label ID="Label1" runat="server" Text="תעודת זהות" />
             <asp:TextBox runat="server" ID="UserName" />
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName" CssClass="message-error" ToolTip="שדה חובה" ErrorMessage="*" />
-            <asp:CustomValidator  ID="UserValidator" runat="server" ControlToValidate="UserName"  CssClass="message-error" ToolTip="משתמש לא קיים" ErrorMessage="*"  />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName" CssClass="field-validation-error" ToolTip="שדה חובה" ErrorMessage="*" />
+            <asp:CustomValidator  ID="UserValidator" runat="server" ControlToValidate="UserName"  CssClass="field-validation-error" ToolTip="משתמש לא קיים" ErrorMessage="*"  />
         </div>
         <div>
             <asp:Label ID="Label2" runat="server" Text="סיסמא" />
             <asp:TextBox runat="server" ID="Password" TextMode="Password" />
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="message-error" ToolTip="שדה חובה" ErrorMessage="*" />
-            <asp:CustomValidator  ID="PasswordValidator" runat="server" ControlToValidate="Password"  CssClass="message-error" ToolTip="סיסמא לא תקינה" ErrorMessage="*"  />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="field-validation-error" ToolTip="שדה חובה" ErrorMessage="*" />
+            <asp:CustomValidator  ID="PasswordValidator" runat="server" ControlToValidate="Password"  CssClass="field-validation-error" ToolTip="סיסמא לא תקינה" ErrorMessage="*"  />
         </div>
           <asp:Button ID="DoLogin" runat="server" Text="התחבר" OnClick="DoLoginClick" />
     </div>

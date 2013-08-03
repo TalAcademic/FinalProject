@@ -506,9 +506,9 @@ input[type="submit"],
 input[type="button"],
 button
 {
-	background-color: #d3dce0;
+	background-color: violet;
 	border: 1px solid #787878;
-	cursor: pointer;
+	border-radius: 5px;
 	font-size: 1.2em;
 	font-weight: 600;
 	padding: 7px;
@@ -533,7 +533,7 @@ td button
 	padding: 10px 20px;
 }
 
-.message-error
+.m1essage-error
 {
 	clear: both;
 	color: #e80c4d;

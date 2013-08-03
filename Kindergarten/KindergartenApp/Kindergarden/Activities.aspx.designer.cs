@@ -13,13 +13,22 @@ namespace KindergartenApp.Kindergarden {
     public partial class Activities {
         
         /// <summary>
-        /// Button1 control.
+        /// Gardens control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.DropDownList Gardens;
+        
+        /// <summary>
+        /// Show control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Show;
         
         /// <summary>
         /// ActivitiesGrid control.
@@ -28,6 +37,6 @@ namespace KindergartenApp.Kindergarden {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ActivitiesGrid;
+        protected global::System.Web.UI.WebControls.DataGrid ActivitiesGrid;
     }
 }

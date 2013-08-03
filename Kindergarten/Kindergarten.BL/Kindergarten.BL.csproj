@@ -59,6 +59,7 @@
     <Compile Include="Edit\SupervisorEdit.cs" />
     <Compile Include="Edit\TeacherEdit.cs" />
     <Compile Include="EventSearcher\EventSearcherFactory.cs" />
+    <Compile Include="Query\ActivityQuery.cs" />
     <Compile Include="Query\AttendanceQuery.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\ChildQuery.cs" />

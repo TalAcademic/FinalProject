@@ -61,8 +61,9 @@
                             <ul>
                                 <li><a id="A1" runat="server" href="~/Kindergarden/AddKindergarden">הוסף גן</a></li>
                                 <li><a id="A2" runat="server" href="~/Kindergarden/OpenDay">פתיחת יום</a></li>
-                                <li><a id="A3" runat="server" href="~/Kindergarden/AddActivity">הוספת פעילות</a></li>
                                 <li><a id="A4" runat="server" href="~/Kindergarden/WeekPlan">תכנון שבועי</a></li>
+                                <li><a id="A3" runat="server" href="~/Kindergarden/AddActivity">הוספת פעילות</a></li>                                
+                                <li><a id="A9" runat="server" href="~/Kindergarden/Activities">צפה בפעילויות</a></li>
                             </ul>
                             <ul>
                                 <li><a runat="server" href="~/User/AddUser">הוסף משתמש</a></li>

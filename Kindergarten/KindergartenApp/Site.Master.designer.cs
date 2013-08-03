@@ -49,6 +49,15 @@ namespace KindergartenApp {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A2;
         
         /// <summary>
+        /// A4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A4;
+        
+        /// <summary>
         /// A3 control.
         /// </summary>
         /// <remarks>
@@ -58,13 +67,13 @@ namespace KindergartenApp {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A3;
         
         /// <summary>
-        /// A4 control.
+        /// A9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A4;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A9;
         
         /// <summary>
         /// A5 control.

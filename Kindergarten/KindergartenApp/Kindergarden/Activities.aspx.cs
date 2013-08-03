@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Kindergarten.BL.Query;
 using Kindergarten.Domain.Entities;
 
 namespace KindergartenApp.Kindergarden
@@ -12,33 +13,18 @@ namespace KindergartenApp.Kindergarden
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ActivitiesGrid.DataSource = new List<Activity>
-                                            {
-                                                new Activity
-                                                    {
-                                                        Date = new DateTime(2013, 10, 10),
-                                                        Name = "יום הולדת לנועה",
-                                                        Info = "יום הולדת 5",
-                                                        Type = ActivityTypes.BirthDay,
-                                                        Kindergarden = new Kindergarten.Domain.Entities.Kindergarden{Name = "המגדלור"}
-                                                    },
-                                                    new Activity
-                                                    {
-                                                        Date = new DateTime(2013, 07, 24),
-                                                        Name = "טיול שנתי",
-                                                        Info = "טיול להרי הגולן",
-                                                        Type = ActivityTypes.Trip,
-                                                        Kindergarden = new Kindergarten.Domain.Entities.Kindergarden{Name = "המגדלור"}
-                                                    },
-                                                     new Activity
-                                                    {
-                                                        Date = new DateTime(2013, 5, 3),
-                                                        Name = "קבלת שבת",
-                                                        Info = "אמא של שבת: אפרת, אבא של שבת:מיכאל",
-                                                        Type = ActivityTypes.Shaabat,
-                                                        Kindergarden = new Kindergarten.Domain.Entities.Kindergarden{Name = "המגדלור"}
-                                                    }
-                                            };
+            if(!Page.IsPostBack)
+            {
+                Gardens.DataSource = new KindergardenQuery().Get();
+                Gardens.DataBind();
+            }
+           
+        }
+
+        protected void ShowClick(object sender, EventArgs e)
+        {
+            var kindergarden = new KindergardenQuery().Get(int.Parse(Gardens.SelectedValue));
+            ActivitiesGrid.DataSource = new ActivityQuery() { Kindergarden = kindergarden }.GetByFilter();
             ActivitiesGrid.DataBind();
         }
     }

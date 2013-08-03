@@ -152,10 +152,8 @@ namespace KindergartenApp.User
                     BindList();
                 }
 
-            }
-
-
-            ClientScript.RegisterStartupScript(GetType(), "msg", "<script language='javascript'>showMessage()</script>");
+                ClientScript.RegisterStartupScript(GetType(), "msg", "<script language='javascript'>showMessage()</script>");
+            }            
         }
 
         private void Update()
@@ -217,7 +215,7 @@ namespace KindergartenApp.User
 
         private bool AddNewUser()
         {
-            var isUserExist = new PersonQuery() { IdNum = Id.Text }.GetByFilter().Any();
+            var isUserExist = new PersonQuery { IdNum = Id.Text }.GetByFilter().Any();
             if (isUserExist)
             {
                 IdValidator.IsValid = false;

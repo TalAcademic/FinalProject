@@ -16,8 +16,8 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="Id" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Id" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
-                    <asp:CustomValidator  ID="IdValidator" runat="server" ControlToValidate="Id"  CssClass="message-error" ToolTip="משתמש קיים" ErrorMessage="*"  />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Id" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="field-validation-error" />
+                    <asp:CustomValidator  ID="IdValidator" runat="server" ControlToValidate="Id"  CssClass="field-validation-error" ToolTip="משתמש קיים" ErrorMessage="*"  />
                 </td>
             </tr>
             <tr>
@@ -26,7 +26,7 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="FirstName" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="FirstName" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="FirstName" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="field-validation-error" />
                 </td>
             </tr>
             <tr>
@@ -35,7 +35,7 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="LastName" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="LastName" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="message-error" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="LastName" ErrorMessage="*" ToolTip="שדה חובה" SetFocusOnError="True" CssClass="field-validation-error" />
                 </td>
             </tr>
             <tr>
@@ -58,10 +58,10 @@
                     <cc1:CalendarExtender ID="txtBirthDate_CalendarExtender" runat="server" TargetControlID="BirthDate"
                         FirstDayOfWeek="Sunday" Format="dd/MM/yyyy"   />
                     <asp:RequiredFieldValidator ID="txtBirthDate_RequiredFieldValidator" runat="server" ErrorMessage="*"
-                        ToolTip="חובה להזין תאריך" ControlToValidate="BirthDate" CssClass="message-error" />
+                        ToolTip="חובה להזין תאריך" ControlToValidate="BirthDate" CssClass="field-validation-error" />
                     <asp:RegularExpressionValidator ID="txtBirthDate_RegularExpressionValidator" runat="server"
                         ToolTip="יש להזין תאריך בפורמט DD/MM/YYYY" ControlToValidate="BirthDate" ErrorMessage="*"
-                        CssClass="message-error"
+                        CssClass="field-validation-error"
                         ValidationExpression="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" />
                 </td>
             </tr>
@@ -81,7 +81,7 @@
                         </Items>
                     </asp:DropDownList>
                     <asp:CompareValidator runat="server" ToolTip="חובה לבחור ערך"
-                        ErrorMessage="*" Operator="GreaterThan" ControlToValidate="PersonTypes" CssClass="message-error"
+                        ErrorMessage="*" Operator="GreaterThan" ControlToValidate="PersonTypes" CssClass="field-validation-error"
                         ValueToCompare="0" />
                 </td>
             </tr>
