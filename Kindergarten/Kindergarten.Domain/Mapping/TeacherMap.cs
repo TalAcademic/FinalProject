@@ -15,6 +15,7 @@ namespace Kindergarten.Domain.Mapping
             DiscriminatorValue("2");
             Map(x => x.Seniority);
             References(x => x.Substitute);
+            References(x => x.Kindergarden).Not.LazyLoad();
         }
     }
 }

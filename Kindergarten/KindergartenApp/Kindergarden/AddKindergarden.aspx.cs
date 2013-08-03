@@ -33,9 +33,47 @@ namespace KindergartenApp
                     var current = new KindergardenQuery().Get(int.Parse(kindergardenCode));
                     CurrentKindergarden = current;
                     FillFields(current);
+
+                    InitByUser();
                 }
 
             }
+        }
+
+        private void InitByUser()
+        {
+            var displayKinderGarden = CurrentKindergarden;
+            var currentUser = Session["CurrentUser"];
+
+            if (currentUser is Entities.Child)
+            {
+                EnableFields((currentUser as Entities.Child).Kindergarden.Equals(displayKinderGarden));
+            }
+            else if (currentUser is Entities.Teacher)
+            {
+                var canEdit = ((currentUser as Entities.Teacher).Kindergarden.Equals(displayKinderGarden));
+
+                EnableFields(canEdit);
+            }
+            else if (currentUser is Entities.Supervisor)
+            {
+                var canEdit = (currentUser as Entities.Supervisor).City.Equals(displayKinderGarden.City);
+                EnableFields(canEdit);
+            }
+
+        }
+
+        private void EnableFields(bool canEdit)
+        {
+            Name.Enabled = canEdit;
+            Cities.Enabled = canEdit;
+            ChildrenNum.Enabled = canEdit;
+            Teachers.Enabled = canEdit;
+            ChildrenGrid.Enabled = canEdit;
+            ChildrenList.Enabled = canEdit;
+
+            AddChild.Visible = canEdit;
+            SaveGarden.Visible = canEdit;
         }
 
         private void FillFields(Entities.Kindergarden current)
@@ -46,7 +84,7 @@ namespace KindergartenApp
                 EnumUtils.GetDescriptionOfEnumValue(typeof (Entities.Cities),
                                                     Enum.GetName(typeof (Entities.Cities), current.City));
             ChildrenNum.Text = current.ChildQty.ToString();
-            Teachers.SelectedValue = current.Teacher.Id.ToString();
+            Teachers.SelectedValue = current.Teacher != null ? current.Teacher.Id.ToString() : "";
 
             ChildrenGrid.DataSource = current.Children;
             ChildrenGrid.DataBind();

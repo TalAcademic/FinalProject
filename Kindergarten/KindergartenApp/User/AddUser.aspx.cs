@@ -34,7 +34,38 @@ namespace KindergartenApp.User
                     CurrentUser = current;
                     FillFields(current);
                     PersonTypes.Enabled = false;
+
+                    InitByUser();
                 }
+            }
+
+        }
+
+        private void InitByUser()
+        {
+            var displayUser = CurrentUser;
+            var currentUser = Session["CurrentUser"];
+
+            if (currentUser is Child)
+            {
+                EnableFields(currentUser.Equals(displayUser));
+            }
+            else if (currentUser is Teacher)
+            {
+                var canEdit = (currentUser.Equals(displayUser)) ||
+                               ((displayUser is Child) &&
+                                (displayUser as Child).Kindergarden.Teacher.Equals(currentUser));
+
+                EnableFields(canEdit);
+            }
+            else if (currentUser is Supervisor)
+            {
+                var canEdit = (currentUser.Equals(displayUser)) ||
+                           ((displayUser is Child) &&
+                            (displayUser as Child).Kindergarden.City.Equals((currentUser as Supervisor).City)) ||
+                           ((displayUser is Teacher) &&
+                            (displayUser as Teacher).Kindergarden.City.Equals((currentUser as Supervisor).City));
+                EnableFields(canEdit);
             }
 
         }
@@ -65,7 +96,7 @@ namespace KindergartenApp.User
             {
                 var teacher = current as Teacher;
                 PersonTypes.SelectedValue = "2";
-                Teachers.SelectedValue = teacher.Substitute.Id.ToString();
+                Teachers.SelectedValue = teacher.Substitute != null ? teacher.Substitute.Id.ToString() : "";
                 Sen.Text = teacher.Seniority.ToString();
 
                 ChildData.Visible = false;
@@ -153,7 +184,7 @@ namespace KindergartenApp.User
                 }
 
                 ClientScript.RegisterStartupScript(GetType(), "msg", "<script language='javascript'>showMessage()</script>");
-            }            
+            }
         }
 
         private void Update()
@@ -178,7 +209,7 @@ namespace KindergartenApp.User
                 case "2":
                     {
                         var entity = CurrentUser as Teacher;
-                         entity.IdNum = Id.Text;
+                        entity.IdNum = Id.Text;
                         entity.FirstName = FirstName.Text;
                         entity.LastName = LastName.Text;
                         entity.BirthDay = DateTime.Parse(BirthDate.Text);
@@ -188,7 +219,7 @@ namespace KindergartenApp.User
                                 ? new TeachersQuery().Get(int.Parse(Teachers.SelectedValue))
                                 : null;
                         entity.Seniority = Sen.Text != "" ? int.Parse(Sen.Text) : 0;
-                      
+
                         TeacherEdit.Instance.Update(entity);
                         break;
                     }
@@ -198,15 +229,15 @@ namespace KindergartenApp.User
                         var city = Enum.Parse(typeof(Cities), Cities.SelectedIndex.ToString(), true);
 
                         var entity = CurrentUser as Supervisor;
-                     
-                             entity.IdNum = Id.Text;
+
+                        entity.IdNum = Id.Text;
                         entity.FirstName = FirstName.Text;
                         entity.LastName = LastName.Text;
                         entity.BirthDay = DateTime.Parse(BirthDate.Text);
                         entity.PhoneNum = Phone.Text;
 
-                        entity.City = (Cities) city;
-                        
+                        entity.City = (Cities)city;
+
                         SupervisorEdit.Instance.Update(entity);
                         break;
                     }
@@ -292,13 +323,29 @@ namespace KindergartenApp.User
             Phone.Text = "";
             Sensetivities.ClearSelection();
             PersonTypes.SelectedValue = "0";
-            Sen = null;
+            Sen.Text = null;
             Teachers.ClearSelection();
             Cities.SelectedIndex = 0;
 
             ChildData.Visible = false;
             TeacherData.Visible = false;
             SupervisorData.Visible = false;
+        }
+
+        private void EnableFields(bool isEnabled)
+        {
+            Id.Enabled = isEnabled;
+            FirstName.Enabled = isEnabled;
+            LastName.Enabled = isEnabled;
+            BirthDate.Enabled = isEnabled;
+            Phone.Enabled = isEnabled;
+            Sensetivities.Enabled = isEnabled;
+
+            Sen.Enabled = isEnabled;
+            Teachers.Enabled = isEnabled;
+            Cities.Enabled = isEnabled;
+
+            Save.Visible = isEnabled;
         }
 
         private List<Sensitivity> GetSensitivitieses()
