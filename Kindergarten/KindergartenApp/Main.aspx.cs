@@ -22,7 +22,7 @@ namespace KindergartenApp
 
             if(isUserLogIn)
             {
-                Messages.DataSource = new MessageQuery {Person = (Person) Session["CurrentUser"]}.GetByFilter();
+                Messages.DataSource = new MessageQuery {Person = (Person) Session["CurrentUser"],IsLastMonth = true}.GetByFilter();
                 Messages.DataBind();
             }
 

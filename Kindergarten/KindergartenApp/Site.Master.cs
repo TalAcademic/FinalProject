@@ -41,6 +41,7 @@ namespace KindergartenApp
                 AddUser.Visible = true;
                 AddKindergarden.Visible = true;
                 AddActivity.Visible = true;
+                WeekPlan.Visible = true;
             }
             else if(user is Supervisor)
             {
@@ -48,6 +49,7 @@ namespace KindergartenApp
                 AddUser.Visible = true;
                 AddKindergarden.Visible = false;
                 AddActivity.Visible = false;
+                WeekPlan.Visible = false;
             }
         }
     }

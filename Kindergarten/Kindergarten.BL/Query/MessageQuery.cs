@@ -13,6 +13,7 @@ namespace Kindergarten.BL.Query
     {
         #region filter properties
         public Person Person { get; set; }
+        public bool IsLastMonth { get; set; }
         #endregion
 
         public Message Get(int id)
@@ -32,6 +33,10 @@ namespace Kindergarten.BL.Query
             if(Person != null)
             {
                 query = query.Where(x => x.Recipients.Contains(Person));
+            }
+            if(IsLastMonth)
+            {
+                query = query.Where(x => x.SendTime > DateTime.Now.Subtract(TimeSpan.FromDays(30)));
             }
             return query;
         }

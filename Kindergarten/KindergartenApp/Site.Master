@@ -4,24 +4,22 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <title><%: Page.Title %> - Kindergarten Application</title>
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
+    <title>Kindergarten Application</title>
+
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
     <script>
-       function showMessage() {
+        function showMessage() {
 
-           alert("השמירה בוצעה בהצלחה");
-       }
+            alert("השמירה בוצעה בהצלחה");
+        }
     </script>
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server"/>
-        
+        <asp:ScriptManager runat="server" />
+
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
@@ -33,13 +31,10 @@
                 </div>
                 <div class="float-right">
                     <section id="login">
-                        <asp:LoginView runat="server" ViewStateMode="Disabled">
-                            <AnonymousTemplate>
-                                <ul>
-                                    <li><a id="loginLink" runat="server" href="User/Login">התחבר למערכת</a></li>
-                                </ul>
-                            </AnonymousTemplate>
-                        </asp:LoginView>
+                        <ul>
+                            <li><a id="loginLink" runat="server" href="User/Login">התחבר למערכת</a></li>
+                        </ul>
+                    
                     </section>
                     <nav>
                         <ul id="menu" runat="server">
@@ -47,8 +42,8 @@
                             <ul id="KindergardenMenu" runat="server">
                                 <li id="AddKindergarden" runat="server"><a id="A1" runat="server" href="~/Kindergarden/AddKindergarden">הוסף גן</a></li>
                                 <li><a id="A2" runat="server" href="~/Kindergarden/OpenDay">פתיחת יום</a></li>
-                                <li><a id="A4" runat="server" href="~/Kindergarden/WeekPlan">תכנון שבועי</a></li>
-                                <li id="AddActivity" runat="server"><a id="A3" runat="server" href="~/Kindergarden/AddActivity">הוספת פעילות</a></li>                                
+                                <li><a id="WeekPlan" runat="server" href="~/Kindergarden/WeekPlan">תכנון שבועי</a></li>
+                                <li id="AddActivity" runat="server"><a id="A3" runat="server" href="~/Kindergarden/AddActivity">הוספת פעילות</a></li>
                                 <li><a id="A9" runat="server" href="~/Kindergarden/Activities">צפה בפעילויות</a></li>
                             </ul>
                             <ul id="UserMenu" runat="server">
@@ -59,7 +54,7 @@
                                 <li><a id="A5" runat="server" href="~/Messaging/MyMessages">צפיה בהודעות</a></li>
                                 <li><a id="A6" runat="server" href="~/Messaging/SendMessage">שלח הודעה</a></li>
                             </ul>
-                             <ul>
+                            <ul>
                                 <li><a id="A7" runat="server" href="~/Search/SearchKindergarden">חפש גן</a></li>
                                 <li><a id="A8" runat="server" href="~/Search/SearchUser">חפש משתמש</a></li>
                             </ul>
@@ -76,7 +71,6 @@
         </div>
         <footer>
             <div class="content-wrapper">
-            
             </div>
         </footer>
     </form>

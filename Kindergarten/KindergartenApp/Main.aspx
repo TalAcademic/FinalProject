@@ -8,11 +8,16 @@
         <h2 id="GeneralTitle" runat="server">ברך הבא, נא התחבר למערכת</h2>
         <h2 id="LogedInTitle" runat="server"><%= ((Person) Session["CurrentUser"]).FullName %>, ברוך/ה הבאה למערכת</h2>
     </hgroup>
+
     <div id="MessagesDiv" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="ההודעות האחרונות שלך במערכת(לחץ לצפיה)" />
+        </div>
+        <br/>
         <marquee direction="down" scrollamount="2">
         <asp:ListView runat="server" ID="Messages" >
             <ItemTemplate>
-                <asp:Label runat="server" Text='<%#Eval("ToString()") %>'/>
+                <a  class="label" href='./Messaging/ViewMessage.aspx?messageId=<%#Eval("Id") %>'> <%#((DateTime)Eval("SendTime")).ToShortDateString()  + " \"" + Eval("Title") + "\""%> </a>
             </ItemTemplate>
             </asp:ListView>
     </marquee>
