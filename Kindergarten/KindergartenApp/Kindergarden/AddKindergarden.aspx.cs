@@ -51,7 +51,9 @@ namespace KindergartenApp
             }
             else if (currentUser is Entities.Teacher)
             {
-                var canEdit = ((currentUser as Entities.Teacher).Kindergarden.Equals(displayKinderGarden));
+                var kinder = new KindergardenQuery {TeacherId = (currentUser as Entities.Teacher).Id}.GetByFilter().SingleOrDefault();
+
+                var canEdit = kinder != null && (kinder.Equals(displayKinderGarden));
 
                 EnableFields(canEdit);
             }

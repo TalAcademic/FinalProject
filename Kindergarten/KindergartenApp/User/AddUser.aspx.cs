@@ -8,16 +8,16 @@ using Kindergarten.BL.Edit;
 using Kindergarten.BL.Messages;
 using Kindergarten.BL.Query;
 using Kindergarten.BL.Utils;
-using Kindergarten.Domain.Entities;
+using Entities = Kindergarten.Domain.Entities;
 
 namespace KindergartenApp.User
 {
     public partial class AddUser : Page
     {
 
-        public Person CurrentUser
+        public Entities.Person CurrentUser
         {
-            get { return (Person)ViewState["CurrentUser"]; }
+            get { return (Entities.Person)ViewState["CurrentUser"]; }
             set { ViewState["CurrentUser"] = value; }
         }
 
@@ -43,34 +43,42 @@ namespace KindergartenApp.User
 
         private void InitByUser()
         {
-            var displayUser = CurrentUser;
+            var displayUser = (Entities.Person)CurrentUser;
             var currentUser = Session["CurrentUser"];
 
-            if (currentUser is Child)
+            if (currentUser is Entities.Child)
             {
                 EnableFields(currentUser.Equals(displayUser));
             }
-            else if (currentUser is Teacher)
+            else if (currentUser is Entities.Teacher)
             {
                 var canEdit = (currentUser.Equals(displayUser)) ||
-                               ((displayUser is Child) &&
-                                (displayUser as Child).Kindergarden.Teacher.Equals(currentUser));
+                               ((displayUser is Entities.Child) &&
+                                (displayUser as Entities.Child).Kindergarden.Teacher.Equals(currentUser));
 
                 EnableFields(canEdit);
             }
-            else if (currentUser is Supervisor)
+            else if (currentUser is Entities.Supervisor)
             {
+                Entities.Kindergarden kinder = null;
+                if(displayUser is Entities.Teacher)
+                {
+                    kinder =
+                        new KindergardenQuery() { TeacherId = (displayUser as Entities.Teacher).Id }.GetByFilter().SingleOrDefault(); 
+                }
+                   
+
                 var canEdit = (currentUser.Equals(displayUser)) ||
-                           ((displayUser is Child) &&
-                            (displayUser as Child).Kindergarden.City.Equals((currentUser as Supervisor).City)) ||
-                           ((displayUser is Teacher) &&
-                            (displayUser as Teacher).Kindergarden.City.Equals((currentUser as Supervisor).City));
+                           ((displayUser is Entities.Child) &&
+                            (displayUser as Entities.Child).Kindergarden.City.Equals((currentUser as Entities.Supervisor).City)) ||
+                           ((kinder != null) &&
+                            kinder.City.Equals((currentUser as Entities.Supervisor).City));
                 EnableFields(canEdit);
             }
 
         }
 
-        private void FillFields(Person current)
+        private void FillFields(Entities.Person current)
         {
             Id.Text = current.IdNum;
             FirstName.Text = current.FirstName;
@@ -78,9 +86,9 @@ namespace KindergartenApp.User
             BirthDate.Text = current.BirthDay.ToShortDateString();
             Phone.Text = current.PhoneNum;
 
-            if (current is Child)
+            if (current is Entities.Child)
             {
-                var child = current as Child;
+                var child = current as Entities.Child;
                 PersonTypes.SelectedValue = "1";
                 foreach (var sensitivity in child.Sensitivitieses)
                 {
@@ -92,9 +100,9 @@ namespace KindergartenApp.User
                 TeacherData.Visible = false;
                 SupervisorData.Visible = false;
             }
-            else if (current is Teacher)
+            else if (current is Entities.Teacher)
             {
-                var teacher = current as Teacher;
+                var teacher = current as Entities.Teacher;
                 PersonTypes.SelectedValue = "2";
                 Teachers.SelectedValue = teacher.Substitute != null ? teacher.Substitute.Id.ToString() : "";
                 Sen.Text = teacher.Seniority.ToString();
@@ -105,7 +113,7 @@ namespace KindergartenApp.User
             }
             else
             {
-                var supervisor = current as Supervisor;
+                var supervisor = current as Entities.Supervisor;
                 PersonTypes.SelectedValue = "3";
                 Cities.SelectedValue = ((int)supervisor.City).ToString();
 
@@ -121,7 +129,7 @@ namespace KindergartenApp.User
             Sensetivities.DataSource = SensetivitiesQuery.Instance.Get();
             Sensetivities.DataBind();
 
-            Cities.DataSource = EnumUtils.GetDescriptions(typeof(Cities));
+            Cities.DataSource = EnumUtils.GetDescriptions(typeof(Entities.Cities));
             Cities.DataBind();
 
             Teachers.DataSource = new TeachersQuery().Get();
@@ -194,7 +202,7 @@ namespace KindergartenApp.User
             {
                 case "1":
                     {
-                        var entity = CurrentUser as Child;
+                        var entity = CurrentUser as Entities.Child;
                         entity.IdNum = Id.Text;
                         entity.FirstName = FirstName.Text;
                         entity.LastName = LastName.Text;
@@ -208,7 +216,7 @@ namespace KindergartenApp.User
                     }
                 case "2":
                     {
-                        var entity = CurrentUser as Teacher;
+                        var entity = CurrentUser as Entities.Teacher;
                         entity.IdNum = Id.Text;
                         entity.FirstName = FirstName.Text;
                         entity.LastName = LastName.Text;
@@ -226,9 +234,9 @@ namespace KindergartenApp.User
 
                 case "3":
                     {
-                        var city = Enum.Parse(typeof(Cities), Cities.SelectedIndex.ToString(), true);
+                        var city = Enum.Parse(typeof(Entities.Cities), Cities.SelectedIndex.ToString(), true);
 
-                        var entity = CurrentUser as Supervisor;
+                        var entity = CurrentUser as Entities.Supervisor;
 
                         entity.IdNum = Id.Text;
                         entity.FirstName = FirstName.Text;
@@ -236,7 +244,7 @@ namespace KindergartenApp.User
                         entity.BirthDay = DateTime.Parse(BirthDate.Text);
                         entity.PhoneNum = Phone.Text;
 
-                        entity.City = (Cities)city;
+                        entity.City = (Entities.Cities)city;
 
                         SupervisorEdit.Instance.Update(entity);
                         break;
@@ -259,7 +267,7 @@ namespace KindergartenApp.User
             {
                 case "1":
                     {
-                        var entity = new Child
+                        var entity = new Entities.Child
                                          {
                                              IdNum = Id.Text,
                                              FirstName = FirstName.Text,
@@ -275,7 +283,7 @@ namespace KindergartenApp.User
                     }
                 case "2":
                     {
-                        var entity = new Teacher
+                        var entity = new Entities.Teacher
                                          {
                                              IdNum = Id.Text,
                                              FirstName = FirstName.Text,
@@ -295,9 +303,9 @@ namespace KindergartenApp.User
 
                 case "3":
                     {
-                        var city = Enum.Parse(typeof(Cities), Cities.SelectedIndex.ToString(), true);
+                        var city = Enum.Parse(typeof(Entities.Cities), Cities.SelectedIndex.ToString(), true);
 
-                        var entity = new Supervisor
+                        var entity = new Entities.Supervisor
                                          {
                                              IdNum = Id.Text,
                                              FirstName = FirstName.Text,
@@ -305,7 +313,7 @@ namespace KindergartenApp.User
                                              BirthDay = DateTime.Parse(BirthDate.Text),
                                              PhoneNum = Phone.Text,
                                              Password = "abc123",
-                                             City = (Cities)city
+                                             City = (Entities.Cities)city
                                          };
                         SupervisorEdit.Instance.Add(entity);
                         break;
@@ -348,7 +356,7 @@ namespace KindergartenApp.User
             Save.Visible = isEnabled;
         }
 
-        private List<Sensitivity> GetSensitivitieses()
+        private List<Entities.Sensitivity> GetSensitivitieses()
         {
             var selectedItems = (from ListItem item in Sensetivities.Items
                                  where item.Selected
