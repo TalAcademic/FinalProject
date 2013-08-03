@@ -35,13 +35,13 @@ namespace Kindergaten.EventSearchers
                            select holy;
             foreach (var holiday in selected)
             {
-                holidays.Add(new Event(){SpecificType = holiday.Name, Title = holiday.Name + " חל בתאריך "+holiday.StartDate.Date, ShoppingListForChild = holiday.ShoppingListForChild});
+                holidays.Add(new Event() { SpecificType = holiday.Name, Title = holiday.Name + " חל בתאריך " + holiday.StartDate.Day + "." + holiday.StartDate.Month, ShoppingListForChild = holiday.ShoppingListForChild });
             }
             for (int i=0;i<7;i++)
             {
                 if(start.AddDays(i).DayOfWeek==DayOfWeek.Friday)
                 {
-                    holidays.Add(new Event() { SpecificType = "שישי", Title = "יום שישי חל בתאריך " + start.AddDays(i).Date,ShoppingListForChild = {{"תירוש", 0.1},{"חלה", 0.2}}});
+                    holidays.Add(new Event() { SpecificType = "שישי", Title = "יום שישי חל בתאריך " + start.AddDays(i).Day + "." + start.AddDays(i).Month, ShoppingListForChild = { { "תירוש", 0.1 }, { "חלה", 0.2 } } });
                 }
             }
             return holidays;

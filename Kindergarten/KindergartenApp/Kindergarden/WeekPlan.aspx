@@ -14,8 +14,9 @@
             
             <asp:Button runat="server" ID="Plan" Text="תכנן" OnClick="Planclick"/>
             
-            <div >
+            <div  >
                 <asp:Label ID="ListLabel" runat="server" Text="רשימת אירועים" Visible="False"></asp:Label>
+                <br/>
                 <asp:ListView ID="ListView1" runat="server" DataMember="Title"> 
                     <LayoutTemplate>
                       <div >
@@ -23,12 +24,12 @@
                       </div>
                    </LayoutTemplate>
                    <ItemTemplate>
-                      <div style="width: 300px">
+                      <div style="width: 500px">
                          <%# Eval("Title")%>
                       </div>
                    </ItemTemplate>
                    <AlternatingItemTemplate>
-                      <div style=" background-color: #dadada;width: 300px">
+                      <div style=" background-color: #dadada;width: 500px">
                          <%# Eval("Title")%>
                       </div>
                    </AlternatingItemTemplate>
@@ -38,6 +39,8 @@
                 </asp:ListView>
             </div>
             <br/>
+            <br/>
+
             <div>
                 <asp:Label ID="ProductsLabel" runat="server" Text="רשימת קניות" Visible="False"></asp:Label>
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">

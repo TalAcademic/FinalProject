@@ -26,7 +26,7 @@ namespace Kindergaten.EventSearchers
             List<Event> bdays = new List<Event>();
             foreach (Child celebrationChild in celebrationChildren)
             {
-                bdays.Add(new Event() { SpecificType = "יום הולדת ל" + celebrationChild.FullName, Title = "יום הולדת ל" + celebrationChild.FullName + " בתאריך " + celebrationChild.BirthDay.Date, ShoppingListForChild = { { "מתנת יום הולדת", 1 }, { "במבה", 0.2 }, { "ביסלי", 0.2 }, { "עוגה", 0.1 } } });
+                bdays.Add(new Event() { SpecificType = "יום הולדת ל" + celebrationChild.FullName, Title = "יום הולדת ל" + celebrationChild.FullName + " בתאריך " + celebrationChild.BirthDay.Day + "." + celebrationChild.BirthDay.Month, ShoppingListForChild = { { "מתנת יום הולדת", 1 }, { "במבה", 0.2 }, { "ביסלי", 0.2 }, { "עוגה", 0.1 } } });
             }
             return bdays;
         }
