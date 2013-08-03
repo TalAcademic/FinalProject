@@ -15,6 +15,33 @@
     <div>
         <asp:Button runat="server" ID="ShowAttendande" OnClick="ShowAttendanceClick" Text="הצג" />
     </div>
+    <div  >
+        <asp:Label ID="ListLabel" runat="server" Text="רשימת אירועים" Visible="False"></asp:Label>
+        <br/>
+        <asp:ListView ID="ListView1" runat="server" DataMember="Title"> 
+            <LayoutTemplate>
+                <div >
+                    <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+                </div>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <div style="width: 500px">
+                    <%# Eval("Title")%>
+                </div>
+            </ItemTemplate>
+            <AlternatingItemTemplate>
+                <div style=" background-color: #dadada;width: 500px">
+                    <%# Eval("Title")%>
+                </div>
+            </AlternatingItemTemplate>
+            <EmptyDataTemplate>
+                אין אירועים
+            </EmptyDataTemplate>
+        </asp:ListView>
+    </div>
+    
+    <br/>
+    <br/>
     <div>
         <asp:DataGrid runat="server" ID="ChildrenGrid" AutoGenerateColumns="False" OnEditCommand="EditChild">
             <Columns>

@@ -37,7 +37,9 @@ namespace Kindergaten.EventSearchers
             {
                 holidays.Add(new Event() { SpecificType = holiday.Name, Title = holiday.Name + " חל בתאריך " + holiday.StartDate.Day + "." + holiday.StartDate.Month, ShoppingListForChild = holiday.ShoppingListForChild });
             }
-            for (int i=0;i<7;i++)
+            TimeSpan s= end.Subtract(start);
+
+            for (int i = 0; i <= s.Days; i++)
             {
                 if(start.AddDays(i).DayOfWeek==DayOfWeek.Friday)
                 {

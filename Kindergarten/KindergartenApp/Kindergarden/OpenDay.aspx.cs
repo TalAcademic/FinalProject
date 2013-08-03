@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Kindergarten.BL.Edit;
+using Kindergarten.BL.EventSearcher;
 using Kindergarten.BL.Query;
 using Kindergarten.Data;
 using Entities = Kindergarten.Domain.Entities;
@@ -13,6 +14,7 @@ namespace KindergartenApp.Kindergarden
 {
     public partial class OpenDay : System.Web.UI.Page
     {
+        public ISearcherFactory _searcher { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -50,6 +52,15 @@ namespace KindergartenApp.Kindergarden
             ChildrenGrid.DataSource = result;
             ChildrenGrid.DataBind();
 
+            List<Entities.ISearcher> searchers = _searcher.GetAllSearchers();
+            List<Entities.Event> allEvents = new List<Entities.Event>();
+            foreach (Entities.ISearcher searcher in searchers)
+            {
+                allEvents.AddRange(searcher.GetEventsBetweenDates(garden.Id, DatePicker.SelectedDate, DatePicker.SelectedDate));
+            }
+            ListLabel.Visible = true;
+            ListView1.DataSource = allEvents;
+            ListView1.DataBind();
         }
 
         protected void SaveClick(object sender, EventArgs e)
