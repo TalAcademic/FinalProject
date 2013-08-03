@@ -13,13 +13,17 @@
         <div>
             <asp:Label ID="Label1" runat="server" Text="ההודעות האחרונות שלך במערכת(לחץ לצפיה)" />
         </div>
-        <br/>
+        <br />
         <marquee direction="down" scrollamount="2">
-        <asp:ListView runat="server" ID="Messages" >
-            <ItemTemplate>
+        <asp:DataGrid runat="server" ID="Messages" AutoGenerateColumns="False">
+          <Columns>
+              <asp:TemplateColumn>
+                  <ItemTemplate >
                 <a  class="label" href='./Messaging/ViewMessage.aspx?messageId=<%#Eval("Id") %>'> <%#((DateTime)Eval("SendTime")).ToShortDateString()  + " \"" + Eval("Title") + "\""%> </a>
             </ItemTemplate>
-            </asp:ListView>
+              </asp:TemplateColumn>
+          </Columns>
+            </asp:DataGrid>
     </marquee>
     </div>
 </asp:Content>

@@ -26,62 +26,74 @@ namespace KindergartenApp.Kindergarden
 
         protected void ShowAttendanceClick(object sender, EventArgs e)
         {
-            var garden = new KindergardenQuery().Get(int.Parse(Gardens.SelectedValue));
-            var query = new AttendanceQuery
-                            {
-                                Kindergarden = garden,
-                                Date = DatePicker.SelectedDate
-                            };
-            var result = query.GetByFilter().ToList();
-            if (!result.Any())
-            {
 
-                foreach (var child in garden.Children)
+            if (Page.IsValid)
+            {
+                if (DatePicker.SelectedDate == DateTime.MinValue)
                 {
-                    var entity = new Entities.Attendance
-                                     {
-                                         Arrived = false,
-                                         Child = child,
-                                         Date = DatePicker.SelectedDate
-                                     };
-                    AttendanceEdit.Instance.Add(entity);
-                    result.Add(entity);
+                    CalendarValidator.IsValid = false;
+                    return;
                 }
+                var garden = new KindergardenQuery().Get(int.Parse(Gardens.SelectedValue));
+                var query = new AttendanceQuery
+                                {
+                                    Kindergarden = garden,
+                                    Date = DatePicker.SelectedDate
+                                };
+                var result = query.GetByFilter().ToList();
+                if (!result.Any())
+                {
 
-            }
-            ChildrenGrid.DataSource = result;
-            ChildrenGrid.DataBind();
+                    foreach (var child in garden.Children)
+                    {
+                        var entity = new Entities.Attendance
+                                         {
+                                             Arrived = false,
+                                             Child = child,
+                                             Date = DatePicker.SelectedDate
+                                         };
+                        AttendanceEdit.Instance.Add(entity);
+                        result.Add(entity);
+                    }
 
-            List<Entities.ISearcher> searchers = _searcher.GetAllSearchers();
-            List<Entities.Event> allEvents = new List<Entities.Event>();
-            foreach (Entities.ISearcher searcher in searchers)
-            {
-                allEvents.AddRange(searcher.GetEventsBetweenDates(garden.Id, DatePicker.SelectedDate, DatePicker.SelectedDate));
+                }
+                ChildrenGrid.DataSource = result;
+                ChildrenGrid.DataBind();
+
+                List<Entities.ISearcher> searchers = _searcher.GetAllSearchers();
+                List<Entities.Event> allEvents = new List<Entities.Event>();
+                foreach (Entities.ISearcher searcher in searchers)
+                {
+                    allEvents.AddRange(searcher.GetEventsBetweenDates(garden.Id, DatePicker.SelectedDate,
+                                                                      DatePicker.SelectedDate));
+                }
+                ListLabel.Visible = true;
+                ListView1.DataSource = allEvents;
+                ListView1.DataBind();
             }
-            ListLabel.Visible = true;
-            ListView1.DataSource = allEvents;
-            ListView1.DataBind();
         }
 
         protected void SaveClick(object sender, EventArgs e)
         {
-            
+
+
             foreach (var item in ChildrenGrid.Items)
             {
                 var childId = ((Label)((DataGridItem)item).FindControl("Id")).Text;
                 var arrived = ((CheckBox)((DataGridItem)item).FindControl("Arrived")).Checked;
 
                 var entity = new Entities.Attendance
-                {
-                 //   Arrived = (bool)arrived,
-                    Child = new ChildQuery().Get(int.Parse(childId)),
-                    Date = DatePicker.SelectedDate,
-                    Arrived = arrived
-                };
+                                 {
+                                     //   Arrived = (bool)arrived,
+                                     Child = new ChildQuery().Get(int.Parse(childId)),
+                                     Date = DatePicker.SelectedDate,
+                                     Arrived = arrived
+                                 };
 
                 AttendanceEdit.Instance.Update(entity);
             }
         }
+
 
         protected void EditChild(object source, DataGridCommandEventArgs e)
         {

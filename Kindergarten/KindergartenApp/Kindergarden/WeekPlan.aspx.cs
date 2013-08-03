@@ -28,33 +28,42 @@ namespace KindergartenApp.Kindergarden
 
         protected void Planclick(object sender, EventArgs e)
         {
-            var firstDay = Calendar.SelectedDates.Cast<DateTime>().First();
-            var lastDay = Calendar.SelectedDates.Cast<DateTime>().Last();
-            List<ISearcher> searchers = _searcher.GetAllSearchers();
-            Dictionary<string,double> shoppingList = new Dictionary<string, double>();
-            List<Event> allEvents = new List<Event>();
-            foreach (ISearcher searcher in searchers)
+            if (Page.IsValid)
             {
-                List<Event> events = searcher.GetEventsBetweenDates(_garden.Id, firstDay, lastDay);
-                allEvents.AddRange(events);
-                foreach (var @event in events)
+                if (Calendar.SelectedDate == DateTime.MinValue)
                 {
-                    MergeToBigList(ref shoppingList, @event.ShoppingListForChild);
+                    CalendarValidator.IsValid = false;
+                    return;
                 }
+                var firstDay = Calendar.SelectedDates.Cast<DateTime>().First();
+                var lastDay = Calendar.SelectedDates.Cast<DateTime>().Last();
+                List<ISearcher> searchers = _searcher.GetAllSearchers();
+                Dictionary<string, double> shoppingList = new Dictionary<string, double>();
+                List<Event> allEvents = new List<Event>();
+                foreach (ISearcher searcher in searchers)
+                {
+                    List<Event> events = searcher.GetEventsBetweenDates(_garden.Id, firstDay, lastDay);
+                    allEvents.AddRange(events);
+                    foreach (var @event in events)
+                    {
+                        MergeToBigList(ref shoppingList, @event.ShoppingListForChild);
+                    }
+                }
+                MergeToBigList(ref shoppingList, _everyweekList);
+                List<ShoppingItem> finalList = new List<ShoppingItem>();
+                int childrenCount = _garden.Children.Count;
+                foreach (var d in shoppingList)
+                {
+                    finalList.Add(new ShoppingItem()
+                                      {Name = d.Key, Quantity = Convert.ToInt32(Math.Ceiling(d.Value*childrenCount))});
+                }
+                ListLabel.Visible = true;
+                ProductsLabel.Visible = true;
+                ListView1.DataSource = allEvents;
+                GridView1.DataSource = finalList;
+                ListView1.DataBind();
+                GridView1.DataBind();
             }
-            MergeToBigList(ref shoppingList, _everyweekList);
-            List<ShoppingItem> finalList = new List<ShoppingItem>();
-            int childrenCount = _garden.Children.Count;
-            foreach (var d in shoppingList)
-            {
-                finalList.Add(new ShoppingItem(){Name = d.Key, Quantity = Convert.ToInt32(Math.Ceiling(d.Value*childrenCount))});
-            }
-            ListLabel.Visible = true;
-            ProductsLabel.Visible = true;
-            ListView1.DataSource = allEvents;
-            GridView1.DataSource = finalList;
-            ListView1.DataBind();
-            GridView1.DataBind();
 
         }
 
