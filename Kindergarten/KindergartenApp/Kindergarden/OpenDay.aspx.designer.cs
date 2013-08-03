@@ -22,6 +22,24 @@ namespace KindergartenApp.Kindergarden {
         protected global::System.Web.UI.WebControls.DropDownList Gardens;
         
         /// <summary>
+        /// DatePicker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar DatePicker;
+        
+        /// <summary>
+        /// ShowAttendande control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ShowAttendande;
+        
+        /// <summary>
         /// ChildrenGrid control.
         /// </summary>
         /// <remarks>
@@ -29,5 +47,14 @@ namespace KindergartenApp.Kindergarden {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataGrid ChildrenGrid;
+        
+        /// <summary>
+        /// Save control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Save;
     }
 }

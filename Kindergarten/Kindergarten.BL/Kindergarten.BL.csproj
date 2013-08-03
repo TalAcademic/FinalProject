@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Edit\ActivityEdit.cs" />
+    <Compile Include="Edit\AttendanceEdit.cs" />
     <Compile Include="Edit\ChildEdit.cs" />
     <Compile Include="Edit\IEdit.cs" />
     <Compile Include="Edit\KindergardenEdit.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Edit\SupervisorEdit.cs" />
     <Compile Include="Edit\TeacherEdit.cs" />
     <Compile Include="EventSearcher\EventSearcherFactory.cs" />
+    <Compile Include="Query\AttendanceQuery.cs" />
     <Compile Include="Query\IQuery.cs" />
     <Compile Include="Query\ChildQuery.cs" />
     <Compile Include="Query\KindergardenQuery.cs" />
