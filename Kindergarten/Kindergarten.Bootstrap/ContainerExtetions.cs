@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using Kindergarten.BL.EventSearcher;
 using Kindergarten.BL.Messages;
 
 namespace Kindergarten.Bootstrap
@@ -45,6 +46,12 @@ namespace Kindergarten.Bootstrap
         {
             ContainerBuilder builder = new ContainerBuilder();
             builder.Register(c => new DBMessagesManager()).As<IMessanger>();
+            return container.UpdatedBy(builder);
+        }
+        public static IContainer WithSearcherFactory(this IContainer container)
+        {
+            ContainerBuilder builder = new ContainerBuilder();
+            builder.Register(c => new EventSearcherFactory()).As<ISearcherFactory>();
             return container.UpdatedBy(builder);
         }
     }
