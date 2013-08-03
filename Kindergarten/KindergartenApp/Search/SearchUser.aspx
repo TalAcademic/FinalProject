@@ -36,7 +36,7 @@
     </div>
     <div>
         <asp:Label ID="Label4" runat="server" Text="תוצאות חיפוש:" />
-        <asp:DataGrid ID="EntitiesGrid" runat="server" AutoGenerateColumns="False" OnDeleteCommand="DeleteUser"
+        <asp:DataGrid ID="EntitiesGrid" runat="server" AutoGenerateColumns="False" OnDeleteCommand="DeleteUser" CssClass="Grid"
              ShowHeader="True" DataKeyField="Id" OnEditCommand="EditUser">
             <Columns>
                 <asp:BoundColumn HeaderText="ת.ז" DataField="IdNum" />

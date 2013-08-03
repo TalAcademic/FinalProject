@@ -6,7 +6,7 @@
     <table>
         <tr>
             <td dir="rtl">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" HorizontalAlign="Right">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" HorizontalAlign="Right" CssClass="Grid">
                 <Columns>
                     <asp:BoundField DataField="id" HeaderText="id" Visible="False" />
                     <asp:BoundField DataField="Sender.FullName" HeaderText="שולח">

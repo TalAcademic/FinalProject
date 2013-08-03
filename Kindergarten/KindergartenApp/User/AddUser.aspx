@@ -51,7 +51,7 @@
                     <asp:Label ID="Label2" runat="server" Text="תאריך לידה:" />
                 </td>
                 <td>
-                    <div>
+                    <div >
 
                         <asp:TextBox runat="server" ID="BirthDate"/>
                         <cc1:TextBoxWatermarkExtender ID="txtBirthDate_TextBoxWatermarkExtender" runat="server" ValidateRequestMode="Enabled"

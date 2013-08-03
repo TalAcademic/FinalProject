@@ -32,7 +32,8 @@
     </div>
     <div>
         <asp:Label runat="server" Text="תוצאות חיפוש:" />
-        <asp:DataGrid ID="EntitiesGrid" runat="server" AutoGenerateColumns="False" OnItemCommand="GridCommand" DataKeyField="Id">
+        <asp:DataGrid ID="EntitiesGrid" runat="server" AutoGenerateColumns="False" CssClass="Grid"
+             OnItemCommand="GridCommand" DataKeyField="Id">
             <Columns>
                 <asp:BoundColumn HeaderText="מזהה" DataField="Id" />
                 <asp:BoundColumn HeaderText="שם הגן" DataField="Name" />

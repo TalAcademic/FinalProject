@@ -68,7 +68,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:DataGrid ID="ChildrenGrid" runat="server" AutoGenerateColumns="False" DataKeyField="Id"
+                    <asp:DataGrid ID="ChildrenGrid" runat="server" AutoGenerateColumns="False" DataKeyField="Id" CssClass="Grid"
                         ShowHeader="True" OnDeleteCommand="DeleteChild"  OnEditCommand="EditChild">
                         <Columns>
                             <asp:BoundColumn HeaderText="ת.ז" DataField="IdNUm" />
