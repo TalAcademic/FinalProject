@@ -18,7 +18,7 @@ namespace KindergartenApp
     {
         public Entities.Kindergarden CurrentKindergarden
         {
-            get { return (Entities.Kindergarden) ViewState["CurrentKindergarden"]; }
+            get { return (Entities.Kindergarden)ViewState["CurrentKindergarden"]; }
             set { ViewState["CurrentKindergarden"] = value; }
         }
 
@@ -36,7 +36,6 @@ namespace KindergartenApp
 
                     InitByUser();
                 }
-
             }
         }
 
@@ -51,9 +50,9 @@ namespace KindergartenApp
             }
             else if (currentUser is Entities.Teacher)
             {
-                var kinder = new KindergardenQuery {TeacherId = (currentUser as Entities.Teacher).Id}.GetByFilter().SingleOrDefault();
+                var kinder = new KindergardenQuery { TeacherId = (currentUser as Entities.Teacher).Id }.GetByFilter();
 
-                var canEdit = kinder != null && (kinder.Equals(displayKinderGarden));
+                var canEdit = kinder != null && (kinder.Contains(displayKinderGarden));
 
                 EnableFields(canEdit);
             }
@@ -83,8 +82,8 @@ namespace KindergartenApp
             Name.Text = current.Name;
 
             Cities.SelectedValue =
-                EnumUtils.GetDescriptionOfEnumValue(typeof (Entities.Cities),
-                                                    Enum.GetName(typeof (Entities.Cities), current.City));
+                EnumUtils.GetDescriptionOfEnumValue(typeof(Entities.Cities),
+                                                    Enum.GetName(typeof(Entities.Cities), current.City));
             ChildrenNum.Text = current.ChildQty.ToString();
             Teachers.SelectedValue = current.Teacher != null ? current.Teacher.Id.ToString() : "";
 
@@ -94,10 +93,11 @@ namespace KindergartenApp
 
         private void BindLists()
         {
-            Cities.DataSource = EnumUtils.GetDescriptions(typeof (Entities.Cities));
+            Cities.DataSource = EnumUtils.GetDescriptions(typeof(Entities.Cities));
             Cities.DataBind();
 
-            Teachers.DataSource = new TeachersQuery().Get();
+            var teachersWithGardens = new KindergardenQuery().Get().Select(x => x.Teacher).ToList();
+            Teachers.DataSource = new TeachersQuery().Get().ToList().Except(teachersWithGardens);
             Teachers.DataBind();
 
             ChildrenList.DataSource = new ChildQuery().Get();
@@ -123,11 +123,11 @@ namespace KindergartenApp
 
         private void Update()
         {
-            var city = Enum.Parse(typeof (Entities.Cities), Cities.SelectedIndex.ToString(), true);
+            var city = Enum.Parse(typeof(Entities.Cities), Cities.SelectedIndex.ToString(), true);
 
             var entity = CurrentKindergarden;
             entity.Name = Name.Text;
-            entity.City = (Entities.Cities) city;
+            entity.City = (Entities.Cities)city;
             entity.ChildQty = int.Parse(ChildrenNum.Text);
             entity.Teacher =
                 Teachers.SelectedValue != ""
@@ -140,12 +140,12 @@ namespace KindergartenApp
 
         private void Save()
         {
-            var city = Enum.Parse(typeof (Entities.Cities), Cities.SelectedIndex.ToString(), true);
+            var city = Enum.Parse(typeof(Entities.Cities), Cities.SelectedIndex.ToString(), true);
 
             var current = new Entities.Kindergarden
                               {
                                   Name = Name.Text,
-                                  City = (Entities.Cities) city,
+                                  City = (Entities.Cities)city,
                                   ChildQty = int.Parse(ChildrenNum.Text),
                                   Teacher =
                                       Teachers.SelectedValue != ""
@@ -182,7 +182,7 @@ namespace KindergartenApp
         protected void DeleteChild(object source, DataGridCommandEventArgs e)
         {
             var id = ChildrenGrid.DataKeys[e.Item.ItemIndex];
-            KindergardenEdit.Instance.RemoveChild(CurrentKindergarden, (int) id);
+            KindergardenEdit.Instance.RemoveChild(CurrentKindergarden, (int)id);
 
             ChildrenGrid.DataSource = CurrentKindergarden.Children;
             ChildrenGrid.DataBind();

@@ -67,6 +67,7 @@
     <Compile Include="Query\MessageQuery.cs" />
     <Compile Include="Query\PersonQuery.cs" />
     <Compile Include="Query\SensetivitiesQuery.cs" />
+    <Compile Include="Query\SupervisorQuery.cs" />
     <Compile Include="Query\TeachersQuery.cs" />
     <Compile Include="Messages\MessagesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

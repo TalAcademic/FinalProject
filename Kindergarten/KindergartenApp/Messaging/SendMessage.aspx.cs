@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Kindergarten.BL.Messages;
+using Kindergarten.BL.Query;
 using Kindergarten.BL.Utils;
 using Kindergarten.Data;
 using Kindergarten.Domain.Entities;
@@ -16,15 +17,14 @@ namespace KindergartenApp.Messaging
     {
         private Person _messageSender;
         public IMessanger MessageManager { get; set; }
-        private Teacher _teacher;
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             _messageSender = (Person)Session["CurrentUser"];
             if (!IsPostBack)
             {
-                List<string> toList = new List<string>();
-                
+                var toList = new List<string>();
+
                 if (_messageSender is Teacher)
                 {
                     toList.Add("ילד ספציפי");
@@ -37,6 +37,7 @@ namespace KindergartenApp.Messaging
                     toList.Add("ילדי המחוז");
                     toList.Add("גננות המחוז");
                 }
+
                 Who.DataSource = toList;
                 Who.AutoPostBack = true;
                 Who.DataBind();
@@ -51,72 +52,93 @@ namespace KindergartenApp.Messaging
 
         protected void SendClick(object sender, EventArgs e)
         {
-            List<Person> recipients = new List<Person>();
-            if (_messageSender is Child)
+            if (Page.IsValid)
             {
-                Child c = (Child) _messageSender;
-                recipients.Add(c.Kindergarden.Teacher);
-            }
-            if (_messageSender is Teacher)
-            {
-                Kindergarten.Domain.Entities.Kindergarden garden =
-                    SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
-                        First(g => g.Teacher.Id == _messageSender.Id);
-                switch (Who.SelectedValue)
-                {
 
-                    case "ילד ספציפי":
-                        Person child =
-                            SessionFactoryHelper.CurrentSession.Query<Person>().First(v => v.Id == Convert.ToInt32(Where.SelectedValue));
+                var recipients = new List<Person>();
+                if (_messageSender is Child)
+                {
+                    var c = (Child)_messageSender;
+                    recipients.Add(c.Kindergarden.Teacher);
+                }
+                if (_messageSender is Teacher)
+                {
+                    SendMessageFromTeacher(recipients);
+                }
+                if (_messageSender is Supervisor)
+                {
+                    SendMessageFromSupervisor(recipients);
+                }
+
+                MessageManager.SendMessage(_messageSender, Title.Text, Message.Text, recipients);
+                ClearControls();
+                ClientScript.RegisterStartupScript(GetType(), "msg", "<script language='javascript'>showMessage()</script>");
+            }
+        }
+
+        private void SendMessageFromSupervisor(List<Person> recipients)
+        {
+            var countyGardens =
+                new KindergardenQuery {City = ((Supervisor) _messageSender).City}.GetByFilter().ToList();
+
+            switch (Who.SelectedValue)
+            {
+                case "גננת":
+                    var teacher = new PersonQuery().Get(int.Parse(Where.SelectedValue));
+                    
+                    if (teacher != null)
+                    {
+                        recipients.Add(teacher);
+                    }
+                    break;
+                case "גננות המחוז":
+
+                    recipients.AddRange(countyGardens.Select(c => c.Teacher).ToList());
+                    break;
+                case "ילדי המחוז":
+                    foreach (var kindergarden in countyGardens)
+                    {
+                        recipients.AddRange(kindergarden.Children);
+                    }
+                    break;
+            }
+        }
+
+        private void SendMessageFromTeacher(List<Person> recipients)
+        {
+            var garden = new KindergardenQuery {TeacherId = _messageSender.Id}.Get().First();
+
+            switch (Who.SelectedValue)
+            {
+                case "ילד ספציפי":
+                    {
+                        var child = new PersonQuery().Get(int.Parse(Where.SelectedValue));
+
                         if (child != null)
                         {
                             recipients.Add(child);
                         }
                         break;
-                    case "כל ילדי הגן":
+                    }
+                case "כל ילדי הגן":
+                    {
+
+
                         if (garden != null)
                         {
-                            recipients.AddRange( garden.Children);
+                            recipients.AddRange(garden.Children);
                         }
                         break;
-                    case "מפקחת":
-                        Supervisor s= SessionFactoryHelper.CurrentSession.Query<Supervisor>().First(v => v.City == garden.City);
-                        recipients.Add(s);
-                        break;
-                }
-            }
-            if (_messageSender is Supervisor)
-            {
-                List<Kindergarten.Domain.Entities.Kindergarden> countyGardens =
-                    SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
-                        Where(g => g.City == ((Supervisor)_messageSender).City).ToList();
-                switch (Who.SelectedValue)
-                {
-                    case "גננת":
-                        Person teacher =
-                            SessionFactoryHelper.CurrentSession.Query<Person>().First(v => v.Id == Convert.ToInt32(Where.SelectedValue));
-                        if (teacher != null)
-                        {
-                            recipients.Add(teacher);
-                        }
-                        break;
-                    case "גננות המחוז":
-                       
-                        recipients.AddRange(countyGardens.Select(c => c.Teacher).ToList());
-                        break;
-                    case "ילדי המחוז":
-                        foreach (var kindergarden in countyGardens)
-                        {
-                            recipients.AddRange(kindergarden.Children);
-                        }
-                        break;
-                }
-            }
-            MessageManager.SendMessage(_messageSender, Title.Text, Message.Text, recipients);
-            ClearControls();
-            ClientScript.RegisterStartupScript(GetType(), "msg",
-                                                   "<script language='javascript'>showMessage()</script>");
+                    }
+                case "מפקחת":
+                    {
+                        var supervisor = new SupervisorQuery {City = garden.City}.GetByFilter().FirstOrDefault();
 
+                        if (supervisor != null)
+                            recipients.Add(supervisor);
+                        break;
+                    }
+            }
         }
 
         private void ClearControls()
@@ -132,51 +154,45 @@ namespace KindergartenApp.Messaging
         {
             if (_messageSender is Teacher)
             {
-                
-                switch (Who.SelectedValue)
+                if (Who.SelectedValue == "ילד ספציפי")
                 {
-                    case "ילד ספציפי":
-                        Kindergarten.Domain.Entities.Kindergarden garden =
-                            SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
-                                First(g => g.Teacher.Id == _messageSender.Id);
-                        if (garden != null)
-                        {
-                            WhereLabel.Visible = true;
-                            Where.Visible = true;
-                            Where.DataSource = garden.Children;
-                            Where.DataTextField = "FullName";
-                            Where.DataValueField = "id";
-                            Where.DataBind();
-                        }
-                        break;
-                    default:
-                        Where.Visible = false;
-                        WhereLabel.Visible = false;
-                        break;
+                    var garden = new KindergardenQuery { TeacherId = _messageSender.Id }.GetByFilter();
 
+                    if (garden != null)
+                    {
+                        WhereLabel.Visible = true;
+                        Where.Visible = true;
+                        Where.DataSource = garden.SelectMany(x => x.Children).ToList();
+                        Where.DataTextField = "FullName";
+                        Where.DataValueField = "id";
+                        Where.DataBind();
+                    }
+                }
+                else
+                {
+                    Where.Visible = false;
+                    WhereLabel.Visible = false;
                 }
             }
             if (_messageSender is Supervisor)
             {
-                switch (Who.SelectedValue)
+                if (Who.SelectedValue == "גננת")
                 {
-                    case "גננת":
-                        List<Kindergarten.Domain.Entities.Kindergarden> countyGardens =
-                            SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().
-                                Where(g => g.City == ((Supervisor) _messageSender).City).ToList();
-                        var teachers =countyGardens.Select(c => new {name = c.Teacher.FullName, id = c.Teacher.Id});
-                        WhereLabel.Visible = true;
-                        Where.Visible = true;
-                        Where.DataSource = teachers;
-                        Where.DataTextField = "name";
-                        Where.DataValueField = "id";
-                        Where.DataBind();
+                    var countyGardens =
+                        new KindergardenQuery { City = ((Supervisor)_messageSender).City }.GetByFilter().ToList();
 
-                        break;
-                    default :
-                        Where.Visible = false;
-                        WhereLabel.Visible = false;
-                        break;
+                    var teachers = countyGardens.Select(c => new { name = c.Teacher.FullName, id = c.Teacher.Id });
+                    WhereLabel.Visible = true;
+                    Where.Visible = true;
+                    Where.DataSource = teachers;
+                    Where.DataTextField = "name";
+                    Where.DataValueField = "id";
+                    Where.DataBind();
+                }
+                else
+                {
+                    Where.Visible = false;
+                    WhereLabel.Visible = false;
                 }
             }
             if (_messageSender is Child)

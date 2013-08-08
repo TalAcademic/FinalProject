@@ -15,15 +15,24 @@ namespace KindergartenApp.Kindergarden
     public partial class WeekPlan : System.Web.UI.Page
     {
         public ISearcherFactory _searcher { get; set; }
-        private Teacher _teacher;
         private Kindergarten.Domain.Entities.Kindergarden _garden;
 
-        private Dictionary<string, double> _everyweekList = new Dictionary<string, double>() { { "מלפפון", 3 }, { "עגבניה", 2 }, { "גמבה", 2 }, { "גבינה לבנה", 0.5 }, { "לחם", 0.5 }, { "חומוס", 0.2 },  { "שוקולד למריחה", 0.1 } };
+        private readonly Dictionary<string, double> _everyweekList = new Dictionary<string, double>
+                                                                         {
+                                                                             { "מלפפון", 3 }, 
+                                                                             { "עגבניה", 2 }, 
+                                                                             { "גמבה", 2 },
+                                                                             { "גבינה לבנה", 0.5 },
+                                                                             { "לחם", 0.5 }, 
+                                                                             { "חומוס", 0.2 },
+                                                                             { "שוקולד למריחה", 0.1 }
+                                                                         };
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Teacher teacher = (Teacher) Session["CurrentUser"];
-            _garden = SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().First(g => g.Teacher.Id == teacher.Id);
+            var teacher = (Teacher)Session["CurrentUser"];
+            _garden = new KindergardenQuery { TeacherId = teacher.Id }.GetByFilter().First();
+            //SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().First(g => g.Teacher.Id == teacher.Id);
         }
 
         protected void Planclick(object sender, EventArgs e)
@@ -37,26 +46,26 @@ namespace KindergartenApp.Kindergarden
                 }
                 var firstDay = Calendar.SelectedDates.Cast<DateTime>().First();
                 var lastDay = Calendar.SelectedDates.Cast<DateTime>().Last();
-                List<ISearcher> searchers = _searcher.GetAllSearchers();
-                Dictionary<string, double> shoppingList = new Dictionary<string, double>();
-                List<Event> allEvents = new List<Event>();
-                foreach (ISearcher searcher in searchers)
+                var shoppingList = new Dictionary<string, double>();
+                var allEvents = new List<Event>();
+
+                foreach (var searcher in _searcher.GetAllSearchers())
                 {
-                    List<Event> events = searcher.GetEventsBetweenDates(_garden.Id, firstDay, lastDay);
+                    var events = searcher.GetEventsBetweenDates(_garden.Id, firstDay, lastDay);
                     allEvents.AddRange(events);
                     foreach (var @event in events)
                     {
                         MergeToBigList(ref shoppingList, @event.ShoppingListForChild);
                     }
                 }
+
                 MergeToBigList(ref shoppingList, _everyweekList);
-                List<ShoppingItem> finalList = new List<ShoppingItem>();
-                int childrenCount = _garden.Children.Count;
-                foreach (var d in shoppingList)
-                {
-                    finalList.Add(new ShoppingItem()
-                                      {Name = d.Key, Quantity = Convert.ToInt32(Math.Ceiling(d.Value*childrenCount))});
-                }
+                var childrenCount = _garden.Children.Count;
+                var finalList = shoppingList.Select(d => new ShoppingItem
+                                                             {
+                                                                 Name = d.Key,
+                                                                 Quantity = Convert.ToInt32(Math.Ceiling(d.Value * childrenCount))
+                                                             }).ToList();
                 ListLabel.Visible = true;
                 ProductsLabel.Visible = true;
                 ListView1.DataSource = allEvents;
@@ -67,9 +76,10 @@ namespace KindergartenApp.Kindergarden
 
         }
 
-        private void MergeToBigList(ref Dictionary<string, double> finalShoppingList, Dictionary<string, double> shoppingListToAdd)
+        private void MergeToBigList(ref Dictionary<string, double> finalShoppingList,
+                                    Dictionary<string, double> shoppingListToAdd)
         {
-            foreach (KeyValuePair<string, double> item in shoppingListToAdd)
+            foreach (var item in shoppingListToAdd)
             {
                 if (finalShoppingList.ContainsKey(item.Key))
                 {

@@ -20,7 +20,7 @@
                     <asp:Label ID="WhereLabel" runat="server" Text="שלח אל:" Visible="False" />
                 </td>
                 <td>
-                    <asp:DropDownList runat="server" ID="Where" Visible="False" />
+                    <asp:DropDownList runat="server" ID="Where" Visible="False"  />
                 </td>
             </tr>
             <tr>
