@@ -18,12 +18,14 @@ namespace KindergartenApp
             if(!isUserLogIn)
             {
                 menu.Visible = false;
+                UserData.Text = "";
             }
             else
             {
                 menu.Visible = true;
 
                 ShowMenuByUserType();
+                UserData.Text = "אתה מחובר כעת כ- " + ((Person) Session["CurrentUser"]).FullName;
             }
         }
 

@@ -35,6 +35,8 @@ namespace KindergartenApp
                     FillFields(current);
 
                     InitByUser();
+
+
                 }
             }
         }
@@ -85,6 +87,10 @@ namespace KindergartenApp
                 EnumUtils.GetDescriptionOfEnumValue(typeof(Entities.Cities),
                                                     Enum.GetName(typeof(Entities.Cities), current.City));
             ChildrenNum.Text = current.ChildQty.ToString();
+
+
+            Teachers.DataSource = new TeachersQuery().Get();
+            Teachers.DataBind();
             Teachers.SelectedValue = current.Teacher != null ? current.Teacher.Id.ToString() : "";
 
             ChildrenGrid.DataSource = current.Children;

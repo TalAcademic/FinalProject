@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Kindergarten.BL.Edit;
+using Kindergarten.BL.Query;
 using Kindergarten.Data;
 using Kindergarten.Domain.Entities;
 using NHibernate.Linq;
@@ -23,18 +25,12 @@ namespace Kindergarten.BL.Messages
                 SendTime = DateTime.Now
             };
 
-            SessionFactoryHelper.CurrentSession.Save(msg);
+            MessageEdit.Instance.Add(msg);
         }
 
         public List<Message> GetPersonMessages(Person recipient)
         {
-            return SessionFactoryHelper.CurrentSession.Query<Message>().Where(c => c.Recipients.Contains(recipient)).ToList();
+            return new MessageQuery{Person = recipient}.GetByFilter().ToList();
         }
-    }
-
-    public interface IMessanger
-    {
-        void SendMessage(Person sender, string title, string body, List<Person> recipients);
-        List<Message> GetPersonMessages(Person recipient);
     }
 }

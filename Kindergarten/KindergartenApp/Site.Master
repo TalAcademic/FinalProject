@@ -9,57 +9,95 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <script src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="../Scripts/jquery-1.8.2.min.js"></script>
     <script>
+
+
+        //$(document).ready(function () {
+
+        //    $("li").find("li").hide();
+        //    ;
+        //});
+
+        //$(function () {
+        //    $("li").click(function (event) {
+        //        event.preventDefault();
+        //        $(this).find("li").toggle();
+        //    });
+        //});
+
         function showMessage() {
 
             alert("השמירה בוצעה בהצלחה");
         }
+
     </script>
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server" />
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="jquery"  Path="Scripts/jquery-1.8.2.min.js"/>
+            </Scripts>
+        </asp:ScriptManager>
 
         <header>
             <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">
-                        <div>
-                            <img src="../Images/logo.jpg" width="732" height="172" />
-                        </div>
+                <div>
+                    <p class="site-title" style="direction: ltr">
+
+                        <img src="../Images/logo.jpg" width="732" height="172" />
+
                     </p>
                 </div>
-                <div class="float-right">
+                <div>
                     <section id="login">
-                        <ul>
-                            <li><a id="loginLink" runat="server" href="User/Login">התחבר למערכת</a></li>
-                        </ul>
-                    
+                        <div>
+                            <a id="loginLink" runat="server" href="User/Login">התחבר למערכת</a>
+                        </div>
                     </section>
-                    <nav>
-                        <ul id="menu" runat="server">
-                            <li><a runat="server" href="~/Main" style="color: blue">דף הבית</a></li>
-                            <ul id="KindergardenMenu" runat="server">
-                                <li id="AddKindergarden" runat="server"><a id="A1" runat="server" href="~/Kindergarden/AddKindergarden">הוסף גן</a></li>
-                                <li><a id="A2" runat="server" href="~/Kindergarden/OpenDay">פתיחת יום</a></li>
-                                <li><a id="WeekPlan" runat="server" href="~/Kindergarden/WeekPlan">תכנון שבועי</a></li>
-                                <li id="AddActivity" runat="server"><a id="A3" runat="server" href="~/Kindergarden/AddActivity">הוספת פעילות</a></li>
-                                <li><a id="A9" runat="server" href="~/Kindergarden/Activities">צפה בפעילויות</a></li>
-                            </ul>
-                            <ul id="UserMenu" runat="server">
+                    <section>
+                        <asp:Label runat="server" ID="UserData" />
+                    </section>
+                    <div>
+                        <ul id="menu" runat="server" >
+
+
+                            <li>
+                                <div><a runat="server" href="~/Main" style="color: blue">דף הבית</a></div>
+                            </li>
+
+                            <li>
+                                <asp:Label runat="server" Text="ניהול גן" />
+                                <ul id="KindergardenMenu" runat="server" >
+                                    <li id="AddKindergarden" runat="server"><a id="A1" runat="server" href="~/Kindergarden/AddKindergarden">הוסף גן</a></li>
+                                    <li><a id="A2" runat="server" href="~/Kindergarden/OpenDay">פתיחת יום</a></li>
+                                    <li><a id="WeekPlan" runat="server" href="~/Kindergarden/WeekPlan">תכנון שבועי</a></li>
+                                    <li id="AddActivity" runat="server"><a id="A3" runat="server" href="~/Kindergarden/AddActivity">הוספת פעילות</a></li>
+                                    <li><a id="A9" runat="server" href="~/Kindergarden/Activities">צפה בפעילויות</a></li>
+                                </ul>
+                            </li>
+                            <li>ניהול משתמש
+                            <ul id="UserMenu" runat="server" >
                                 <li id="AddUser" runat="server"><a runat="server" href="~/User/AddUser">הוסף משתמש</a></li>
                                 <li><a runat="server" href="~/User/ChangePassword">החלף סיסמא</a></li>
                             </ul>
-                            <ul>
-                                <li><a id="A5" runat="server" href="~/Messaging/MyMessages">צפיה בהודעות</a></li>
-                                <li><a id="A6" runat="server" href="~/Messaging/SendMessage">שלח הודעה</a></li>
-                            </ul>
-                            <ul>
-                                <li><a id="A7" runat="server" href="~/Search/SearchKindergarden">חפש גן</a></li>
-                                <li><a id="A8" runat="server" href="~/Search/SearchUser">חפש משתמש</a></li>
-                            </ul>
+                            </li>
+                            <li>הודעות
+                                <ul >
+                                    <li><a id="A5" runat="server" href="~/Messaging/MyMessages">צפיה בהודעות</a></li>
+                                    <li><a id="A6" runat="server" href="~/Messaging/SendMessage">שלח הודעה</a></li>
+                                </ul>
+                            </li>
+                            <li>דוחות
+                                <ul >
+                                    <li><a id="A7" runat="server" href="~/Search/SearchKindergarden">חפש גן</a></li>
+                                    <li><a id="A8" runat="server" href="~/Search/SearchUser">חפש משתמש</a></li>
+                                </ul>
+                            </li>
                         </ul>
-                    </nav>
+                    </div>
                 </div>
             </div>
         </header>
@@ -69,10 +107,6 @@
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
             </section>
         </div>
-        <footer>
-            <div class="content-wrapper">
-            </div>
-        </footer>
     </form>
 </body>
 </html>

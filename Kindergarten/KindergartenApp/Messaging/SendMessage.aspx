@@ -10,8 +10,8 @@
                 <td>
                     <asp:Label ID="Label5" runat="server" Text="סוג הודעה:" />
                 </td>
-                <td>
-                    <asp:RadioButtonList runat="server" ID="Who" RepeatDirection="Horizontal" OnSelectedIndexChanged="SelectedWho"/>
+                <td> 
+                    <asp:RadioButtonList runat="server" ID="Who" RepeatDirection="Horizontal" OnSelectedIndexChanged="SelectedWho" CellSpacing="10"  CellPadding="10" CssClass="Radio"/>
                     <asp:Label ID="WhoLable" runat="server" Text="גננת" Visible="False"/>
                 </td>
             </tr>

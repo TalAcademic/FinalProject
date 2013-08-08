@@ -55,10 +55,12 @@
     <Compile Include="Edit\ChildEdit.cs" />
     <Compile Include="Edit\IEdit.cs" />
     <Compile Include="Edit\KindergardenEdit.cs" />
+    <Compile Include="Edit\MessageEdit.cs" />
     <Compile Include="Edit\PersonEdit.cs" />
     <Compile Include="Edit\SupervisorEdit.cs" />
     <Compile Include="Edit\TeacherEdit.cs" />
     <Compile Include="EventSearcher\EventSearcherFactory.cs" />
+    <Compile Include="Messages\IMessanger.cs" />
     <Compile Include="Query\ActivityQuery.cs" />
     <Compile Include="Query\AttendanceQuery.cs" />
     <Compile Include="Query\IQuery.cs" />
