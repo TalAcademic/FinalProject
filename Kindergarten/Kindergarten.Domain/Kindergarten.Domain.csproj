@@ -55,6 +55,7 @@
     <Compile Include="Entities\Child.cs" />
     <Compile Include="Entities\Cities.cs" />
     <Compile Include="Entities\Event.cs" />
+    <Compile Include="Entities\Holiday.cs" />
     <Compile Include="Entities\ISearcher.cs" />
     <Compile Include="Entities\Kindergarden.cs" />
     <Compile Include="Entities\Message.cs" />

@@ -72,20 +72,5 @@ namespace Kindergaten.EventSearchers
 
     }
 
-    public class Holiday
-    {
-        public string Name { get; set; }
-        public DateTime StartDate { get; set; }
-        private Dictionary<string, double> _shoppingListForChild;
-        public Dictionary<string, double> ShoppingListForChild
-        {
-            get
-            {
-                if (_shoppingListForChild == null)
-                    _shoppingListForChild = new Dictionary<string, double>();
-                return _shoppingListForChild;
-            }
-            set { _shoppingListForChild = value; }
-        }
-    }
+
 }

@@ -13,20 +13,6 @@
     <script src="../Scripts/jquery-1.8.2.min.js"></script>
     <script>
 
-
-        //$(document).ready(function () {
-
-        //    $("li").find("li").hide();
-        //    ;
-        //});
-
-        //$(function () {
-        //    $("li").click(function (event) {
-        //        event.preventDefault();
-        //        $(this).find("li").toggle();
-        //    });
-        //});
-
         function showMessage() {
 
             alert("השמירה בוצעה בהצלחה");
@@ -55,15 +41,11 @@
                     <section id="login">
                         <div>
                             <a id="loginLink" runat="server" href="User/Login">התחבר למערכת</a>
+                             <asp:Label runat="server" ID="UserData" />
                         </div>
-                    </section>
-                    <section>
-                        <asp:Label runat="server" ID="UserData" />
                     </section>
                     <div>
                         <ul id="menu" runat="server" >
-
-
                             <li>
                                 <div><a runat="server" href="~/Main" style="color: blue">דף הבית</a></div>
                             </li>

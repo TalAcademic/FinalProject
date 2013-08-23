@@ -12,12 +12,8 @@ namespace Kindergarten.BL.EventSearcher
     public class EventSearcherFactory :ISearcherFactory
     {
         private static List<ISearcher> _availableSearchers;
-        private static List<string> _availableEventTypes;
 
-        public static List<string> AvailableEventTypes
-        {
-            get { return _availableEventTypes; }
-        }
+        public static List<string> AvailableEventTypes { get; private set; }
 
 
         public EventSearcherFactory()
@@ -30,28 +26,30 @@ namespace Kindergarten.BL.EventSearcher
         private void FillAvialableSearchers()
         {
             _availableSearchers=new List<ISearcher>();
-            _availableEventTypes= new List<string>();
-            string fullLocation =Assembly.GetAssembly(this.GetType()).CodeBase;
-            int toRemove =fullLocation.LastIndexOf('/');
-            string location = fullLocation.Remove(toRemove);
-            Uri u = new Uri(location);
-            string[] files = Directory.GetFiles(u.AbsolutePath);
-            List<string> searchers = (from file in files
+            AvailableEventTypes= new List<string>();
+            var fullLocation =Assembly.GetAssembly(GetType()).CodeBase;
+            var toRemove =fullLocation.LastIndexOf('/');
+            var location = fullLocation.Remove(toRemove);
+            var u = new Uri(location);
+            var files = Directory.GetFiles(u.AbsolutePath);
+            var searchers = (from file in files
                                       where (file.ToLower().Contains("searcher") &&  file.ToLower().Contains(".dll"))
                                       select file).ToList();
+
             foreach (var searcher in searchers)
             {
-                Assembly ass = Assembly.LoadFile(searcher);
-                Type[] types = ass.GetTypes();
-                foreach (Type type in types)
+                var ass = Assembly.LoadFile(searcher);
+                var types = ass.GetTypes();
+
+                foreach (var type in types)
                 {
                     if (type.IsClass&&type.IsPublic)
                     {
                         if (type.GetInterfaces().Contains(typeof(ISearcher)))
                         {
-                            ISearcher o = (ISearcher)Activator.CreateInstance(type);
+                            var o = (ISearcher)Activator.CreateInstance(type);
                             _availableSearchers.Add(o);
-                            _availableEventTypes.Add(o.EventGeneralName);
+                            AvailableEventTypes.Add(o.EventGeneralName);
                         }
                     }
                 }
@@ -62,12 +60,11 @@ namespace Kindergarten.BL.EventSearcher
 
         public ISearcher GetSearcher(string name)
         {
-            List<ISearcher> found = (from searcher in _availableSearchers
+            var found = (from searcher in _availableSearchers
                                      where searcher.EventGeneralName == name
                                      select searcher).ToList();
-            if (found.Count==0)
-                return null;
-            return found[0];
+
+            return found.Count==0 ? null : found[0];
         }
 
         public List<ISearcher> GetAllSearchers()
@@ -76,10 +73,6 @@ namespace Kindergarten.BL.EventSearcher
         }
     }
 
-    public interface ISearcherFactory
-    {
-        ISearcher GetSearcher(string name);
-        List<ISearcher> GetAllSearchers();
-    }
+  
 
 }

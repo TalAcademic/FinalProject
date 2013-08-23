@@ -14,6 +14,7 @@ namespace Kindergarten.BL.Query
         #region Filter properties
         public Kindergarden Kindergarden { get; set; }
         #endregion
+
         public Activity Get(int id)
         {
             return SessionFactoryHelper.CurrentSession.Get<Activity>(id);
