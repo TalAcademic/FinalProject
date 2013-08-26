@@ -22,7 +22,6 @@ namespace KindergartenApp.User
             if (Page.IsValid)
             {
 
-
                 var userId = ((Person)Session["CurrentUser"]).Id;
                 var user = new PersonQuery().Get(userId);
 

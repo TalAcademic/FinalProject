@@ -17,7 +17,7 @@ namespace KindergartenApp.Messaging
         {
             var id = Convert.ToInt32(Request.Params["messageId"]);
             var msg = new MessageQuery().Get(id);
-                //SessionFactoryHelper.CurrentSession.Query<Message>().Single(c => c.Id == id);
+                
             if (msg != null)
             {
                 Date.Text = msg.SendTime.ToString();

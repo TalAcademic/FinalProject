@@ -43,7 +43,7 @@ namespace KindergartenApp.User
 
         private void InitByUser()
         {
-            var displayUser = (Entities.Person)CurrentUser;
+            var displayUser = CurrentUser;
             var currentUser = Session["CurrentUser"];
 
             if (currentUser is Entities.Child)

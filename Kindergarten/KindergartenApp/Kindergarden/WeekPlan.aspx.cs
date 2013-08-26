@@ -14,7 +14,7 @@ namespace KindergartenApp.Kindergarden
 {
     public partial class WeekPlan : System.Web.UI.Page
     {
-        public ISearcherFactory _searcher { get; set; }
+        public ISearcherFactory Searcher { get; set; }
         private Kindergarten.Domain.Entities.Kindergarden _garden;
 
         private readonly Dictionary<string, double> _everyweekList = new Dictionary<string, double>
@@ -30,9 +30,11 @@ namespace KindergartenApp.Kindergarden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var teacher = (Teacher)Session["CurrentUser"];
-            _garden = new KindergardenQuery { TeacherId = teacher.Id }.GetByFilter().First();
-            //SessionFactoryHelper.CurrentSession.Query<Kindergarten.Domain.Entities.Kindergarden>().First(g => g.Teacher.Id == teacher.Id);
+            if (!Page.IsPostBack)
+            {
+                var teacher = (Teacher)Session["CurrentUser"];
+                _garden = new KindergardenQuery { TeacherId = teacher.Id }.GetByFilter().First();
+            }
         }
 
         protected void Planclick(object sender, EventArgs e)
@@ -49,7 +51,7 @@ namespace KindergartenApp.Kindergarden
                 var shoppingList = new Dictionary<string, double>();
                 var allEvents = new List<Event>();
 
-                foreach (var searcher in _searcher.GetAllSearchers())
+                foreach (var searcher in Searcher.GetAllSearchers())
                 {
                     var events = searcher.GetEventsBetweenDates(_garden.Id, firstDay, lastDay);
                     allEvents.AddRange(events);

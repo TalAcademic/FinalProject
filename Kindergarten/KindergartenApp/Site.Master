@@ -6,7 +6,8 @@
     <meta charset="utf-8" />
     <title>Kindergarten Application</title>
 
-    <webopt:BundleReference runat="server" Path="~/Content/css" />
+
+    <link href="Content/Site.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
     <script src="/Scripts/jquery-1.8.2.min.js"></script>
@@ -40,7 +41,7 @@
                 <div>
                     <section id="login">
                         <div>
-                            <a id="loginLink" runat="server" href="User/Login">התחבר למערכת</a>
+                            <a id="loginLink" runat="server" href="User/Login.aspx">התחבר למערכת</a>
                              <asp:Label runat="server" ID="UserData" />
                         </div>
                     </section>
@@ -53,29 +54,29 @@
                             <li>
                                 <asp:Label runat="server" Text="ניהול גן" />
                                 <ul id="KindergardenMenu" runat="server" >
-                                    <li id="AddKindergarden" runat="server"><a id="A1" runat="server" href="~/Kindergarden/AddKindergarden">הוסף גן</a></li>
-                                    <li><a id="A2" runat="server" href="~/Kindergarden/OpenDay">פתיחת יום</a></li>
-                                    <li><a id="WeekPlan" runat="server" href="~/Kindergarden/WeekPlan">תכנון שבועי</a></li>
-                                    <li id="AddActivity" runat="server"><a id="A3" runat="server" href="~/Kindergarden/AddActivity">הוספת פעילות</a></li>
-                                    <li><a id="A9" runat="server" href="~/Kindergarden/Activities">צפה בפעילויות</a></li>
+                                    <li id="AddKindergarden" runat="server"><a id="A1" runat="server" href="~/Kindergarden/AddKindergarden.aspx">הוסף גן</a></li>
+                                    <li><a id="A2" runat="server" href="~/Kindergarden/OpenDay.aspx">פתיחת יום</a></li>
+                                    <li><a id="WeekPlan" runat="server" href="~/Kindergarden/WeekPlan.aspx">תכנון שבועי</a></li>
+                                    <li id="AddActivity" runat="server"><a id="A3" runat="server" href="~/Kindergarden/AddActivity.aspx">הוספת פעילות</a></li>
+                                    <li><a id="A9" runat="server" href="~/Kindergarden/Activities.aspx">צפה בפעילויות</a></li>
                                 </ul>
                             </li>
                             <li>ניהול משתמש
                             <ul id="UserMenu" runat="server" >
-                                <li id="AddUser" runat="server"><a runat="server" href="~/User/AddUser">הוסף משתמש</a></li>
-                                <li><a runat="server" href="~/User/ChangePassword">החלף סיסמא</a></li>
+                                <li id="AddUser" runat="server"><a runat="server" href="~/User/AddUser.aspx">הוסף משתמש</a></li>
+                                <li><a runat="server" href="~/User/ChangePassword.aspx">החלף סיסמא</a></li>
                             </ul>
                             </li>
                             <li>הודעות
                                 <ul >
-                                    <li><a id="A5" runat="server" href="~/Messaging/MyMessages">צפיה בהודעות</a></li>
-                                    <li><a id="A6" runat="server" href="~/Messaging/SendMessage">שלח הודעה</a></li>
+                                    <li><a id="A5" runat="server" href="~/Messaging/MyMessages.aspx">צפיה בהודעות</a></li>
+                                    <li><a id="A6" runat="server" href="~/Messaging/SendMessage.aspx">שלח הודעה</a></li>
                                 </ul>
                             </li>
                             <li>דוחות
                                 <ul >
-                                    <li><a id="A7" runat="server" href="~/Search/SearchKindergarden">חפש גן</a></li>
-                                    <li><a id="A8" runat="server" href="~/Search/SearchUser">חפש משתמש</a></li>
+                                    <li><a id="A7" runat="server" href="~/Search/SearchKindergarden.aspx">חפש גן</a></li>
+                                    <li><a id="A8" runat="server" href="~/Search/SearchUser.aspx">חפש משתמש</a></li>
                                 </ul>
                             </li>
                         </ul>

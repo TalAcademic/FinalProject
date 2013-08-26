@@ -14,7 +14,7 @@ namespace KindergartenApp.Kindergarden
 {
     public partial class OpenDay : System.Web.UI.Page
     {
-        public ISearcherFactory _searcher { get; set; }
+        public ISearcherFactory Searcher { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -60,9 +60,9 @@ namespace KindergartenApp.Kindergarden
                 ChildrenGrid.DataSource = result;
                 ChildrenGrid.DataBind();
 
-                List<Entities.ISearcher> searchers = _searcher.GetAllSearchers();
-                List<Entities.Event> allEvents = new List<Entities.Event>();
-                foreach (Entities.ISearcher searcher in searchers)
+                var searchers = Searcher.GetAllSearchers();
+                var allEvents = new List<Entities.Event>();
+                foreach (var searcher in searchers)
                 {
                     allEvents.AddRange(searcher.GetEventsBetweenDates(garden.Id, DatePicker.SelectedDate,
                                                                       DatePicker.SelectedDate));
@@ -76,7 +76,6 @@ namespace KindergartenApp.Kindergarden
         protected void SaveClick(object sender, EventArgs e)
         {
 
-
             foreach (var item in ChildrenGrid.Items)
             {
                 var childId = ((Label)((DataGridItem)item).FindControl("Id")).Text;
@@ -84,7 +83,7 @@ namespace KindergartenApp.Kindergarden
 
                 var entity = new Entities.Attendance
                                  {
-                                     //   Arrived = (bool)arrived,
+ 
                                      Child = new ChildQuery().Get(int.Parse(childId)),
                                      Date = DatePicker.SelectedDate,
                                      Arrived = arrived

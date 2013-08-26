@@ -16,16 +16,20 @@ namespace KindergartenApp.Messaging
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var msgs = IMessanger.GetPersonMessages((Person)Session["CurrentUser"]);
-            if (msgs.Count == 0)
+            if (!Page.IsPostBack)
             {
-                NoMessages.Visible = true;
-            }
-            else
-            {
-                NoMessages.Visible = false;
-                GridView1.DataSource = msgs;
-                DataBind();
+
+                var msgs = IMessanger.GetPersonMessages((Person)Session["CurrentUser"]);
+                if (msgs.Count == 0)
+                {
+                    NoMessages.Visible = true;
+                }
+                else
+                {
+                    NoMessages.Visible = false;
+                    GridView1.DataSource = msgs;
+                    DataBind();
+                }
             }
 
         }

@@ -15,7 +15,7 @@
             <asp:Button ID="Show" runat="server" Text="הצג" OnClick="ShowClick" />
         </div>
 
-        <asp:DataGrid ID="ActivitiesGrid" runat="server" AutoGenerateColumns="False">
+        <asp:DataGrid ID="ActivitiesGrid" runat="server" AutoGenerateColumns="False" CssClass="Grid">
             <Columns>
                 <asp:BoundColumn DataField="Name" HeaderText="שם הפעילות" />
                 <asp:TemplateColumn HeaderText="סוג">

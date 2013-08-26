@@ -17,40 +17,15 @@ namespace Kindergarten.Bootstrap
             return container;
         }
 
-        public static IContainer WithBuilder(this IContainer container, Action<ContainerBuilder> actionOnBuilder)
-        {
-            ContainerBuilder builder = new ContainerBuilder();
-            actionOnBuilder(builder);
-            return container.UpdatedBy(builder);
-        }
-
-        public static IContainer WithType(this IContainer container, Type type)
-        {
-            ContainerBuilder builder = new ContainerBuilder();
-            builder.RegisterType(type);
-            return container.UpdatedBy(builder);
-        }
-
-        public static IContainer WithType<T>(this IContainer container)
-        {
-            return container.WithType(typeof(T));
-        }
-
-        public static IContainer WithLogger(this IContainer container, string logName)
-        {
-            ContainerBuilder builder = new ContainerBuilder();
-            //builder.Register(c => new Log(logName)).As<ILogger>();
-            return container.UpdatedBy(builder);
-        }
         public static IContainer WithMessanger(this IContainer container)
         {
-            ContainerBuilder builder = new ContainerBuilder();
+            var builder = new ContainerBuilder();
             builder.Register(c => new DBMessagesManager()).As<IMessanger>();
             return container.UpdatedBy(builder);
         }
         public static IContainer WithSearcherFactory(this IContainer container)
         {
-            ContainerBuilder builder = new ContainerBuilder();
+            var builder = new ContainerBuilder();
             builder.Register(c => new EventSearcherFactory()).As<ISearcherFactory>();
             return container.UpdatedBy(builder);
         }
