@@ -30,11 +30,8 @@ namespace KindergartenApp.Kindergarden
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                var teacher = (Teacher)Session["CurrentUser"];
-                _garden = new KindergardenQuery { TeacherId = teacher.Id }.GetByFilter().First();
-            }
+            var teacher = (Teacher)Session["CurrentUser"];
+            _garden = new KindergardenQuery { TeacherId = teacher.Id }.GetByFilter().First();
         }
 
         protected void Planclick(object sender, EventArgs e)
